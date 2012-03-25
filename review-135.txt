@@ -1,0 +1,52 @@
+EuroVis 2012
+
+Reviews of submission #135: "Interactive Exploration of Curvilinear
+Finite Element Models"
+
+------------------------ Submission 135, Review 1 ------------------------
+
+Reviewer:           primary
+
+Second Round Review Text
+
+
+Second Round Recommendation
+
+   
+
+Summary Review Text
+
+   All four reviewers agree in that the paper in its current form cannot be
+   accepted at EuroVis 2012. The major reasons are:
+
+   - neither is related work in the field referenced adequately, nor do the 
+     authors perform a comparison to any existing approach,
+
+   - the proposed method performs approximations which can result in severe
+   loss of accuracy, an issue that is not discussed at all,
+
+   - the method can introduce a sever increase in memory, due to the memory
+   footprint of storing precomputed rays,
+    
+   - the presented results are not convincing and do not demonstrate the
+   advantages of the presented method over other methods, neither with
+   respect to quality nor speed, 
+
+   - the technical realization is partly unclear, including a clear analysis
+   of the accuracy/memory/speed tradeoff.
+
+
+
+------------------------ Submission 135, Review 2 ------------------------
+
+Reviewer:           secondary
+
+------------------------ Submission 135, Review 3 ------------------------
+
+Reviewer:           external
+
+------------------------ Submission 135, Review 4 ------------------------
+
+Reviewer:           external
+
+
