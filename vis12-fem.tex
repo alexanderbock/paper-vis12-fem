@@ -235,12 +235,21 @@ While Section~\ref{sec:preprocessing} gives a comprehensive overview of the prep
 
 \subsection{Element Peeling}
 
-\begin{figure}[t]
-  \centering 
-  \includegraphics[width=0.9\linewidth]{figures/EntryExit}
-  \caption{Depth peeling is used to extract the FE layers. \textbf{TODO: revise figure. Show depth, xi and world coordinates, face and element ID for layer 1 and 2 (two rows).}}
-  \label{fig:depthpeeling}
-\end{figure}
+\begin{figure*}[t]
+    \centering
+    \subfigure[Entry World]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastEntryWorld1.jpg}}
+ 	  \subfigure[Entry Depth]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastEntryDepth1.jpg}}
+    \subfigure[Entry Xi]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastEntryXi1.jpg}}
+    \subfigure[Entry Face IDs]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastEntryFace1.jpg}}
+    \subfigure[Entry Element IDs]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastElementID1.jpg}}\\
+    \subfigure[Exit World]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastExitWorld1.jpg}}
+ 	  \subfigure[Exit Depth]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastExitDepth1.jpg}}
+    \subfigure[Exit Xi]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastExitXi1.jpg}}
+    \subfigure[Exit Face IDs]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastExitFace1.jpg}}
+    \subfigure[Exit Element IDs]{\includegraphics[width=0.19\linewidth]{figures/breast_mesh/BreastElementID2.jpg}}
+    \caption{Depth peeling is used to extract the FE layers. \textbf{TODO: revise figure. Show depth, xi and world coordinates, face and element ID for layer 1 and 2 (two rows).}}
+    \label{fig:depthpeeling}
+\end{figure*}
 
 \begin{figure}[b]
   \centering 
