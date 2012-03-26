@@ -1,52 +1,458 @@
 EuroVis 2012
-
 Reviews of submission #135: "Interactive Exploration of Curvilinear
 Finite Element Models"
-
 ------------------------ Submission 135, Review 1 ------------------------
+
+Title: Interactive Exploration of Curvilinear Finite Element Models
 
 Reviewer:           primary
 
-Second Round Review Text
-
-
-Second Round Recommendation
-
-   
-
 Summary Review Text
 
-   All four reviewers agree in that the paper in its current form cannot be
-   accepted at EuroVis 2012. The major reasons are:
+  All four reviewers agree in that the paper in its current form cannot be
+  accepted at EuroVis 2012. The major reasons are:
 
-   - neither is related work in the field referenced adequately, nor do the 
-     authors perform a comparison to any existing approach,
+  - neither is related work in the field referenced adequately, nor do the
+    authors perform a comparison to any existing approach,
 
-   - the proposed method performs approximations which can result in severe
-   loss of accuracy, an issue that is not discussed at all,
+  - the proposed method performs approximations which can result in severe
+  loss of accuracy, an issue that is not discussed at all,
 
-   - the method can introduce a sever increase in memory, due to the memory
-   footprint of storing precomputed rays,
-    
-   - the presented results are not convincing and do not demonstrate the
-   advantages of the presented method over other methods, neither with
-   respect to quality nor speed, 
+  - the method can introduce a sever increase in memory, due to the memory
+  footprint of storing precomputed rays,
 
-   - the technical realization is partly unclear, including a clear analysis
-   of the accuracy/memory/speed tradeoff.
+  - the presented results are not convincing and do not demonstrate the
+  advantages of the presented method over other methods, neither with
+  respect to quality nor speed,
+
+  - the technical realization is partly unclear, including a clear analysis
+  of the accuracy/memory/speed tradeoff.
 
 
+
+Summary Rating
+
+  2  (Probably reject: I would argue for rejecting this paper.)
+
+Paper Type
+
+  Algorithm / Technique
+
+Scope (relevance to the event)
+
+  3  (Core topic, fits well)
+
+Contribution (novelty, originality)
+
+  1  (None: no valuable contribution, or the claimed contributions are already published)
+
+References
+
+  1  (Major areas of previous work ignored)
+
+Utility, Importance (relevance in general)
+
+  1  (Case for utility not compelling)
+
+Soundness (technical soundness, soundness of approach)
+
+  1  (Fundamentally unsound (technical) approach)
+
+Reproducability
+
+  1  (Work cannot be replicated because too many critical aspects remain murky)
+
+Presentation Quality
+
+  2  (Poor: major structural changes or extensive wordsmithing needed)
+
+Overall Rating
+
+  2  (Probably reject: I would argue for rejecting this paper.)
+
+Argumentation Overall Rating
+
+  The paper presents a volume rendering technique for curvilinear grids. It
+  "pre-computes" for a set of representative elements and a set of
+  pre-defined directions the sample positions on the rays along these
+  directions. At run-time, at these positions - relative to a current
+  element - the samples are taken and combined.
+
+  I major criticism is threefold (apart from a number of technical issues
+  which are not discussed appropriately): First, the approach introduces a
+  number of approximations which can easily result in severy
+  misclassifications. Second, conceptually the approach seems to be a
+  classical, somewhat adaptive resmapling approach. Thus, it falls into a
+  category which the authors themselves classify as not acceptable. Third,
+  any comparison to related approaches - and to ground truth visualizations
+  - is missing entirely. As such, to this end there is no evidence that the
+  proposed exhaustive machinery has any practical benefit.
+
+Expertise
+
+  4  (Expert)
+
+The Review
+
+  First of all I have to say that I found the discussion of finite element
+  techniques a little irritating. The authors are talking about curvilinear
+  grids, made up of deformed hexahedral elements, where each vertex is
+  associated with a nodal shape function defining the interpolation in a
+  cell's interior. Thus, I don't see any evidence to elaborate on finite
+  element techniques here, in particular not because it is never said what
+  kind of basis functions are used in the simulation. It is just stated at
+  the beginning that "Since the data within an element is usually defined
+  through higher order basis functions, extensive computation is be
+  necessary to reconstruct the data during ray-casting.", but later it is
+  never said what kind of basis functions are currently used.
+
+  Second, what the authors do is essentially a resampling process, i.e.,
+  the positions of samples in each element are pre-computed along spline
+  curves. The difference to classical resampling approaches is that the
+  sample positions are to a certain extent aligned to the elements shapes
+  at run-time and the data values are reconstructed at run-time. However,
+  it would be intersting, and absolutely mandatory, to compare the
+  presented approach to a classical resampling approach which simply
+  defines element-dependent regular resampling structures and then
+  interpolates in these structures. Furthermore, it is not said how a
+  particular transfer function - causing high frequencies in the values
+  along a ray - affect the precomputed spline curves; or do you compute
+  these curves independently of a particular color mapping.
+
+  Thirdly, with respect to the aforementioned the assumption that errors
+  are more severy close to the entry points into a cell is simply wrong.
+
+  Fourth, the only reason why the proposed pre-computation might be
+  practible is because inter-element coherence and intra-element coherence
+  can be exploited. However, I strongly doubt that this is true in general
+  for any non-trivial grid topology. And even if so, the proposed
+  methodology would always introduce errors, which, at least in my opinion,
+  can be quite severe. A rigorous analysis of these errors is mandatory.
+
+  Finally, since the paper is about curvilinear grids - even though I could
+  not find any aspects specific to such grids in the paper, a more thorough
+  comparison to the current state of the art has to be given, for instance,
+  with respect to
+
+  Efficient Rendering of Extrudable Curvilinear Volumes
+  Martin, Han-Wei Shen, Ravi Samtaney‡
+
+  Visualization of Time-Varying Curvilinear Grids Using a 3D Warp Texture
+  Yuan Chen, Jonathan Cohen, Subodh Kumar
+
+  Furthermore, resampling approaches as well as volume rendering approaches
+  for unstructured grids are not considered. These techniques are
+  significantly faster than the proposed one, at the same or even better
+  approximation quality.
 
 ------------------------ Submission 135, Review 2 ------------------------
 
+Title: Interactive Exploration of Curvilinear Finite Element Models
+
 Reviewer:           secondary
+
+Paper Type
+
+  Algorithm / Technique
+
+Scope (relevance to the event)
+
+  3  (Core topic, fits well)
+
+Contribution (novelty, originality)
+
+  3  (Reasonable: some valuable contribution)
+
+References
+
+  3  (At large, all important references are included)
+
+Utility, Importance (relevance in general)
+
+  2  (Possibly useful)
+
+Soundness (technical soundness, soundness of approach)
+
+  2  (Some concerns on correctness, some choices questionable)
+
+Reproducability
+
+  2  (Many issues discussed, but some important details left out)
+
+Presentation Quality
+
+  4  (Good: only minor typos and grammar problems)
+
+Overall Rating
+
+  3  (Borderline: the strengths and weaknesses balance for this paper.)
+
+Argumentation Overall Rating
+
+  This paper presents a new precomputation-based technique for ray
+  paramterization in a curved volume space. The idea is novel, but the
+  results are not convincing, and the presentation needs to be improved.
+
+Expertise
+
+  3  (Knowledgeable)
+
+The Review
+
+  This paper proposes a novel technique for visualizing curvilinear finite
+  element models. To address the challenge of curved ray marchin in the
+  volume parametreization space, the transformation from the world space to
+  the volume texture space in terms of each element is characterized with a
+  set of clustered curved rays. These rays are precomputed within a
+  generation-reconstruction-clustering process.
+  I like the idea and believe it is a potentially useful technique.
+
+  However, this paper exhibits two main drawbacks:
+  1) The presented results are very weak, and can not demonstrate the
+  advantages of the presented method;
+  2) The presentation of the algorithm details (Section 4) is a little bit
+  vague. Specially, how to generate a set of proxy ray for different shaped
+  curvilinear elements is unclear for me. I would suggest the authors to
+  reorganize the description.
 
 ------------------------ Submission 135, Review 3 ------------------------
 
+Title: Interactive Exploration of Curvilinear Finite Element Models
+
 Reviewer:           external
+
+Paper Type
+
+  Algorithm / Technique
+
+Scope (relevance to the event)
+
+  3  (Core topic, fits well)
+
+Contribution (novelty, originality)
+
+  3  (Reasonable: some valuable contribution)
+
+References
+
+  3  (At large, all important references are included)
+
+Utility, Importance (relevance in general)
+
+  2  (Possibly useful)
+
+Soundness (technical soundness, soundness of approach)
+
+  2  (Some concerns on correctness, some choices questionable)
+
+Reproducability
+
+  2  (Many issues discussed, but some important details left out)
+
+Presentation Quality
+
+  3  (Fair: some structural changes or some wordsmithing needed)
+
+Overall Rating
+
+  2  (Probably reject: I would argue for rejecting this paper.)
+
+Argumentation Overall Rating
+
+  I really like the proposed approach, perceptually the idea to sample and
+  characterize the possible rays into a representative set of rays and use
+  them to lower run-time computing cost for coordinate transform. However,
+  many technical details and essential evaluations are missing, making the
+  paper less complete to be well justified. I encourage the authors to push
+  forward this interesting idea more thoroughly and address the concerns to
+  make the paper well-acceptable.
+
+Expertise
+
+  4  (Expert)
+
+The Review
+
+  The paper presents a two-stage approach for ray-casting curvilinear
+  finite element models. In the pre-processing stage, the authors sampled
+  the faces of each element of a FE grid, enumerated and constructed all
+  the possible rays, and used the k-means method to generate the
+  representative rays. In the run-time stage, for each pixel, the
+  corresponding ray parameters are retrieved and reconstructed from the
+  pre-generated results. The ray-casting can be performed at an interactive
+  frame rate, which has been demonstrated with the performance results
+  using a single GPU. The overall idea to sampling and characterization of
+  rays looks novel, and the proposed approach may have a potential impact
+  on practices of visualizing curvilinear finite element meshes. In
+  addition, visualization of FE meshes is an important topic, and this work
+  is relevant for the event and would be of interest to readers of the
+  EuroVis symposium.
+
+  However, the paper has several weaknesses. Especially, many technical
+  details and essential evaluation are missing. The effectiveness and
+  feasibility of the approach are not entirely convincing.
+
+  * In Section 4, the statements on inter-element coherence and
+  intra-elements coherence are less rigorous. The authors need to provide
+  solid validations.
+
+  * In Section 4.1, what is the grid structure overlapping each face of a
+  FE? From Figure 3, it seems a uniform sampling imposed with an irregular
+  grid. But the authors didn’t provide the details on how to construct
+  this grid.
+
+  * In Section 4.1, the assumption for different grid resolutions is mainly
+  based on ray attenuation. However, would this method using different grid
+  resolutions be valid for both the orthogonal and perspective projections?
+  Moreover, as transfer functions could be application-specific, would the
+  assumption be valid with the constraints of transfer function?
+
+  * In Section 4.1, it is also unclear how to compute importance values to
+  determine the number of grid points. Moreover, the proxy ray method
+  imposes a quartic complexity, and the scalability with respect to
+  sampling points is questionable.
+
+  * In Section 4.2, the spline generation for a FE volume is essentially as
+  complex as a ray casting procedure. It is unclear how to effectively
+  carry out this procedure for curvilinear finite element models.  The
+  details, such as mesh management, ray marching, and enumerating all pairs
+  of sampling points, are missing.
+
+  * In Section 4.3, it is unclear how to determine the number of clusters.
+
+  * In Section 5.1, usually different elements can have different numbers
+  of faces. What is the structure of a 2D table with num_cells * num_faces
+  cells? In addition, how do you partition the cells based on the number of
+  start points and end points?
+
+  * In Section 5.3, it is unclear how to compute the data value at each
+  sample point. Also, during ray marching, what is the scheme to find the
+  start point of the current cell from the end point of the previous cell?
+  According to Section 4.1, two neighbor cells may have different grid
+  resolutions, and thus the sampling points may not be perfectly aligned
+  along the border.
+
+  * In Section 6.1, the authors didn’t compare their work with the
+  existing works, which is essential for a research paper.
+
+  * In Section 6.2, what error metric has been used in evaluation?
+
+  * In Section 6.3, the detailed descriptions of experimental settings,
+  parameter space, and data are missing. The paper also didn’t provide
+  the memory cost of the approach. The pre-processing cost seems too high
+  for large data, and could be prohibitive for AMR grids. It would be
+  interesting to analysis errors and test performance with  the exploration
+  of the parameter space, such as number of sampled proxy rays, number of
+  clusters, data size, inter-/intra-element coherence assessment, and so
+  on. The effectiveness, scalability, and feasibility of the approach can
+  not be well justified from the current result.
+
+  Minor suggestions:
+
+  In general, the figures are relatively small, and can be enlarged to use
+  the available space. The indexes of Figures 6 and 7 need be switched.
 
 ------------------------ Submission 135, Review 4 ------------------------
 
+Title: Interactive Exploration of Curvilinear Finite Element Models
+
 Reviewer:           external
+
+Paper Type
+
+  Algorithm / Technique
+
+Scope (relevance to the event)
+
+  3  (Core topic, fits well)
+
+Contribution (novelty, originality)
+
+  1  (None: no valuable contribution, or the claimed contributions are already published)
+
+References
+
+  2  (Some important references are missing)
+
+Utility, Importance (relevance in general)
+
+  1  (Case for utility not compelling)
+
+Soundness (technical soundness, soundness of approach)
+
+  1  (Fundamentally unsound (technical) approach)
+
+Reproducability
+
+  1  (Work cannot be replicated because too many critical aspects remain murky)
+
+Presentation Quality
+
+  2  (Poor: major structural changes or extensive wordsmithing needed)
+
+Overall Rating
+
+  1  (Definite reject: I would argue strongly for rejecting this paper.)
+
+Argumentation Overall Rating
+
+  This paper presents an approach for using precomputed view rays to speed
+  up the raycasting of curvilinear grids. The feasibility of the presented
+  spline fitting and clustering approach is not clear and not evaluated.
+  The paper consists of arbitrary design choices without clear motivation.
+  Precomputation times are extremely long, and the reduction in rendering
+  quality is unclear. The memory footprint of storing precomputed rays is
+  not stated. There are no comparisons with previous methods.
+
+Expertise
+
+  3  (Knowledgeable)
+
+The Review
+
+  The paper presents an approach for clustering all possible view rays for
+  rendering curvilinear grids that seems to consist of arbitrary design
+  choices that are neither motivated nor evaluated.
+
+  The approach is presented as a collection of solutions without evaluating
+  their impact on quality, memory usage, or comparing to previous work.
+
+  There is no validation of the presumed "intra-element" and
+  "inter-element" coherence. How true are these statements, and how do the
+  properties of different grids and basis functions influence this?
+
+  How well do the computed Catmull-Rom splines approximate the real curved
+  rays? Why were Catmull-Rom splines chosen?
+
+  Why is k-means clustering used instead of a non-parametric technique, and
+  how is k chosen? Fig. 12 does not tell me more than what is written in
+  the text, that increasing the number of clusters decreases the error.
+
+  There is not much information on the meshes used. What are the mesh
+  resolutions, the basis functions, etc.?
+
+  The evaluation consists of Fig. 11 (visual comparison) where no
+  differences are visible, and Fig. 12 which contains relative instead of
+  absolute errors. What is the real error incurred by this technique?
+
+  I would say that the precomputation times reported in 6.3 make the
+  approach impractical.
+
+  What are the memory requirements of the proposed method?
+
+  There should be a detailed comparison with Ueffinger et al.'s approach.
+  Unlike what is stated in the paper, their paper also reports performance
+  on a single PC, not only on clusters.
+
+  The references are incomplete. The depth peeling approach seems to be
+  based on the work of Garrity et al., which is not cited, etc.
+
+
+
+
+
+
+
+
 
 
