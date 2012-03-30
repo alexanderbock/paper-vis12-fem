@@ -42,6 +42,16 @@
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 \setlength\fboxsep{0pt}
 
+\newcommand{\exedout}{
+\begin{tikzpicture}
+\path node (LL) {}
+    ++ (0.8\textwidth, 0.8\textheight) node (UR) {}
+    (LL -| UR) node (LR) {}
+    (LL |- UR) node (UL) {};
+\draw (LL) rectangle (UR) (LL) -- (UR) (UL) -- (LR);
+\end{tikzpicture}
+}
+
 %% We encourage the use of mathptmx for consistent usage of times font
 %% throughout the proceedings. However, if you encounter conflicts
 %% with other math-related packages, you may want to disable it.
@@ -262,8 +272,18 @@ As the visualized FE models consist of several elements, these overlap in image 
 
 \begin{figure}
   \centering
-  \includegraphics{figures/coincidence/Coincidence.pdf}
-  \caption{Two cases of depth coincidence can occur, as[b] illustrated ({\it middle}), when rendering adjacent polygons. Point coincidence occurs at the corners of adjacent elements ({\it top left}), while surface coincidence occurs at the touching element's surfaces ({\it bottom left}). All coincidences can be avoided ({\it right}).}  
+    \begin{minipage}{1.5cm} 
+      \centering 
+      \subfigure{\resizebox{1.5cm}{!}{\includegraphics{figures/coincidence/HeartLowPrecisionPoints.jpg}} }\\
+      \subfigure{\resizebox{1.5cm}{!}{\includegraphics{figures/coincidence/HeartLowPrecisionSurface.jpg}} }  
+     \end{minipage}
+     \begin{minipage}{4.25cm} 
+      \subfigure{\resizebox{4.25cm}{!}{\includegraphics{figures/coincidence/Coincidence.pdf}} } 
+     \end{minipage}
+     \begin{minipage}{2.75cm} 
+      \subfigure{{\resizebox{2.75cm}{!}{\includegraphics{figures/coincidence/HeartFine.jpg}} } } 
+     \end{minipage}    
+  \caption{Two cases of depth coincidence can occur, as illustrated ({\it middle}), when rendering adjacent polygons. Point coincidence occurs at the corners of adjacent elements ({\it top left}), while surface coincidence occurs at the touching element's surfaces ({\it bottom left}). All coincidences can be avoided ({\it right}).}  
   \label{fig:depthcoincidence}
 \end{figure}
 
@@ -277,16 +297,16 @@ p_y & = &(c   \cdot (n_{entry} \cdot n_{exit})) + (s_{w_0,y} \cdot n_{exit}) + s
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.3\linewidth]{figures/overshoot}
+    \includegraphics[width=0.4\linewidth]{figures/overshoot}
     \caption{Rays penetrating multiple elements must be processed, such that constant sampling step sizes are obtained at the borders. The overshoot $e$ of $FE_0$ can be used to offset the first sampling point in element $FE_1$.}
     \label{fig:overshoot}
 \end{figure}
 
 \begin{figure}
-\centering
-\includegraphics[width=0.5\linewidth]{figures/arclength}
-\caption{To achieve equidistant sampling along a curve ray in $\xi$ space ({\it top}), an arc length parametrization is applied, resulting in a non-uniform sampling in world space ({\it bottom}).}
-\label{fig:arclength}
+	\centering
+	\includegraphics[width=0.5\linewidth]{figures/arclength}
+	\caption{To achieve equidistant sampling along a curve ray in $\xi$ space ({\it top}), an arc length parametrization is applied, resulting in a non-uniform sampling in world space ({\it bottom}).}
+	\label{fig:arclength}
 \end{figure}
 
 \subsection{Ray Marching}
