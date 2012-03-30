@@ -171,7 +171,7 @@ In this section, we present the basis for a novel ray-casting based algorithm fo
 
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=0.8\textwidth]{figures/workflow-new}
+    \includegraphics[width=0.8\textwidth]{figures/workflow-new.pdf}
     \caption{\textbf{Workflow.} To enable interactive ray-casting of curvilinear FE models, we exploit a multi-stage preprocessing approach. In the first step, we compute representative proxy rays, which are in the second step represented as splines and transformed into a common coordinate system. To reduce the data amount for the subsequent rendering stage, we apply a rotation invariant spline clustering in the third step. The resulting data, is then passed to the GPU-based rendering stage. \textbf{TODO: turn text into pictograms.}}
     \label{fig:workflow}
 \end{figure*}
@@ -186,7 +186,7 @@ To be able to compute a complete set $R$ of proxy rays, it is essential that it 
 
 To obtain such a uniform proxy ray distribution we exploit the intra-element coherence, which results in a high similarity between rays in $\xi$ space which enter and exit an element through adjacent coordinates. Therefore, we compute a dense and uniform distribution $P$ of potential entry and exit points on the surface of each element. While these points should be distributed over the entire surface of an element, the requirements with respect to the uniformity of $P$ are due to the intra-element coherence rather loose. We distribute the potential entry and exit points by performing an equidistant subdivision of all faces of an element. This is done for each element's face separately, by equidistantly subdividing the curved surface representing the face. In this step, the subdivision parameter $s_f$ controls the number of points equidistantly positioned along the $u$ and the $v$ coordinates of a face. \textbf{TODO: generate and reference figure.} Thus, the density of $P$ can be directly controlled by changing the subdivision parameter $s_f$. To reduce the number of initially generated proxy rays, it would also be an option to vary $s_f$ based on the extend of a face in world space. However, this would result in a rather more complex realization of the ray-casting performed in the rendering stage. Therefore, we have decided to choose a constant but sufficiently high $s_f$, before performing curve compression in the next step of our algorithm. This also results in a higher number of proxy rays, which is exploited in the coherency-based curve clustering.
 
-The actual proxy rays are then computed based on the resulting point distribution $P$. To obtain proxy rays from $P$, we consider all pairwise combinations $(p',p'')$, with $p',p'' \in P$. During rendering, a ray intersecting $p'$ and $p''$ would be a line in world space and a curve in $\xi$ space (recall Figure~\ref{fig:}). When connecting $p'$ and $p''$ with a straight line, representing a viewing ray in world space, the proxy ray in $\xi$ space can be obtained by sampling along the line in world space and transforming each sample's position into $\xi$ space. While this sampling is performed with a fixed but sufficiently high sampling rate $s_r$, it should be pointed out, that it does not represent or determine the sampling rate used later on during rendering. $s_r$ is only used to obtain the geometry of the proxy rays, the sampling rate used for the compositing during ray-traversal in the rendering step can still be chosen freely.
+The actual proxy rays are then computed based on the resulting point distribution $P$. To obtain proxy rays from $P$, we consider all pairwise combinations $(p',p'')$, with $p',p'' \in P$. During rendering, a ray intersecting $p'$ and $p''$ would be a line in world space and a curve in $\xi$ space (recall Figure~\ref{fig:raycoords}). When connecting $p'$ and $p''$ with a straight line, representing a viewing ray in world space, the proxy ray in $\xi$ space can be obtained by sampling along the line in world space and transforming each sample's position into $\xi$ space. While this sampling is performed with a fixed but sufficiently high sampling rate $s_r$, it should be pointed out, that it does not represent or determine the sampling rate used later on during rendering. $s_r$ is only used to obtain the geometry of the proxy rays, the sampling rate used for the compositing during ray-traversal in the rendering step can still be chosen freely.
 
 As the set of proxy rays $R$ has to be dense, its size is obviously a limiting factor. Assuming that our subdivision parameter $s_f$ would result in $n$ distinct points along the $u$ and the $v$ coordinate of an element's face, we would have $n^2$ grid points on each face. Thus, we would have $n^2 \cdot f$ grid points in total, when considering that each element has $f$ faces. This would result in $r_u = (n^2 f)^2$ proxy rays to be precomputed. Though, we have kept $s_f$ constant to allow a less complex implementation of the ray-casting process, we have other possibilities to reduce the size of $R$. To achieve this reduction, we exploit properties of the standard volume rendering integral which is used in the rendering stage:
 
@@ -304,6 +304,19 @@ The subdivision of a curve ray penetrating the whole FE model into segments base
 
 \textbf{TODO: Describe opacity correction. (?)}
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/fem-crosscut.png}
+    \caption{crosscut...}
+    \label{fig:crosscut}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.5\linewidth]{figures/overshoot.pdf}
+    \caption{overshoot...}
+    \label{fig:overshoot}
+\end{figure}
 
 \subsection{Ray Interpolation}
 
@@ -339,6 +352,14 @@ In order to further improve the image quality of our ray-casting approach, we in
 
 \begin{figure}[t]
     \centering 
+    \subfigure{\includegraphics[width=0.45\linewidth]{figures/heart-shading-front}}
+    \subfigure{\includegraphics[width=0.45\linewidth]{figures/heart-shading-top}}
+    \caption{FE heart model with with our interactive volumetric approach.}
+    \label{fig:heart-nice}
+\end{figure}
+
+\begin{figure}[t]
+    \centering 
     \subfigure[surface rendering]{\includegraphics[width=0.45\linewidth]{figures/fem-breast}}
     \subfigure[volumetric rendering]{\includegraphics[width=0.45\linewidth]{figures/Breast}}
     \caption{FE breast model with MRI material space rendered as surface representation ({\it a}) and with our interactive volumetric approach ({\it b}).}
@@ -348,7 +369,7 @@ In order to further improve the image quality of our ray-casting approach, we in
 \begin{figure}[b]
     \centering 
     \subfigure[polygonal rendering]{\includegraphics[width=0.45\linewidth]{figures/fem-tongue}}
-    \subfigure[volumetric rendering]{\includegraphics[width=0.45\linewidth]{figures/tongue2}}
+    \subfigure[volumetric rendering]{\includegraphics[width=0.45\linewidth]{figures/fem-tongue-new}}
     \caption{FE tongue model rendered as a polygonal representation ({\it a}), with our interactive volumetric approach ({\it b}).}
     \label{fig:tongue}
 \end{figure}
@@ -360,10 +381,16 @@ In order to further improve the image quality of our ray-casting approach, we in
 
 \noindent \textbf{Heart model.} A heart dataset, where the strain values for each point have been computed based on MRI images serves as the third example (see Figure~\ref{fig:heart}). For our visualization, we have taken into account the three principal strain directions, which are the eigenvalues of the tensor. The principle strains include the maximum and minimum deformation and the corresponding eigenvectors give the direction of these deformations. These directions are circumferential, longitudinal and radial.
 
+\begin{figure}[t]
+    \centering 
+    \subfigure[Reference Image]{\includegraphics[width=0.4\linewidth]{figures/cluster_measurements/heart3/heart3Pass.png}}
+    \subfigure[Error Measurement]{\includegraphics[width=0.59\linewidth]{figures/cluster_measurements/heart3/clusterErrorPlot.pdf}}
+    \caption{The normalized absolute pixel error (background pixels are neglected) against the percentage of clusters relative to the total amount of curves.}
+    \label{fig:clustering_visual_error}
+\end{figure}
 
 \subsection{Error Analysis}\label{subsec:error}
-Our approach contains several steps which introduce potential errors. First, the proxy ray generation explained in Subsection~\ref{subsec:proxyraycomputation} introduces an error based on the number of actual proxy rays. The visual impact of this error is shown in Figure~\ref{fig:heart-analysis}. A second error is $\epsilon_{cluster}$ is the error introduced by the clustering scheme itself. Figure~\ref{fig:clusteringerror}~({\it a}) shows the error for a varying number of clusters. It is clear and obvious to see that the error is smaller if we use more clusters. \textbf{TODO: how is number of clusters determined.}
-
+Our approach contains several steps which introduce potential errors. First, the proxy ray generation explained in Subsection~\ref{subsec:proxyraygeneration} introduces an error based on the number of actual proxy rays. The visual impact of this error is shown in Figure~\ref{fig:heart-analysis}. A second error is $\epsilon_{cluster}$ is the error introduced by the clustering scheme itself. Figure~\ref{fig:clustering_epsilon_error}~({\it a}) shows the error for a varying number of clusters. It is clear and obvious to see that the error is smaller if we use more clusters. The number of clusters can, depending on dataset, be quite low in relation to the number of splines, as seen in figure~\ref{fig:clustering_visual_error}~({\it b}). This is due to the fact that clustering of the curves is performed without consideration for the angle, as this stored in separately, which increase the correlation between the curves.
 
 \subsection{Performance Analysis}\label{subsec:performance}
 
@@ -371,7 +398,7 @@ Our approach contains several steps which introduce potential errors. First, the
     \centering 
     \includegraphics[width=0.85\linewidth]{figures/diagram_num_clusters.pdf}
     \caption{The error for varying numbers of clusters in depending on the number of iterations after which the k-means algorithm has stopped. The data is based on the 'heart' dataset with a grid resolution of $5\times5$, which resulted in 360.000 rays. Initial error for 32 clusters has the value 1.}
-    \label{fig:clusteringerror}
+    \label{fig:clustering_epsilon_error}
 \end{figure}
 
 \begin{table}[b]
