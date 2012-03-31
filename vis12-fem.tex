@@ -99,10 +99,11 @@
 %% Uncomment below to include a teaser figure.
 \teaser{
 	\centering 
-  \subfigure[]{\includegraphics[width=0.2\linewidth]{figures/Heart1New1_T1}}
-  \subfigure[]{\includegraphics[width=0.2\linewidth]{figures/Heart1New2_T2}}
-  \subfigure[]{\includegraphics[width=0.2\linewidth]{figures/Heart4New1_T3}}
-  \caption{Application of our visualization approach to a multi-parametric FE model of the left ventricle of a human heart. The images show volumetric renderings of different parameters defined over the FE model: minimum strain, medium strain and maximum strain ({\it left to right}). The data can be explored interactively by changing the transfer function and all other relevant rendering parameters.}
+  \subfigure{\includegraphics[width=0.2\linewidth]{figures/Heart1New1_T1}}
+  \subfigure{\includegraphics[width=0.2\linewidth]{figures/Heart1New2_T2}}
+  \subfigure{\includegraphics[width=0.2\linewidth]{figures/Heart4New1_T3}}
+  \subfigure{\includegraphics[width=0.2\linewidth]{figures/HeartCombined}}
+  \caption{Application of our visualization approach to a multi-parametric FE model of the left ventricle of a human heart. The images show volumetric renderings of different strain directions defined over the FE model: radial strain, circumferential strain, longitudinal strain as well as the three former combined ({\it left to right}). The data can be explored interactively by changing the transfer function and all other relevant rendering parameters.}
   \label{fig:heart}
 }
 
@@ -309,11 +310,11 @@ In order to further improve the image quality of our ray-casting approach, we in
 
 \begin{figure}[t]
     \centering
-    \subfigure[$2 \times 2$ precomputed proxy rays per element]{\includegraphics[width=0.3\linewidth]{figures/heart-2-new.png}
-    \includegraphics[width=0.3\linewidth]{figures/heart-2-rr-ii-new.png}}\\
-    \subfigure[$10 \times 10$ precomputed proxy rays per element]{\includegraphics[width=0.3\linewidth]{figures/heart-10-new.png}
-    \includegraphics[width=0.3\linewidth]{figures/heart-10-rr-ii-new.png}}
-    \caption{Application of our approach with different precomputation and rendering parameters. In the two rows, $2 \times 2$ ({\it a}) and $10 \times 10$ proxy rays ({\it b}) have been precomputed per element. Within each row, we show the application of standard ray interpolation, intra-ray interpolation, as well as intra- and inter-ray interpolation ({\it left to right}). \textbf{TODO: show nice pictures with closeups, does intra-ray interpolation make sense for the same entry exit resolution (?)(!!!).}}
+    \subfigure[$2 \times 2$ precomputed proxy rays per element]{\includegraphics[width=0.49\linewidth]{figures/heart-2-new-with-closeup.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/heart-2-rr-ii-new-with-closeup.pdf}}\\
+    \subfigure[$10 \times 10$ precomputed proxy rays per element]{\includegraphics[width=0.49\linewidth]{figures/heart-10-new-with-closeup.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/heart-10-rr-ii-new-with-closeup.pdf}}
+    \caption{Application of our approach with different precomputation and rendering parameters. In the two rows, $2 \times 2$ ({\it a}) and $10 \times 10$ ({\it b}) proxy rays have been precomputed per element. Within each row, we show the application of standard ray interpolation ({\it left}), as well as intra- and inter-ray interpolation ({\it right}). As shown in the close-ups, intra- and inter-ray interpolation reduces noticeable artifacts. Artifacts are still noticeable with $2 \times 2$ proxy rays, as shown in ({\it a, \it right}), while $10 \times 10$ proxy rays has no noticeable artifacts ({\it b, \it right}). }
     \label{fig:rayinterpolation}
 \end{figure}
 
