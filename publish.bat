@@ -19,9 +19,9 @@ echo.
 echo Converting to PDF
 echo.
 
-ps2pdf -dPDFSETTINGS#/prepress -dEmbedAllFonts#true -dProcessColorModel#/DeviceCMYK %file%.ps %file%-publish.pdf
+ps2pdf -dPDFSETTINGS#/prepress -dEmbedAllFonts#true -dProcessColorModel#/DeviceCMYK %file%.ps publish/%file%.pdf
 
-echo Done! - New PDF: %file%-publish.pdf
+echo Done! - New PDF: publish/%file%.pdf
 echo.
 
 pause

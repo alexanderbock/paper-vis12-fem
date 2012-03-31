@@ -46,6 +46,22 @@
 %% throughout the proceedings. However, if you encounter conflicts
 %% with other math-related packages, you may want to disable it.
 
+%% This turns references into clickable hyperlinks.
+\usepackage[bookmarks,backref=false,linkcolor=black]{hyperref} %,colorlinks
+\hypersetup{
+  pdfauthor = {},
+  pdftitle = {},
+  pdfsubject = {},
+  pdfkeywords = {},
+  colorlinks=true,
+  linkcolor= black,
+  citecolor= black,
+  pageanchor=true,
+  urlcolor = black,
+  plainpages = false,
+  linktocpage
+}
+
 %% If you are submitting a paper to a conference for review with a double
 %% blind reviewing process, please replace the value ``0'' below with your
 %% OnlineID. Otherwise, you may safely leave it at ``0''.
@@ -71,7 +87,7 @@
 \authorfooter{
 %% insert punctuation at end of each item
 \item
- Alexander Bock,  Erik Sund\'en and Timo Ropinski are with Scientific Visualization Group, Linkoping University E-mail: mr.t@imoropinski.com.
+ Alexander Bock,  Erik Sund\'en and Timo Ropinski are with Scientific Visualization Group, Linkoping University.
 \item
  Bingchen Liu and Burkhard Wuensche is with Bioengineering Institute Engineering Science University of Auckland.
 }
@@ -99,10 +115,10 @@
 %% Uncomment below to include a teaser figure.
 \teaser{
 	\centering 
-  \subfigure{\includegraphics[width=0.2\linewidth]{figures/Heart1New1_T1}}
-  \subfigure{\includegraphics[width=0.2\linewidth]{figures/Heart1New2_T2}}
-  \subfigure{\includegraphics[width=0.2\linewidth]{figures/Heart4New1_T3}}
-  \subfigure{\includegraphics[width=0.2\linewidth]{figures/HeartCombined}}
+  \subfigure{\includegraphics[width=0.22\linewidth]{figures/Heart1New1_T1}}
+  \subfigure{\includegraphics[width=0.22\linewidth]{figures/Heart1New2_T2}}
+  \subfigure{\includegraphics[width=0.22\linewidth]{figures/Heart4New1_T3}}
+  \subfigure{\includegraphics[width=0.22\linewidth]{figures/HeartCombined}}
   \caption{Application of our visualization approach to a multi-parametric FE model of the left ventricle of a human heart. The images show volumetric renderings of different strain directions defined over the FE model: radial strain, circumferential strain, longitudinal strain as well as the three former combined ({\it left to right}). The data can be explored interactively by changing the transfer function and all other relevant rendering parameters.}
   \label{fig:teaser}
 }
@@ -138,9 +154,11 @@ The paper is structured as follows. In the next section, we will describe previo
 
 \section{Related Work}\label{sec:relatedwork}
 
-The FE method has several visualization related applications, such as the fitting of data to complex geometries, e.\,g., for strain computation from tagged MRI images~\cite{Young00}, surgical simulation~\cite{Berkley04} and breast image registration~\cite{lee10deformation}. In such applications the usage of curvilinear elements is popular, since they enable an appropriate modeling of these complex shapes~\cite{gelberg90visTechGrid,smith05ventricularmechanics}. However, interactive high-quality rendering incorporating the interior of the elements, is a demanding task. Often, the elements are resampled to lie in a common regular uniform grid~\cite{Wihelms90}. While this allows a direct visualization using standard volume rendering algorithms, it results in sampling-based errors as well as a loss of the material boundaries. Furthermore, resampling of multi-variate data sets would result in a vast data increase, which would need to be accessible during rendering. Furthermore, the loss of the material coordinate system information, which goes hand in hand with resampling, is a major drawback in many engineering applications where the interpretation of a field value only makes sense relative to the underlying material geometry, e.\,g., flow direction relative to the arterial wall or myocardial strain relative to the circumferential and radial direction of the ventricular muscle. As a consequence, many researchers have investigated rendering techniques which allow a more direct FE visualization by maintaining the relationship between the world and the material coordinate system. Wuensche introduced an isosurface-based approach for the visualization of biomedical tensor field data~\cite{wunsche03femvis}, which has been applied for strain analysis. Rose and Ertl propose a texture-based mesh reduction approach in order to render surface representations of large FE models at interactive frame rates~\cite{rose03femvis}. Other authors propose algorithms, which exploit a conversion into a tetrahedral mesh representation~\cite{marmitt05femtess,schroeder06femtess}. While these approaches can be considered as superior to resampling to a regular grid, they still prevent high accuracy. Alternatively, splatting-based approaches have also been applied~\cite{mao95femsplatting}, and view-independent point sampling strategies have been exploited to deal with higher-order data~\cite{zhou06pointbased}. To improve rendering quality, ray-casting approaches have been proposed. Garrity ~\cite{garrity90RaytracingIrregular} was the first to introduce ray-casting for rendering of unstructured meshes, thus suitable for FE models, by tracking numerous entry and exit points of a ray from the cells, which are stored in a hierarchical spatial data structure. Hong and Kaufman employ a projection of the elements' faces onto the image plane, to efficiently compute ray intersection points for the ray traversal~\cite{hong99curvilinear}. A similar strategy for finding intersection points is used by Farias et al., who apply a space sweeping approach~\cite{farias00zsweep}. Grimm et al. perform the intersection point computation on the GPU~\cite{grimm04curvilinear}. Their hybrid CPU/GPU approach performs a layer peeling on the GPU, while the actual ray-traversal is performed on the CPU. More recently, {\"U}ffinger et al. have presented a distributed visualization approach that allows volumetric visualization of models being defined through higher-order polynomials~\cite{uffinger10femraycasting}. Their approach is also based on ray-casting. However, in contrast to our approach, they circumvent computation of the world-to-material space transformation, by transforming the FE solution into a Cartesian reference space with barycentric coordinates. Then, the FE interpolation is replaced by a compact monomial representation, which the ray-casting kernel can use during sampling in physical space.
+The FE method has several visualization related applications, such as the fitting of data to complex geometries, e.\,g., for strain computation from tagged MRI images~\cite{Young00}, surgical simulation~\cite{Berkley04} and breast image registration~\cite{lee10deformation}. In such applications the usage of curvilinear elements is popular, since they enable an appropriate modeling of these complex shapes~\cite{gelberg90visTechGrid,smith05ventricularmechanics}. However, interactive high-quality rendering incorporating the interior of the elements, is a demanding task. Often, the elements are resampled to lie in a common regular uniform grid~\cite{Wihelms90}. While this allows a direct visualization using standard volume rendering algorithms, it results in sampling-based errors as well as a loss of the material boundaries. Furthermore, resampling of multi-variate data sets would result in a vast data increase, which would need to be accessible during rendering. Furthermore, the loss of the material coordinate system information, which goes hand in hand with resampling, is a major drawback in many engineering applications where the interpretation of a field value only makes sense relative to the underlying material geometry, e.\,g., flow direction relative to the arterial wall or myocardial strain relative to the circumferential and radial direction of the ventricular muscle. As a consequence, many researchers have investigated rendering techniques which allow a more direct FE visualization by maintaining the relationship between the world and the material coordinate system. Wuensche introduced an isosurface-based approach for the visualization of biomedical tensor field data~\cite{wunsche03femvis}, which has been applied for strain analysis. Rose and Ertl propose a texture-based mesh reduction approach in order to render surface representations of large FE models at interactive frame rates~\cite{rose03femvis}. 
 
-Discuss these references, Hardware assisted volume rendering of unstructured grids by incremental slicing ~\cite{Reed95IncrementalSlicing}, Accelerated ray-casting for curvilinear volumes ~\cite{hong98curvilinear}, A Generic and Scalable Pipeline for GPU Tetrahedral Grid Rendering ~\cite{Georgii06ageneric}, Efficient Rendering of Extrudable Curvilinear Volumes ~\cite{MartinCurvilinearPacificVIS08}.
+Other authors propose algorithms, which exploit a conversion into a tetrahedral mesh representation~\cite{Reed95IncrementalSlicing, marmitt05femtess,schroeder06femtess, Georgii06ageneric}. While these approaches can be considered as superior to resampling to a regular grid, they still prevent high accuracy. Alternatively, splatting-based approaches have also been applied~\cite{mao95femsplatting}, and view-independent point sampling strategies have been exploited to deal with higher-order data~\cite{zhou06pointbased}. To improve rendering quality, ray-casting approaches have been proposed. Garrity ~\cite{garrity90RaytracingIrregular} was the first to introduce ray-casting for rendering of unstructured meshes, thus suitable for FE models, by tracking numerous entry and exit points of a ray from the cells, which are stored in a hierarchical spatial data structure. Hong and Kaufman ~\cite{hong98curvilinear} incorporate the projection approach into ray-casting to speed up the ray traversal and interpolation. They later improved their method by employing a projection of the elements' faces onto the image plane, to efficiently compute ray intersection points for the ray traversal~\cite{hong99curvilinear}. A similar strategy for finding intersection points is used by Farias et al., who apply a space sweeping approach~\cite{farias00zsweep}. Grimm et al. perform the intersection point computation on the GPU~\cite{grimm04curvilinear}. Their hybrid CPU/GPU approach performs a layer peeling on the GPU, while the actual ray-traversal is performed on the CPU. Martin et al ~\cite{MartinCurvilinearPacificVIS08} utilize a special representation of curvilinear space for transformation between physical space and computational space, using a linear approximation. 
+
+More recently, {\"U}ffinger et al. have presented a distributed visualization approach that allows volumetric visualization of models being defined through higher-order polynomials~\cite{uffinger10femraycasting}. Their approach is also based on ray-casting. However, in contrast to our approach, they circumvent computation of the world-to-material space transformation, by transforming the FE solution into a Cartesian reference space with barycentric coordinates. Then, the FE interpolation is replaced by a compact monomial representation, which the ray-casting kernel can use during sampling in physical space.
 
 \section{Curvilinear Finite Element Models}\label{sec:theory}
 
@@ -331,7 +349,7 @@ In order to further improve the image quality of our ray-casting approach, we in
 
 \section{Results}\label{sec:results}
 
-\textbf{TODO: rewrite section.} To assess the quality and the performance of the proposed visualization technique, we have applied it to different data sets. Below, we will discuss the visual results, the introduced errors as well as the performance of our approach.
+To assess the quality and the performance of the proposed visualization technique, we have applied it to different data sets. Below, we will discuss the visual results, the introduced errors as well as the performance of our approach.
 
 \subsection{Visual Results}
 
@@ -370,7 +388,7 @@ In order to further improve the image quality of our ray-casting approach, we in
     \centering
     \subfigure[Straight-forward approach]{\includegraphics[width=0.29\linewidth]{figures/heart-comparison-straight-forward.png}}
     \subfigure[Our approach]{\includegraphics[width=0.29\linewidth]{figures/heart-comparison-clustering.png}}
-    \subfigure[Visual Difference (emphasized 10 times)]{\includegraphics[width=0.29\linewidth]{figures/heart-comparison-diff-times-ten.png}}
+    \subfigure[Visual difference (emphasized 10 times)]{\includegraphics[width=0.29\linewidth]{figures/heart-comparison-diff-times-ten.png}}
     \caption{Visual comparison ({\it c}), emphasized 10 times, between a straight-forward volumetric approach ({\it a}) and our interactive volumetric approach ({\it b}).}
     \label{fig:heart-analysis}
 \end{figure}
@@ -381,7 +399,7 @@ Our approach contains several steps which introduce potential errors. First, the
 \subsection{Performance Analysis}\label{subsec:performance}
 
 \begin{table}[b]
-  \caption{Data size for different grid resolutions and with a variation of number of clusters.}
+  \caption{Memory consumption of data structures used during rendering for different grid resolutions and with a variation of number of clusters.}
   \label{tab:data_size}
   \begin{center}
     \begin{tabular}{|l|c|c|c|c|c|c|}
@@ -400,7 +418,7 @@ Our approach contains several steps which introduce potential errors. First, the
 
 \begin{figure}[t]
     \centering 
-		\includegraphics[width=0.8\linewidth]{figures/cluster_measurements/clusterErrorPlot}
+		\includegraphics[width=1.0\linewidth]{figures/cluster_measurements/clusterErrorPlot}
     \caption{The normalized absolute pixel error (background pixels are neglected) plotted against the percentage of clusters relative to the total amount of curves. The calculations have been performed on the subfigures of figure \ref{fig:teaser}, thus varying the transfer function and strain direction.}
     \label{fig:clustering_visual_error}
 \end{figure}
@@ -414,7 +432,7 @@ Our approach contains several steps which introduce potential errors. First, the
 
 We have to differentiate between the precomputation and the rendering step in the performance analysis. Although, the time used for precomputation is dependent on both the proxy ray computation and the clustering, the latter takes more time than the former. In our unoptimized CPU implementation, the clustering for a $5\times5$ grid with $8192$ clusters takes roughly 4-6 hours, while a $15\times15$ grid with $8192$ clusters takes approximately 72-84 hours of time. The measurement have such a high degree of deviation because the machine the test ran on was used lightly during the computation. In the future we would like to increase the precomputation time by exploiting a GPU architecture implementation, which has could increase the clustering speed in a very similar application case by a factor of ten~\cite{mess10gpuclustering}. 
 
-Table \ref{tab:performance} shows the rendering performance of our interactive volumetric technique compared to our straight-forward volumetric GPU implementation. As shown, the performance of our technique is affected by image resolution and independent of the amount of clusters and proxy rays. The quality of the rendering is thus affected by a trade-off between the number of proxy rays used in the precomputation and the number of clusters used during the curve compression. Increasing the amount of proxy rays result in a significantly larger amount of memory needed during rendering, as shown in Table \ref{tab:data_size}. However, increasing the amount of clusters result in a significantly low increase in data size, as angles for all rays are stored for an arbitrary amount of clusters.
+Table \ref{tab:performance} shows the rendering performance of our interactive volumetric technique compared to our straight-forward volumetric GPU implementation. As shown, the performance of our technique is affected by image resolution and independent of the amount of clusters and proxy rays. The rendering quality is thus affected by a trade-off between the number of proxy rays used in the precomputation and the number of clusters used during the curve compression. Increasing the amount of proxy rays result in a significantly larger amount of memory needed during rendering, as shown in Table \ref{tab:data_size}. However, increasing the amount of clusters result in a significantly low increase in data size, as angles for all rays are stored for an arbitrary amount of clusters.
 
 \section{Conclusions \& Future Work}\label{sec:conclusions}
 In this paper we have presented a ray-casting based approach which allows the interactive exploration of FE models. By shifting the computationally complex world to $\xi$ space transformation from the rendering stage into a preprocessing stage, we are able to achieve interactive frame rates and thus allow an interactive in-detail inspection of FE models on standard GPUs. To our knowledge, this is the first approach, allowing an interactive true volumetric exploration of curvilinear FE models. We have demonstrated the outcome of the presented approach by applying it to several real-world data sets from different disciplines, and by analyzing the errors introduced by our approach.
