@@ -287,78 +287,78 @@
   </g>
   <g id ="ID000011">
   <clipPath id="ID000012">
-    <rect x="328.833" y="39.167" width="173.000" height="79.333"/>
+    <rect x="266.833" y="39.167" width="235.000" height="79.333"/>
   </clipPath>
-      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="328.833,118.500 501.833,118.500 501.833,39.167 328.833,39.167 "/>
-      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="328.833,39.167 501.833,39.167 501.833,39.167 328.833,39.167 "/>
-      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="328.833,118.500 328.833,118.500 328.833,39.167 328.833,39.167 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="266.833,118.500 501.833,118.500 501.833,39.167 266.833,39.167 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="266.833,39.167 501.833,39.167 501.833,39.167 266.833,39.167 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="266.833,118.500 266.833,118.500 266.833,39.167 266.833,39.167 "/>
     <g>
 <g id="ID000013" >
-  <g transform="translate(381.333,56.063)">
+  <g transform="translate(319.333,56.063)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >Left Teaser</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >Image of Radial Strain</text>
     </g>
   </g>
 </g>
 <g id="ID000014" clip-path="url(#ID000012)" >
-      <polyline fill="none" stroke="#ff0000" stroke-width="2.0pt" stroke-dasharray="none" points="336.833,50.833 376.833,50.833 "/>
+      <polyline fill="none" stroke="#ff0000" stroke-width="2.0pt" stroke-dasharray="none" points="274.833,50.833 314.833,50.833 "/>
 <g>
 </g>
 </g>
 <g id="ID000015" clip-path="url(#ID000012)" >
 <g>
-      <polygon fill="#ff0000" fill-opacity="1.00" stroke="#000000" stroke-width="2.0pt" stroke-opacity="1.00" stroke-dasharray="none" points="354.167,48.167 354.167,53.500 359.500,53.500 359.500,48.167 354.167,48.167 "/>
+      <polygon fill="#ff0000" fill-opacity="1.00" stroke="#000000" stroke-width="2.0pt" stroke-opacity="1.00" stroke-dasharray="none" points="292.167,48.167 292.167,53.500 297.500,53.500 297.500,48.167 292.167,48.167 "/>
 </g>
 </g>
 <g id="ID000016" >
-  <g transform="translate(381.333,74.904)">
+  <g transform="translate(319.333,74.904)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >Left Middle Teaser</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >Image of Circumferential Strain</text>
     </g>
   </g>
 </g>
 <g id="ID000017" clip-path="url(#ID000012)" >
-      <polyline fill="none" stroke="#00ff00" stroke-width="2.0pt" stroke-dasharray="none" points="336.833,69.500 376.833,69.500 "/>
+      <polyline fill="none" stroke="#00ff00" stroke-width="2.0pt" stroke-dasharray="none" points="274.833,69.500 314.833,69.500 "/>
 <g>
 </g>
 </g>
 <g id="ID000018" clip-path="url(#ID000012)" >
 <g>
-      <polygon fill="#00ff00" fill-opacity="1.00" stroke="#000000" stroke-width="2.0pt" stroke-opacity="1.00" stroke-dasharray="none" points="354.167,66.833 354.167,72.167 359.500,72.167 359.500,66.833 354.167,66.833 "/>
+      <polygon fill="#00ff00" fill-opacity="1.00" stroke="#000000" stroke-width="2.0pt" stroke-opacity="1.00" stroke-dasharray="none" points="292.167,66.833 292.167,72.167 297.500,72.167 297.500,66.833 292.167,66.833 "/>
 </g>
 </g>
 <g id="ID000019" >
-  <g transform="translate(381.333,93.746)">
+  <g transform="translate(319.333,93.746)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >Right Middle Teaser</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >Image of Longitudinal Strain</text>
     </g>
   </g>
 </g>
 <g id="ID000020" clip-path="url(#ID000012)" >
-      <polyline fill="none" stroke="#0000ff" stroke-width="2.0pt" stroke-dasharray="none" points="336.833,88.167 376.833,88.167 "/>
+      <polyline fill="none" stroke="#0000ff" stroke-width="2.0pt" stroke-dasharray="none" points="274.833,88.167 314.833,88.167 "/>
 <g>
 </g>
 </g>
 <g id="ID000021" clip-path="url(#ID000012)" >
 <g>
-      <polygon fill="#0000ff" fill-opacity="1.00" stroke="#000000" stroke-width="2.0pt" stroke-opacity="1.00" stroke-dasharray="none" points="354.167,85.500 354.167,90.833 359.500,90.833 359.500,85.500 354.167,85.500 "/>
+      <polygon fill="#0000ff" fill-opacity="1.00" stroke="#000000" stroke-width="2.0pt" stroke-opacity="1.00" stroke-dasharray="none" points="292.167,85.500 292.167,90.833 297.500,90.833 297.500,85.500 292.167,85.500 "/>
 </g>
 </g>
 <g id="ID000022" >
-  <g transform="translate(381.333,112.588)">
+  <g transform="translate(319.333,112.588)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >Right Teaser</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >Image of Combined Strains</text>
     </g>
   </g>
 </g>
 <g id="ID000023" clip-path="url(#ID000012)" >
-      <polyline fill="none" stroke="#ffff00" stroke-width="2.0pt" stroke-dasharray="none" points="336.833,106.833 376.833,106.833 "/>
+      <polyline fill="none" stroke="#ffff00" stroke-width="2.0pt" stroke-dasharray="none" points="274.833,106.833 314.833,106.833 "/>
 <g>
 </g>
 </g>
 <g id="ID000024" clip-path="url(#ID000012)" >
 <g>
-      <polygon fill="#ffff00" fill-opacity="1.00" stroke="#000000" stroke-width="2.0pt" stroke-opacity="1.00" stroke-dasharray="none" points="354.167,104.167 354.167,109.500 359.500,109.500 359.500,104.167 354.167,104.167 "/>
+      <polygon fill="#ffff00" fill-opacity="1.00" stroke="#000000" stroke-width="2.0pt" stroke-opacity="1.00" stroke-dasharray="none" points="292.167,104.167 292.167,109.500 297.500,109.500 297.500,104.167 292.167,104.167 "/>
 </g>
 </g>
 <g id="ID000025" >
@@ -369,12 +369,12 @@
 </g>
     </g>
     <g>
-      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="328.833,118.500 501.833,118.500 "/>
-      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="328.833,39.167 501.833,39.167 "/>
-      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="328.833,118.500 328.833,39.167 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="266.833,118.500 501.833,118.500 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="266.833,39.167 501.833,39.167 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="266.833,118.500 266.833,39.167 "/>
       <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="501.833,118.500 501.833,39.167 "/>
-      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="328.833,118.500 328.833,117.707 "/>
-      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="328.833,118.500 328.833,118.500 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="266.833,118.500 266.833,117.707 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="266.833,118.500 266.833,118.500 "/>
     </g>
   </g>
   </g>

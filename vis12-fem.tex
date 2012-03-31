@@ -71,7 +71,7 @@
 \authorfooter{
 %% insert punctuation at end of each item
 \item
- Alexander Bock,  Erik Sund\'en and Timo Ropinski are with C-Research, Linkoping University E-mail: mr.t@imoropinski.com.
+ Alexander Bock,  Erik Sund\'en and Timo Ropinski are with Scientific Visualization Group, Linkoping University E-mail: mr.t@imoropinski.com.
 \item
  Bingchen Liu and Burkhard Wuensche is with Bioengineering Institute Engineering Science University of Auckland.
 }
@@ -104,7 +104,7 @@
   \subfigure{\includegraphics[width=0.2\linewidth]{figures/Heart4New1_T3}}
   \subfigure{\includegraphics[width=0.2\linewidth]{figures/HeartCombined}}
   \caption{Application of our visualization approach to a multi-parametric FE model of the left ventricle of a human heart. The images show volumetric renderings of different strain directions defined over the FE model: radial strain, circumferential strain, longitudinal strain as well as the three former combined ({\it left to right}). The data can be explored interactively by changing the transfer function and all other relevant rendering parameters.}
-  \label{fig:heart}
+  \label{fig:teaser}
 }
 
 %% Uncomment below to disable the manuscript note
@@ -140,7 +140,7 @@ The paper is structured as follows. In the next section, we will describe previo
 
 The FE method has several visualization related applications, such as the fitting of data to complex geometries, e.\,g., for strain computation from tagged MRI images~\cite{Young00}, surgical simulation~\cite{Berkley04} and breast image registration~\cite{lee10deformation}. In such applications the usage of curvilinear elements is popular, since they enable an appropriate modeling of these complex shapes~\cite{gelberg90visTechGrid,smith05ventricularmechanics}. However, interactive high-quality rendering incorporating the interior of the elements, is a demanding task. Often, the elements are resampled to lie in a common regular uniform grid~\cite{Wihelms90}. While this allows a direct visualization using standard volume rendering algorithms, it results in sampling-based errors as well as a loss of the material boundaries. Furthermore, resampling of multi-variate data sets would result in a vast data increase, which would need to be accessible during rendering. Furthermore, the loss of the material coordinate system information, which goes hand in hand with resampling, is a major drawback in many engineering applications where the interpretation of a field value only makes sense relative to the underlying material geometry, e.\,g., flow direction relative to the arterial wall or myocardial strain relative to the circumferential and radial direction of the ventricular muscle. As a consequence, many researchers have investigated rendering techniques which allow a more direct FE visualization by maintaining the relationship between the world and the material coordinate system. Wuensche introduced an isosurface-based approach for the visualization of biomedical tensor field data~\cite{wunsche03femvis}, which has been applied for strain analysis. Rose and Ertl propose a texture-based mesh reduction approach in order to render surface representations of large FE models at interactive frame rates~\cite{rose03femvis}. Other authors propose algorithms, which exploit a conversion into a tetrahedral mesh representation~\cite{marmitt05femtess,schroeder06femtess}. While these approaches can be considered as superior to resampling to a regular grid, they still prevent high accuracy. Alternatively, splatting-based approaches have also been applied~\cite{mao95femsplatting}, and view-independent point sampling strategies have been exploited to deal with higher-order data~\cite{zhou06pointbased}. To improve rendering quality, ray-casting approaches have been proposed. Garrity ~\cite{garrity90RaytracingIrregular} was the first to introduce ray-casting for rendering of unstructured meshes, thus suitable for FE models, by tracking numerous entry and exit points of a ray from the cells, which are stored in a hierarchical spatial data structure. Hong and Kaufman employ a projection of the elements' faces onto the image plane, to efficiently compute ray intersection points for the ray traversal~\cite{hong99curvilinear}. A similar strategy for finding intersection points is used by Farias et al., who apply a space sweeping approach~\cite{farias00zsweep}. Grimm et al. perform the intersection point computation on the GPU~\cite{grimm04curvilinear}. Their hybrid CPU/GPU approach performs a layer peeling on the GPU, while the actual ray-traversal is performed on the CPU. More recently, {\"U}ffinger et al. have presented a distributed visualization approach that allows volumetric visualization of models being defined through higher-order polynomials~\cite{uffinger10femraycasting}. Their approach is also based on ray-casting. However, in contrast to our approach, they circumvent computation of the world-to-material space transformation, by transforming the FE solution into a Cartesian reference space with barycentric coordinates. Then, the FE interpolation is replaced by a compact monomial representation, which the ray-casting kernel can use during sampling in physical space.
 
-
+Discuss these references, Hardware assisted volume rendering of unstructured grids by incremental slicing ~\cite{Reed95IncrementalSlicing}, Accelerated ray-casting for curvilinear volumes ~\cite{hong98curvilinear}, A Generic and Scalable Pipeline for GPU Tetrahedral Grid Rendering ~\cite{Georgii06ageneric}, Efficient Rendering of Extrudable Curvilinear Volumes ~\cite{MartinCurvilinearPacificVIS08}.
 
 \section{Curvilinear Finite Element Models}\label{sec:theory}
 
@@ -287,26 +287,12 @@ p_y & = &(c   \cdot (n_{entry} \cdot n_{exit})) + (s_{w_0,y} \cdot n_{exit}) + s
 \label{fig:arclength}
 \end{figure}
 
-Once we know, which proxy ray information needs to be accessed in the hierarchy, we can reconstruct its ray geometry by retrieving the spline coefficients for the obtained cluster ID. The thus reconstructed spline is then transformed back from the canonical orientation along the $z$-axis, by applying ${M_s}^{-1}$, such the spline lies between the entry- and the exit-point of the actual viewing ray in world coordinates. Once the proxy ray curve has been transformed back into its originally location, we can march along it and perform the actual bended ray-casting by fetching the dependent variables from the $\xi$ space. However, we need to ensure that we have an equidistant sampling along the reconstructed ray in order to obtain optimal results. The splines, however, are parameterized by the parameter value $t \in [0,1]$ in world coordinates, which does not take the shape of the ray in $\xi$ space into account, e.\,g. given a spline $s$, $\Vert s(i) - s(j) \Vert \neq \Vert i - j \Vert$. That means that an equidistant sampling in world space will result in not equidistant sampling points along the curve in $\xi$ space. As illustrated in Figure~\ref{fig:arclength}, we address this problem by using an arc length parametrization as presented by Guenter and Parent~\cite{guenter90arclength}. This leads to a function $t \mapsto t'$. If the sampling is done using $t'$ instead of $t$, the sampled values will be equidistant along the curve in $\xi$ space.
-
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.3\linewidth]{figures/overshoot}
     \caption{Rays penetrating multiple elements must be processed, such that constant sampling step sizes are obtained at the borders. The overshoot $e$ of $FE_0$ can be used to offset the first sampling point in element $FE_1$.}
     \label{fig:overshoot}
 \end{figure}
-
-The subdivision of a curve ray penetrating the whole FE model into segments based on the penetrated FEs, requires an appropriate border handling scheme. If we sample the ray equidistantly in a naive way, the last point on the ray, which lies on the exit face of a FE, might not coincide with an intended sampling point (see Figure~\ref{fig:overshoot}). When we for instance consider a ray $a$ which is divided into two segments $r$ and $s$ in such a way that $r_n = s_0$, i.\,e., the last sample point of $r$ is the first sample point of $s$. In this situation, we would have an equidistant sampling rate of $\left|a_i - a_{i+1}\right| = \delta$ for the two rays. However, the naive implementation will have $\left|r_{n-1} - r_{n}\right| \neq \delta$. To remedy this, we do not sample the last point on each ray but save the overshoot instead and use it as an offset for the first sampling point in the next ray segment.
-
-\subsection{Ray Interpolation}
-
-In order to further improve the image quality of our ray-casting approach, we introduce two specialized interpolation schemes: inter-ray interpolation and intra-ray interpolation. With the inter-ray interpolation, we use the four nearest proxy rays  instead of the proxy ray for a given pixel position, and interpolate between them. This interpolation is carried out by using bilinear interpolation at every sample position along the ray. The interpolation factors for these bilinear interpolations continuously vary along the ray, based on the factors derived for the entry and the exit face. The intra-ray interpolation instead, employs swapping of entry and exit points in order to obtain a mirrored copy of the current ray. Thus, we can interpolate between the original ray at position $t$ and the mirrored ray at position $t'=1-t$ while traversing the initially obtained ray. \textbf{TODO: does intra-ray interpolation make sense for the same entry exit resolution (?)(!!!).} Both of these interpolation schemes improve the image quality, as we show in Figure~\ref{fig:rayinterpolation}.
-
-\section{Results}\label{sec:results}
-
-\textbf{TODO: rewrite section.} To assess the quality and the performance of the proposed visualization technique, we have applied it to different data sets. Below, we will discuss the visual results, the introduced errors as well as the performance of our approach.
-
-\subsection{Visual Results}
 
 \begin{figure}[t]
     \centering
@@ -318,7 +304,15 @@ In order to further improve the image quality of our ray-casting approach, we in
     \label{fig:rayinterpolation}
 \end{figure}
 
-\begin{figure}[b]
+Once we know, which proxy ray information needs to be accessed in the hierarchy, we can reconstruct its ray geometry by retrieving the spline coefficients for the obtained cluster ID. The thus reconstructed spline is then transformed back from the canonical orientation along the $z$-axis, by applying ${M_s}^{-1}$, such the spline lies between the entry- and the exit-point of the actual viewing ray in world coordinates. Once the proxy ray curve has been transformed back into its originally location, we can march along it and perform the actual bended ray-casting by fetching the dependent variables from the $\xi$ space. However, we need to ensure that we have an equidistant sampling along the reconstructed ray in order to obtain optimal results. The splines, however, are parameterized by the parameter value $t \in [0,1]$ in world coordinates, which does not take the shape of the ray in $\xi$ space into account, e.\,g. given a spline $s$, $\Vert s(i) - s(j) \Vert \neq \Vert i - j \Vert$. That means that an equidistant sampling in world space will result in not equidistant sampling points along the curve in $\xi$ space. As illustrated in Figure~\ref{fig:arclength}, we address this problem by using an arc length parametrization as presented by Guenter and Parent~\cite{guenter90arclength}. This leads to a function $t \mapsto t'$. If the sampling is done using $t'$ instead of $t$, the sampled values will be equidistant along the curve in $\xi$ space.
+
+The subdivision of a curve ray penetrating the whole FE model into segments based on the penetrated FEs, requires an appropriate border handling scheme. If we sample the ray equidistantly in a naive way, the last point on the ray, which lies on the exit face of a FE, might not coincide with an intended sampling point (see Figure~\ref{fig:overshoot}). When we for instance consider a ray $a$ which is divided into two segments $r$ and $s$ in such a way that $r_n = s_0$, i.\,e., the last sample point of $r$ is the first sample point of $s$. In this situation, we would have an equidistant sampling rate of $\left|a_i - a_{i+1}\right| = \delta$ for the two rays. However, the naive implementation will have $\left|r_{n-1} - r_{n}\right| \neq \delta$. To remedy this, we do not sample the last point on each ray but save the overshoot instead and use it as an offset for the first sampling point in the next ray segment.
+
+\subsection{Ray Interpolation}
+
+In order to further improve the image quality of our ray-casting approach, we introduce two specialized interpolation schemes: inter-ray interpolation and intra-ray interpolation. With the inter-ray interpolation, we use the four nearest proxy rays  instead of the proxy ray for a given pixel position, and interpolate between them. This interpolation is carried out by using bilinear interpolation at every sample position along the ray. The interpolation factors for these bilinear interpolations continuously vary along the ray, based on the factors derived for the entry and the exit face. The intra-ray interpolation instead, employs swapping of entry and exit points in order to obtain a mirrored copy of the current ray. Thus, we can interpolate between the original ray at position $t$ and the mirrored ray at position $t'=1-t$ while traversing the initially obtained ray. Both of these interpolation schemes improve the image quality, as we show in Figure~\ref{fig:rayinterpolation}.
+
+\begin{figure}
     \centering 
     \subfigure[surface rendering]{\includegraphics[width=0.45\linewidth]{figures/fem-breast}}
     \subfigure[volumetric rendering]{\includegraphics[width=0.45\linewidth]{figures/Breast}}
@@ -326,7 +320,7 @@ In order to further improve the image quality of our ray-casting approach, we in
     \label{fig:breast}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}
     \centering 
     \subfigure[polygonal rendering]{\includegraphics[width=0.45\linewidth]{figures/fem-tongue}}
     \subfigure[opaque volumetric rendering]{\includegraphics[width=0.45\linewidth]{figures/tongue3}}\\
@@ -335,50 +329,92 @@ In order to further improve the image quality of our ray-casting approach, we in
     \label{fig:tongue}
 \end{figure}
 
+\section{Results}\label{sec:results}
+
+\textbf{TODO: rewrite section.} To assess the quality and the performance of the proposed visualization technique, we have applied it to different data sets. Below, we will discuss the visual results, the introduced errors as well as the performance of our approach.
+
+\subsection{Visual Results}
+
 \noindent \textbf{Breast model.} As the most simple model, we have applied our approach to a deformation model of a breast data set acquired from an MRI scan. The dependent variables in this case are the actual intensities of the MRI field, and the FE modeling has been applied to predict the supine shape of the data set originally acquired in the prone position. Figure~\ref{fig:breast} shows a comparison of the supine position rendered with our interactive volumetric approach ({\it b}) as compared to a standard surface based representation ({\it a}).
 
 \noindent \textbf{Tongue model.} Furthermore, we have applied our approach to a model of a human tongue with simulated tissue densities and muscle fiber directions. In this case, each node stores one coordinate vector and seven derivatives and mixed derivatives for the tensor product of the cubic Hermite interpolation functions in all three coordinate directions. The results as compared to a polygonal representation are shown in Figure~\ref{fig:tongue}. Especially in this case, the multi-parametric capabilities of our algorithm are beneficial, as the tongue model contains 13 parameters. When instead, one would apply resampling to all of these parameter volumes, this would result in an unmanageable amount of data.
 
-\noindent \textbf{Heart model.} A heart data set, where the strain values for each point have been computed from displacement values obtained from tagged MRI data, serves as the third example (see Figure~\ref{fig:heart}). Since the computation of the strain values was performed over the FE geometry, but using a numerical optimization technique, the strain values are represented as $11 \times 11 \times 6$ regular grids in material space, which are trilinearly interpolated. For our visualization, we have taken into account the three principal strain directions, which are the eigenvalues of the tensor. The principle strains include the maximum and minimum deformation and the corresponding eigenvectors give the direction of these deformations. These directions are circumferential, longitudinal and radial.
-
-\subsection{Error Analysis}\label{subsec:error}
-Our approach contains several steps which introduce potential errors. First, the proxy ray generation explained in Subsection~\ref{subsec:proxyraygeneration} introduces an error based on the number of actual proxy rays. The visual impact of this error is shown in Figure~\ref{fig:heart-analysis}. A second error is $\epsilon_{cluster}$ is the error introduced by the clustering scheme itself. Figure~\ref{fig:clustering_epsilon_error} shows the error for a varying number of clusters. It is clear, that the error becomes smaller if we use more clusters. The number of clusters can, depending on data set, be quite low in relation to the number of splines, as seen in Figure~\ref{fig:clustering_visual_error}. This is due to the fact that clustering of the curves is performed without consideration for the angle, as this stored in separately, which increase the correlation between the curves.
+\noindent \textbf{Heart model.} A heart data set, where the strain values for each point have been computed from displacement values obtained from tagged MRI data, serves as the third example (see Figure~\ref{fig:teaser}). Since the computation of the strain values was performed over the FE geometry, but using a numerical optimization technique, the strain values are represented as $11 \times 11 \times 6$ regular grids in material space, which are trilinearly interpolated. For our visualization, we have taken into account the three principal strain directions, which are the eigenvalues of the tensor. The principle strains include the maximum and minimum deformation and the corresponding eigenvectors give the direction of these deformations. These directions are circumferential, longitudinal and radial.
 
 \begin{table}[b]
-  \caption{Performance analysis (in fps) of our technique for different grid sizes compared to GPU FHP implementation(visualizing only first hit point, i.\,e., no transparency).}
+  \caption{Performance analysis (in fps) of our technique for different grid sizes compared to a straight-forward (SF) implementation. The setups match the first three subfigures in Figure \ref{fig:teaser}, which are images showing radial strain, circumferential strain, and longitudinal strain.}
   \label{tab:performance}
   \begin{center}
-    \begin{tabular}{|l|c|c|c|c|c|c|}
+    \begin{tabular}{|l|c|c|c|c|c|}
       \hline
-      Pixel & GPU & \multicolumn{5}{c|}{Our Technique}\\
-      Res & (FHP) & $2^2$ & $3^2$ & $4^2$ & $6^2$ & $10^2$ \\
+      Figure \ref{fig:teaser} & Pixel & GPU & \multicolumn{3}{c|}{Our Technique [Grid, Clusters]}\\
+      TF Setups & Res & (SF) & $3^2,1024$ & $5^2,2048$ & $10^2,4096$ \\
       \hline
-      $768^2$ & 7.51 & 15.60 & 15.36 & 15.21 & 15.33 & 15.20\\
-      $1280^2$ & 4.19 & 10.70 & 10.51 & 10.31 & 10.26 & 10.24\\
+      Radial & $256^2$ & 2.58 & 14.52 & 14.25 & 14.05\\
+      Strain & $512^2$ & 1.33 & 11.40 & 11.71 & 11.02\\
+      & $1024^2$ & 0.41 & 7.09 & 7.02 & 6.83\\
+      \hline
+      Circum- & $256^2$ & 2.60 & 14.63 & 14.81 & 14.21\\
+      ferential & $512^2$ & 1.30 & 12.09 & 11.85 & 11.72\\
+      Strain & $1024^2$ & 0.40 & 7.15 & 7.12 & 7.10\\
+      \hline
+      Longi- & $256^2$ & 2.53 & 14.66 & 14.70 & 14.74\\
+      tudinal & $512^2$ & 1.35 & 11.78 & 11.78 & 11.83\\
+      Strain & $1024^2$ & 0.40 & 7.12 & 7.12 & 6.88\\
       \hline
     \end{tabular}
   \end{center}
 \end{table}
 
+\begin{figure}
+    \centering
+    \subfigure[Straight-forward approach]{\includegraphics[width=0.29\linewidth]{figures/heart-comparison-straight-forward.png}}
+    \subfigure[Our approach]{\includegraphics[width=0.29\linewidth]{figures/heart-comparison-clustering.png}}
+    \subfigure[Visual Difference (emphasized 10 times)]{\includegraphics[width=0.29\linewidth]{figures/heart-comparison-diff-times-ten.png}}
+    \caption{Visual comparison ({\it c}), emphasized 10 times, between a straight-forward volumetric approach ({\it a}) and our interactive volumetric approach ({\it b}).}
+    \label{fig:heart-analysis}
+\end{figure}
+
+\subsection{Error Analysis}\label{subsec:error}
+Our approach contains several steps which introduce potential errors. First, the proxy ray generation explained in Subsection~\ref{subsec:proxyraygeneration} introduces an error based on the number of actual proxy rays. The visual impact of this error is shown in Figure~\ref{fig:heart-analysis}. A second error is $\epsilon_{cluster}$ is the error introduced by the clustering scheme itself. Figure~\ref{fig:clustering_epsilon_error} shows the error for a varying number of clusters. It is clear, that the error becomes smaller if we use more clusters. The number of clusters can, depending on data set, be quite low in relation to the number of splines, as seen in Figure~\ref{fig:clustering_visual_error}. This is due to the fact that clustering of the curves is performed without consideration for the angle, as this stored in separately, which increase the correlation between the curves.
+
 \subsection{Performance Analysis}\label{subsec:performance}
+
+\begin{table}[b]
+  \caption{Data size for different grid resolutions and with a variation of number of clusters.}
+  \label{tab:data_size}
+  \begin{center}
+    \begin{tabular}{|l|c|c|c|c|c|c|}
+      \hline
+      Entry & Exit &  Without & \multicolumn{3}{c|}{With Certain Number of Clusters}\\
+      Points & Points & Clustering & 512 & 2048 & 4096\\
+      \hline
+      3 & 3 & 12.8 MB & 1.9 MB & 2.3 MB & 2.8 MB \\
+      7 & 5 & 200.4 MB & 27.3 MB & 28.2 MB & 29.0 MB\\
+      8 & 8 & 672.8 MB & 92.2 MB & 94.1 MB & 95.2 MB \\
+      10 & 10 & 1.65 GB & 229.5 MB & 232.2 MB & 234.4 MB \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
 
 \begin{figure}[t]
     \centering 
 		\includegraphics[width=0.8\linewidth]{figures/cluster_measurements/clusterErrorPlot}
-    \caption{The normalized absolute pixel error (background pixels are neglected) plotted against the percentage of clusters relative to the total amount of curves. The calculations have been performed on the subfigures of the teaser image, thus varying the transfer function and strain direction.}
+    \caption{The normalized absolute pixel error (background pixels are neglected) plotted against the percentage of clusters relative to the total amount of curves. The calculations have been performed on the subfigures of figure \ref{fig:teaser}, thus varying the transfer function and strain direction.}
     \label{fig:clustering_visual_error}
 \end{figure}
 
 \begin{figure}[t]
     \centering 
     \includegraphics[width=0.85\linewidth]{figures/diagram_num_clusters}
-    \caption{The error for varying numbers of clusters in depending on the number of iterations after which the k-means algorithm has stopped. The data is based on the heart data set with a grid resolution of $5\times5$, which resulted in 360.000 rays. Initial error for 32 clusters has the value 1.}
+    \caption{The error for varying numbers of clusters depending on the number of iterations after which the k-means algorithm has stopped. Based on the heart data set with a grid resolution of $5\times5$, which resulted in 360.000 rays. Initial error for 32 clusters has the value 1.}
     \label{fig:clustering_epsilon_error}
 \end{figure}
 
-We have to differentiate between the precomputation and the rendering step in the performance analysis. Although, the time used for precomputation is dependent on both the proxy ray computation and the clustering, the latter takes more time than the former. In our unoptimized CPU implementation, the clustering for a $5\times5$ grid with $8192$ clusters takes roughly 4-6 hours, while a $15\times15$ grid with $8192$ clusters takes approximately 72-84 hours of time. The measurement have such a high degree of deviation because the machine the test ran on was used lightly during the computation. In the future we would like to increase the precomputation time by exploiting a GPU architecture implementation, which has could increase the clustering speed in a very similar application case by a factor of ten~\cite{mess10gpuclustering}. Table \ref{tab:performance} shows the rendering performance of our interactive volumetric technique compared to a first hit GPU implementation performing no ray marching and thus not allowing volumetric rendering with transparency. \textbf{TODO: discuss texture sizes.}
+We have to differentiate between the precomputation and the rendering step in the performance analysis. Although, the time used for precomputation is dependent on both the proxy ray computation and the clustering, the latter takes more time than the former. In our unoptimized CPU implementation, the clustering for a $5\times5$ grid with $8192$ clusters takes roughly 4-6 hours, while a $15\times15$ grid with $8192$ clusters takes approximately 72-84 hours of time. The measurement have such a high degree of deviation because the machine the test ran on was used lightly during the computation. In the future we would like to increase the precomputation time by exploiting a GPU architecture implementation, which has could increase the clustering speed in a very similar application case by a factor of ten~\cite{mess10gpuclustering}. 
 
-
+Table \ref{tab:performance} shows the rendering performance of our interactive volumetric technique compared to our straight-forward volumetric GPU implementation. As shown, the performance of our technique is affected by image resolution and independent of the amount of clusters and proxy rays. The quality of the rendering is thus affected by a trade-off between the number of proxy rays used in the precomputation and the number of clusters used during the curve compression. Increasing the amount of proxy rays result in a significantly larger amount of memory needed during rendering, as shown in Table \ref{tab:data_size}. However, increasing the amount of clusters result in a significantly low increase in data size, as angles for all rays are stored for an arbitrary amount of clusters.
 
 \section{Conclusions \& Future Work}\label{sec:conclusions}
 In this paper we have presented a ray-casting based approach which allows the interactive exploration of FE models. By shifting the computationally complex world to $\xi$ space transformation from the rendering stage into a preprocessing stage, we are able to achieve interactive frame rates and thus allow an interactive in-detail inspection of FE models on standard GPUs. To our knowledge, this is the first approach, allowing an interactive true volumetric exploration of curvilinear FE models. We have demonstrated the outcome of the presented approach by applying it to several real-world data sets from different disciplines, and by analyzing the errors introduced by our approach.

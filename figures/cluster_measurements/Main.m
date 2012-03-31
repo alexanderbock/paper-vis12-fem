@@ -121,7 +121,7 @@ end % End For Loop
 cd('plot2svg');
 title('Image Error Measurement for Varying Cluster Sizes');
 ylabel('Normalized Absolute Error (NAE)');
-legend('Left Teaser','Left Middle Teaser', 'Right Middle Teaser', 'Right Teaser');
+legend('Image of Radial Strain','Image of Circumferential Strain', 'Image of Longitudinal Strain', 'Image of Combined Strains');
 xlabel('Number of clusters in relation to the number of curves');
 plot2svg('../clusterErrorPlot.svg');
 
