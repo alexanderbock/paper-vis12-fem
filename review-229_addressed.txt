@@ -18,8 +18,8 @@ Summary Rating
 
      > 3.		Several reviewers requested improved structure,
      > with a better high-level overview at the beginning of the
-     > paper.  More implementation details are also needed in order
-     > for the work to be reproducible.
+> paper.  More implementation details are also needed in order
+> for the work to be reproducible.
 
      > 4.		The work as it stands is limited to hexahedral
      > FEM. This should be made more explicit, and the authors
@@ -42,10 +42,21 @@ Primary Reviewer
    > buried in the details for the reader to discover. Even the flowchart is
    > deferred until well after the discussion that should accompany it (and
    > refer to it).
+   
+As stated above, we have changed the structure of the paper accordingly and moved the workflow figure into the introduction section, such that we could give a high-level description of the presented approaches early on. Here, we also refer to the clustering and the preprocessing costs.
 
-   > Second, many of the paragraphs could have their internal structure
-   > improved, often by shortening them and/or dividing them into two or more
-   > related paragraphs.
+
+> Second, many of the paragraphs could have their internal structure
+> improved, often by shortening them and/or dividing them into two or more
+> related paragraphs.
+
+
+   > Third, there were some recurrent grammatical issues spotted, and it is
+   > nearly certain that there are other instances not spotted.
+   
+We asked an English native speaker to proof read the paper and have addressed all spotted issues.
+
+
 
    > Minor comments:
 
@@ -60,8 +71,8 @@ Primary Reviewer
    > "Wuunsche" - typo
    > "propose algorithms, which" - drop comma
 > Paragraph starting "Other authors" needs more structure
-> "can be considered as superior" - why? how?
-> "prevent high accuracy" - rephrase
+	 > "can be considered as superior" - why? how?
+	 > "prevent high accuracy" - rephrase
    > "Alternatively, ... also" - duplication
    > "To improve rendering quality" - here is a possible paragraph break.
    > "thus suitable" - the object of "thus" is unclear
@@ -70,21 +81,21 @@ Primary Reviewer
    > "Their approach is also based on" - as well as whose?
    > "the presented concepts" - "the concepts presented"
    > "when being applied" - "when applied"
-> "a 9-dimensional interpolation function (i.e. across the elements
-> diagonal" - 1) it's a degree-9 function, and 2), the comment about the
-> diagonal is opaque and will confuse many readers, especially since the
-> diagonal is never used again.
-> "Furthermore, to obtain optimal results" - it would be more accurate to
-> say that in certain domains, the number of FE elements is relatively
-> small, and that in these domains, it is not prohibitive to work with
-> high-degree interpolants.
+   > "a 9-dimensional interpolation function (i.e. across the elements
+   > diagonal" - 1) it's a degree-9 function, and 2), the comment about the
+   > diagonal is opaque and will confuse many readers, especially since the
+   > diagonal is never used again.
+	 > "Furthermore, to obtain optimal results" - it would be more accurate to
+   > say that in certain domains, the number of FE elements is relatively
+   > small, and that in these domains, it is not prohibitive to work with
+   > high-degree interpolants.
    > "allows to exploit" - "allows us to exploit"
    > "Thus, it is required" - necessary, rather than required
    > "As it can be seen" - "As can be seen"
 
    > P. 3:
    > "to better allow the tracing" - "for better tracing"
-> s. 4 - first paragraph needs breaking up.
+   > s. 4 - first paragraph needs breaking up.
    > "can be adequately approximated" - can be approximated adequately"
 > "Because of the positive definiteness" - the logic behind this is not
 > apparent, and needs explanation.
@@ -92,9 +103,12 @@ Primary Reviewer
    > "The presented approach" - "The approach presented"
    > "independent spline representation" - representations
    > "that both, the world and the \xi space, are" - delete both commas
+   
+   
 > "They must also be close to proxy rays having different directions" - why
 > should the directions be different? How many should there be?  At least
 > give the reader some clue why this condition is being imposed.
+   
 
 > "Finding the desired dense and omni-directional proxy" - this was the
 > first point where it became clear that your preprocessing was for *ALL*
@@ -104,6 +118,7 @@ Primary Reviewer
 > details, it is usually an indication that the paper needs a stronger
 > structure imposed on it.
 > "are coherence rather loose due to the intra-element" - rephrase
+
 
    > P. 4:
    > Fig. 5 should occur MUCH sooner, as it is the overview of the method -
@@ -115,6 +130,7 @@ Primary Reviewer
 > orient a proxy ray's geometry such that it is correctly oriented in \xi
 > space ..." - This is very far from clear, and needs significant expansion
 > of the explanation.
+
 
    > P. 5:
 > "we use the spanned area between two proxy ray curves as similarity
@@ -139,8 +155,8 @@ Primary Reviewer
 > spacing in the \xi space
 
    > p. 7:
-> S. 6.1 jumps straight into discussing individual models, without giving
-> an overview.  This leads to:
+   > S. 6.1 jumps straight into discussing individual models, without giving
+   > an overview.  This leads to:
    > "As the most simple model" - a) "simplest", b) simplest model possible,
    > or simplest model tested? c) how is "simple" judged
 
@@ -170,15 +186,19 @@ Secondary Reviewer
    > coherency assumptions would hold when one looked at the mappings used for
    > prisms, pyramids and tetrahedra.
 
+
    > It is not clear if the authors are considering only straight-sided or
    > curved-faced elements.  The statements made concerning the mappings to
    > the reference domain remain correct, but the statements about the
    > "coherency" may be changed based upon how severe the mappings are.
 
+
    > The authors need to make their definition of "interactivity" clear.  They
    > state on page 2 that "...high computational complexity and thus are not
    > feasible in an interactive context".  References (below) seem to
    > contradict this statement (unless clarification is given).
+   
+We have clarified our understanding of interactivity in the introduction, and further ellaborate on it in the performance analysis section. Furthermore, we have added the suggested references and relate to them.
 
 
 
@@ -220,9 +240,15 @@ Reviewer 3
 
    > The paper focuses on interactivity, but doesn't provide a definition of
    > what interactive means.
+   
+We have addressed that as explained in our reply to the comments of the Secondary Reviewer.
+
 
    > Section 3, Second paragraph:  What is an associated material property,
    > and how does that relate to the mapping between material and world space?
+   
+The term 'associated material property' was misleading. We have rewritten the sentence accordingly.
+
 
    > Section 3, Third Paragraph:  The first two sentences are confusing.  Any
    > visualization of the high-order field, not just volume visualization,
@@ -230,13 +256,20 @@ Reviewer 3
    > visualization will not have access to the field data).  These first two
    > sentences seem to say that other types of visualization don't require
    > material space.
+   
+Yes, these sentences were indeed misleading. We have now clarified, that any access to the field data requires the transformation into material space.   
+
 
    > Section 4.1, second paragraph:  The sentence starting "While these points
    > should ..." is confusing.
+   
+Fixed.
+
 
    > Section 4.1, ".. based on the extend of a face..." -> "... based on the
    > extents of a face..."
 
+Fixed.
 
 
 
@@ -245,8 +278,13 @@ Reviewer 5
 ==========
 
    > In the introduction it is not made clear why curved viewing rays are
-   > needed. This explanation is postponed until Section 3. 
+   > needed. This explanation is postponed until Section 3.
+   
+We have addressed this issue in the high-level explanation, where we relate the straight viewing rays to the curves in material space.
+   
    
    > Section 4.1 middle: the sentence "... to the uniformity of P are
    > coherence rather loose due to the intra-element." does not make much
    > sense to me.
+   
+We have fixed this sentence.

@@ -49,128 +49,7 @@ Primary Reviewer
    much larger than that of the primary data - and this is likely to be a
    major constraint when applying the technique to other problems.
 
-   First, the structure needs to be improved. Significant aspects such as
-   the slow runtime, the pre-processing to compute omni-directional lookup
-   tables, the clustering (and it's parameter sensitivity) are largely left
-   buried in the details for the reader to discover. Even the flowchart is
-   deferred until well after the discussion that should accompany it (and
-   refer to it).
-
-   Second, many of the paragraphs could have their internal structure
-   improved, often by shortening them and/or dividing them into two or more
-   related paragraphs.
-
-   Third, there were some recurrent grammatical issues spotted, and it is
-   nearly certain that there are other instances not spotted.
-
-   Minor comments:
-
-   p. 1:
-   "which poses additional challenges" - "pose"
-   "of the curved rays" - at this stage, the curved rays have not yet been
-   introduced, and will confuse your readers.
-
-   p.2:
-   "the presented method" - "the method presented"
-   "the achieved results" - "the results achieved"
-   "Wuunsche" - typo
-   "propose algorithms, which" - drop comma
-   Paragraph starting "Other authors" needs more structure
-   "can be considered as superior" - why? how?
-   "prevent high accuracy" - rephrase
-   "Alternatively, ... also" - duplication
-   "To improve rendering quality" - here is a possible paragraph break.
-   "thus suitable" - the object of "thus" is unclear
-   "to efficiently compute" - split infinitive
-   "being defined" - "to be defined"
-   "Their approach is also based on" - as well as whose?
-   "the presented concepts" - "the concepts presented"
-   "when being applied" - "when applied"
-   "a 9-dimensional interpolation function (i.e. across the elements
-   diagonal" - 1) it's a degree-9 function, and 2), the comment about the
-   diagonal is opaque and will confuse many readers, especially since the
-   diagonal is never used again.
-   "Furthermore, to obtain optimal results" - it would be more accurate to
-   say that in certain domains, the number of FE elements is relatively
-   small, and that in these domains, it is not prohibitive to work with
-   high-degree interpolants.
-   "allows to exploit" - "allows us to exploit"
-   "Thus, it is required" - necessary, rather than required
-   "As it can be seen" - "As can be seen"
-
-   P. 3:
-   "to better allow the tracing" - "for better tracing"
-   s. 4 - first paragraph needs breaking up.
-   "can be adequately approximated" - can be approximated adequately"
-   "Because of the positive definiteness" - the logic behind this is not
-   apparent, and needs explanation.
-   "real-word" - "real-world"
-   "The presented approach" - "The approach presented"
-   "independent spline representation" - representations
-   "that both, the world and the \xi space, are" - delete both commas
-   "They must also be close to proxy rays having different directions" - why
-   should the directions be different? How many should there be?  At least
-   give the reader some clue why this condition is being imposed.
-   "Finding the desired dense and omni-directional proxy" - this was the
-   first point where it became clear that your preprocessing was for *ALL*
-   possible directions - this should be more clearly foreshadowed in the
-   introduction and earlier material. Moreover, when one discovers this
-   essential element of the paper by surprise when already deep into the
-   details, it is usually an indication that the paper needs a stronger
-   structure imposed on it.
-   "are coherence rather loose due to the intra-element" - rephrase
-
-   P. 4:
-   Fig. 5 should occur MUCH sooner, as it is the overview of the method -
-   see comments for p. 3.
-   "Bended" - the correct past tense is "bent"
-   "As the set of proxy rays R has to be dense" - why?  How dense is dense?
-   "when considering that" - "assuming that" or possibly "given that"
-   "As long as we know the entry and the exit point of a proxy ray, we can
-   orient a proxy ray's geometry such that it is correctly oriented in \xi
-   space ..." - This is very far from clear, and needs significant expansion
-   of the explanation.
-
-   P. 5:
-   "we use the spanned area between two proxy ray curves as similarity
-   metric" - Even if this is clearly laid out in [1], please sketch the
-   reasoning.
-   "It is clear that this metric fulfills ... " - It is not clear, nor is it
-   clear why these properties matter. Please explain.
-   "apriori" - two words - "a priori"
-   "which is the best number in general" - is this a hidden parameter? If
-   so, please sketch what choices were made in this paper, and if possible,
-   give some indication of parameter sensitivity
-   "one could apply algorithms for finding an optimal number of clusters" -
-   if it is that important, then it would be proper to give at least
-   empirical observations - see also previous note.
-   "Bended Ray-Casting" - as above, "Bent" is the correct past tense.
-   "As the visualized FE models" - "As the FE models visualized"
-
-   p. 6:
-   "not equidistant sampling points" - "sampling points that are not
-   equidistant" - this raises a very important point, as correct optical
-   rendering of opacity depends on the spacing in the world space, not the
-   spacing in the \xi space
-
-   p. 7:
-   S. 6.1 jumps straight into discussing individual models, without giving
-   an overview.  This leads to:
-   "As the most simple model" - a) "simplest", b) simplest model possible,
-   or simplest model tested? c) how is "simple" judged
-
-   p. 8:
-   s. 6.3 finally introduces performance metrics - and claims 4-6 hours for
-   a relatively small example, with 72-84 hours for a larger example. This
-   is excessive. Moreover, although this method may indeed be more accurate
-   than competing methods, this preprocessing cost is so high that a
-   complete comparison with competing methods ought to be presented.
-
-   p. 10:
-   "Wuensche" - please be consist in your spelling. In this case,
-   "W\"{u}ensche" is used elsewhere.
-
-	Method Evaluation: No -  detailed memory footprint and speed comparisons need to be
+ 	 Method Evaluation: No -  detailed memory footprint and speed comparisons need to be
    performed, including all pre-processing.
 
 
@@ -183,26 +62,9 @@ Secondary Reviewer
    work is not convincing as there are several papers not mentioned that
    should be.
 
-   The work does not make it abundantly clear that they are dealing with
-   hexahedral high-order FEM.  The reviewer agrees that this is certainly an
-   important area and commonly used in solid mechanics, but it is a
-   limitation of the current system as it is not clear how well some of the
-   coherency assumptions would hold when one looked at the mappings used for
-   prisms, pyramids and tetrahedra.
-
    Results are only shown for tri-cubic FEM.  A more thorough study w.r.t.
    polynomial order would be nice, as most "high-order" methods fall between
    degree 2 and degree 7.  
-
-   It is not clear if the authors are considering only straight-sided or
-   curved-faced elements.  The statements made concerning the mappings to
-   the reference domain remain correct, but the statements about the
-   "coherency" may be changed based upon how severe the mappings are.
-
-   The authors need to make their definition of "interactivity" clear.  They
-   state on page 2 that "...high computational complexity and thus are not
-   feasible in an interactive context".  References (below) seem to
-   contradict this statement (unless clarification is given).
 
    The authors do not provide sufficient details to help make the work
    reproducible.  Timing results are given, but full articulation of the
@@ -276,25 +138,6 @@ Reviewer 1
    used.  Better figures could help alleviate this.  I also have little clue
    in how all of these proxy rays are stored (Figure 8 did not help me).
 
-   A high level overview of the algorithm could also help in guiding the
-   reader.  The authors describe these "proxy rays" near the start of the
-   paper, but it is somewhat unclear how these rays will actually be used
-   until much later in the paper.
-
-   Overall, the grammar of the paper is good.  The following are some errors
-   I found:
-   - Missing a pronoun in "This combination allows to exploit the ..."
-   - Did you mean "extent" in the sentence "... based on the extend of a
-   face in world space"
-   - "... space is reconstructed from ***the the*** ..."
-   - Did you mean "negligible" in "... bias is of neglectable, which ..."
-   - Just below the previous error you are describing figure 6, but you are
-   using "(a) (b)" when there is no a/b in the figure.
-   - On page 6 you wrote "the thus" in two different sentences... guessing
-   you meant to remove "thus" in each case
-   - The sentences starting with "When we for instance ..." and "Here it
-   could be explored, how..." are ill-formed
-
    I was unable to watch half of the video.  There were extreme encoding
    issues that made the video render as a garbled mess.
 
@@ -332,9 +175,6 @@ Reviewer 3
    based on the previous sample to improve convergence).  For this argument
    to be compelling, proof of the impact the mapping has on the overall
    rendering should be provided.
-
-   The paper focuses on interactivity, but doesn't provide a definition of
-   what interactive means.
 
    While the focus of this paper is on performance, each step of the
    algorithm introduces error into the final image.  Section 6.2 addresses
@@ -527,9 +367,6 @@ Reviewer 5
    for the geometric elements being worked with, the transformation between
    world and material space, the curves and their parameterizations, etc.
 
-   In the introduction it is not made clear why curved viewing rays are
-   needed. This explanation is postponed until Section 3. 
-   
    In Section 3 the notion of curvilinear finite elements is not
    explained. The elements shown in Figure 2(a) seem not to be curvilinear.
    Further down in that section: What is supposed to be meant by: "If we
@@ -543,10 +380,6 @@ Reviewer 5
    compression. As such the inter-element coherence of FE meshes is named.
    Is this used here and is it a necessary requirement for the algorithm to
    work?
-   
-   Section 4.1 middle: the sentence "... to the uniformity of P are
-   coherence rather loose due to the intra-element." does not make much
-   sense to me.
    
    Also in Section 4.1 the authors claim that they can use two different
    point distributions for entry and exit points of the proxy rays, because
