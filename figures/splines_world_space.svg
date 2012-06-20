@@ -9,12 +9,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="901.27509"
-   height="599.8562"
+   width="824.35938"
+   height="711.85614"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="splines_world_space.pdf">
+   sodipodi:docname="splines_world_space.svg">
   <defs
      id="defs4">
     <marker
@@ -236,8 +236,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="543.78856"
-     inkscape:cy="180.92381"
+     inkscape:cx="655.67818"
+     inkscape:cy="292.92376"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -264,7 +264,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -272,7 +272,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-21.311271,-256.60692)">
+     transform="translate(90.578352,-256.60692)">
     <path
        style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:8.36666679;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#DotM)"
        d="m 37.61781,312.05812 36.80822,45.88301 70.13638,86.20011 88.33971,111.31802 89.94589,110.74716 64.85989,80.00011"
@@ -392,51 +392,51 @@
          y="400.32666" /></text>
     <path
        style="fill:none;stroke:#008000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleInM)"
-       d="m 749.31127,764.21309 c 0,-160.75 0,-160.5 0,-160.5"
+       d="m -1.68873,879.21309 c 0,-160.75 0,-160.5 0,-160.5"
        id="path6012"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#008000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInM);marker-end:none"
-       d="m 909.79635,764.28282 c -160.74996,0 -160.49996,0 -160.49996,0"
+       d="m 158.79635,879.28282 c -160.74996,0 -160.49996,0 -160.49996,0"
        id="path6012-1"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#008000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#TriangleInM)"
-       d="m 749.48623,763.88321 c -79.77864,79.77863 -79.65457,79.65456 -79.65457,79.65456"
+       d="m -1.51377,878.88321 c -79.77864,79.77863 -79.65457,79.65456 -79.65457,79.65456"
        id="path6012-1-7"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-size:64px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Vijaya;-inkscape-font-specification:Vijaya"
-       x="880.31128"
-       y="818.46307"
+       x="119.31128"
+       y="927.46307"
        id="text8537"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan8539"
-         x="880.31128"
-         y="818.46307">x</tspan></text>
+         x="119.31128"
+         y="927.46307">x</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:64px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Vijaya;-inkscape-font-specification:Vijaya"
-       x="764.31128"
-       y="628.46307"
+       x="-43.688721"
+       y="745.46307"
        id="text8541"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan8543"
-         x="764.31128"
-         y="628.46307">y</tspan></text>
+         x="-43.688721"
+         y="745.46307">y</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:64px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Vijaya;-inkscape-font-specification:Vijaya"
-       x="703.31128"
-       y="853.46307"
+       x="-40.688721"
+       y="956.46307"
        id="text8545"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan8547"
-         x="703.31128"
-         y="853.46307">z</tspan></text>
+         x="-40.688721"
+         y="956.46307">z</tspan></text>
   </g>
 </svg>
