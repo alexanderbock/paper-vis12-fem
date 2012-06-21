@@ -15,11 +15,6 @@ Summary Rating
      accuracy of the images, and about the evaluation of their
      quality.
 
-     8.		One reviewer noted that opacity is correctly
-     computed in the world space, not in the computational space,
-     unlike most computational properties, and the proposed
-     method does not respect this as it stands.
-
      9.		A major problem with this approach is the
      computational cost, in particular the pre-processing time
      reported of up to 84 hours, and the scalability beyond
@@ -40,11 +35,6 @@ Primary Reviewer
    results of the pre-processing are stored for future use, this is
    excessive.
 
-   Moreover, there is one issue that appears to be of concern - the authors
-   in effect argue for equal spacing of samples in computational space, when
-   the separation in world-space is what dictates optical accuracy.  This
-   needs to be discussed and addressed much more explicitly.
-
    I also note that the memory footprint seems to be
    much larger than that of the primary data - and this is likely to be a
    major constraint when applying the technique to other problems.
@@ -57,10 +47,6 @@ Primary Reviewer
 
 Secondary Reviewer
 ==================
-
-   The argument concerning interactivity (or lack thereof) in previous
-   work is not convincing as there are several papers not mentioned that
-   should be.
 
    Results are only shown for tri-cubic FEM.  A more thorough study w.r.t.
    polynomial order would be nice, as most "high-order" methods fall between
@@ -103,25 +89,6 @@ Secondary Reviewer
    methods that would help the readership.   Szabo's book, Chris Schwab's
    book, Paul Fisher's book, Karniadakis' book ... all books that help lay
    some of the context for the math and the practical engineering.
-
-   The work of the UC-Davis group has not been referenced or adequately
-   discussed.  Wiley et al. have provided several solid papers in the
-   literature concerning their attempts to visualize high-order data.  It is
-   not clear that their work, on modern machines, would not be interactive
-   for the meshes and polynomial orders that are presented in this paper.
-
-   Papers by Nelson on ray tracing and on cut-places were not referenced. 
-   The former did not claim interactivity; the reviewer suspects that it was
-   not.  The latter claimed interactivity for high-order methods using GPUs.
-    In that paper, they did invert the mapping on the fly.
-
-   Paper by Meyer et al.  This one was not a ray-tracing paper, but
-   decided to use glyphs for represent an isosurface.  Although the current
-   paper is slightly different, Meyer's work should be referenced and
-   discussed.
-
-
-
 
 
 Reviewer 1
@@ -190,13 +157,6 @@ Reviewer 3
    accuracy was assumed once no obvious visual artifacts were seen, which is
    not a compelling argument for accuracy.
 
-   The integration described in 5.2 does not appear to be correct.  The
-   density and emission functions for the volume rendering integral are
-   specified in terms of opacity and color per unit distance in world space.
-    By integrating in material space as done here, the transfer functions
-   are transformed to opacity and color per unit distance in material space,
-   leading to incorrect integration results.
-
    The scalability of this algorithm is concerning.  In Section 3, it is
    claimed that optimal results require a moderate number of elements, yet
    in many areas (computational fluid dynamics, for example), high-order
@@ -216,21 +176,6 @@ Reviewer 3
    Also missing is details on the spline approximation.  The curve in
    material space is unlikely to be exactly representable by a spline. 
    Details on how this approximation is performed is necessary.
-
-   Figure 2:  The world space shows several elements, yet the reference
-   space diagram shows only one.  It isn't clear what the relationship
-   between these two diagrams is.  The colors used to represent element
-   edges are difficult to see, especially when printed.
-
-   Figure 3: the color coding is used to indicate which rays in world space
-   correspond to the curved rays in reference space, but it is very
-   difficult to perform the matching.  Since the elements in material space
-   are not adjacent to each other (as shown in this figure), it isn't clear
-   what relationship is being shown by the grid.
-
-   In both Figures 2 and 3, the color coding is difficult to see, especially
-   when the document is printed.  Consider using thicker lines and fewer
-   lines with greater contrast.
 
    Section 3, Second paragraph:  What is an associated material property,
    and how does that relate to the mapping between material and world space?
@@ -310,28 +255,6 @@ Reviewer 3
    performance numbers of SF are lower than expected.  How finely was the
    volume sampled?  What software was used and on what kind of machine?
 
-   Similar approaches to this problem, albeit for limited elements and
-   orders, was performed by Wiley et al. (e.g., "Ray Casting
-   Curved-Quadratic Elements").
-
-   Other work also dealing with the world-material space transformation can
-   be found in Meyer et al. ("Particle Systems for Efficient and Accurate
-   High-Order Finite Element Visualization").
-
-   Visualization methods that are capable of interactive results while
-   performing the transformation during rendering include Brasher et al.
-   ("Rendering Planar Cuts Through Quadratic and Cubic Finite Elements") and
-   Nelson et al. ("GPU-Based Interactive Cut-Surface Extraction From
-   High-Order Finite Element Fields").
-
-   Other relevant work includes Williams et al ("A High Accuracy Volume
-   Renderer for Unstructured Data") and Schroeder et al. ("Methods and
-   Framework for Visualizing Higher-Order Finite Elements").
-
-   Better framing in the context of existing work.  Some of the arguments
-   presented in this paper are not compelling based on some previous work
-   that was not mentioned.
-
    Better accuracy results.  There are many areas where approximations are
    introduced, and it isn't clear how these tradeoffs affect the final
    image.  It would be nice to see the impact on execution time and final
@@ -341,10 +264,6 @@ Reviewer 3
    times in the pre-processing step for even small models, and also uses a
    significant amount of memory.  It does not appear that this algorithm
    will scale well.  
-
-
-
-
 
 Reviewer 5
 ==========
@@ -366,15 +285,6 @@ Reviewer 5
    In this spirit I would appreciate to have a clear definition and notation
    for the geometric elements being worked with, the transformation between
    world and material space, the curves and their parameterizations, etc.
-
-   In Section 3 the notion of curvilinear finite elements is not
-   explained. The elements shown in Figure 2(a) seem not to be curvilinear.
-   Further down in that section: What is supposed to be meant by: "If we
-   assume that each element e_j is defined over the [0,1] interval in \xi"?
-   How can a multi-dimensional element be defined over a one-dimensional
-   interval? 
-   
-   The curved rays in Fig 3 are hard to decipher. 
    
    Section 4 speaks about regularities, which can help in the curve
    compression. As such the inter-element coherence of FE meshes is named.

@@ -30,6 +30,12 @@ Summary Rating
      > 6.		References to work on high-order FEM methods, to
      > ray-tracing methods, &c. need to be added.
 
+     > 8.		One reviewer noted that opacity is correctly
+     > computed in the world space, not in the computational space,
+     > unlike most computational properties, and the proposed
+     > method does not respect this as it stands.
+
+Samples are taken equidistantly in world space. (NOTE: redo figures)
 
 
 
@@ -171,7 +177,12 @@ We asked an English native speaker to proof read the paper and have addressed al
    > "Wuensche" - please be consist in your spelling. In this case,
    > "W\"{u}ensche" is used elsewhere.
 
+   > Moreover, there is one issue that appears to be of concern - the authors
+   > in effect argue for equal spacing of samples in computational space, when
+   > the separation in world-space is what dictates optical accuracy.  This
+   > needs to be discussed and addressed much more explicitly.
 
+Samples are taken equidistantly in world space instead of material space.
 
 
 
@@ -200,7 +211,28 @@ Secondary Reviewer
    
 We have clarified our understanding of interactivity in the introduction, and further ellaborate on it in the performance analysis section. Furthermore, we have added the suggested references and relate to them.
 
+   > The argument concerning interactivity (or lack thereof) in previous
+   > work is not convincing as there are several papers not mentioned that
+   > should be.
 
+   > The work of the UC-Davis group has not been referenced or adequately
+   > discussed.  Wiley et al. have provided several solid papers in the
+   > literature concerning their attempts to visualize high-order data.  It is
+   > not clear that their work, on modern machines, would not be interactive
+   > for the meshes and polynomial orders that are presented in this paper.
+
+   > Papers by Nelson on ray tracing and on cut-places were not referenced. 
+   > The former did not claim interactivity; the reviewer suspects that it was
+   > not.  The latter claimed interactivity for high-order methods using GPUs.
+   > In that paper, they did invert the mapping on the fly.
+   
+   > Paper by Meyer et al.  This one was not a ray-tracing paper, but
+   > decided to use glyphs for represent an isosurface.  Although the current
+   > paper is slightly different, Meyer's work should be referenced and
+   > discussed.
+
+   
+We have included and addressed the suggested papers in the related works section.
 
 
 
@@ -271,7 +303,56 @@ Fixed.
 
 Fixed.
 
+   > In both Figures 2 and 3, the color coding is difficult to see, especially
+   > when the document is printed.  Consider using thicker lines and fewer
+   > lines with greater contrast.
 
+   > Figure 2:  The world space shows several elements, yet the reference
+   > space diagram shows only one.  It isn't clear what the relationship
+   > between these two diagrams is.  The colors used to represent element
+   > edges are difficult to see, especially when printed.
+
+   > Figure 3: the color coding is used to indicate which rays in world space
+   > correspond to the curved rays in reference space, but it is very
+   > difficult to perform the matching.  Since the elements in material space
+   > are not adjacent to each other (as shown in this figure), it isn't clear
+   > what relationship is being shown by the grid.
+
+
+New improved images have been generated   
+
+   > Similar approaches to this problem, albeit for limited elements and
+   > orders, was performed by Wiley et al. (e.g., "Ray Casting
+   > Curved-Quadratic Elements").
+
+   > Other work also dealing with the world-material space transformation can
+   > be found in Meyer et al. ("Particle Systems for Efficient and Accurate
+   > High-Order Finite Element Visualization").
+
+   > Visualization methods that are capable of interactive results while
+   > performing the transformation during rendering include Brasher et al.
+   > ("Rendering Planar Cuts Through Quadratic and Cubic Finite Elements") and
+   > Nelson et al. ("GPU-Based Interactive Cut-Surface Extraction From
+   > High-Order Finite Element Fields").
+
+   > Other relevant work includes Williams et al ("A High Accuracy Volume
+   > Renderer for Unstructured Data") and Schroeder et al. ("Methods and
+   > Framework for Visualizing Higher-Order Finite Elements").
+
+   > Better framing in the context of existing work.  Some of the arguments
+   > presented in this paper are not compelling based on some previous work
+   > that was not mentioned.
+
+The references mentioned were included and adressed
+
+   > The integration described in 5.2 does not appear to be correct.  The
+   > density and emission functions for the volume rendering integral are
+   > specified in terms of opacity and color per unit distance in world space.
+   > By integrating in material space as done here, the transfer functions
+   > are transformed to opacity and color per unit distance in material space,
+   > leading to incorrect integration results.
+
+Samples are taken equidistantly in world space now instead of material space.
 
 
 Reviewer 5
@@ -281,10 +362,23 @@ Reviewer 5
    > needed. This explanation is postponed until Section 3.
    
 We have addressed this issue in the high-level explanation, where we relate the straight viewing rays to the curves in material space.
+
+   > In Section 3 the notion of curvilinear finite elements is not
+   > explained. The elements shown in Figure 2(a) seem not to be curvilinear.
+   > Further down in that section: What is supposed to be meant by: "If we
+   > assume that each element e_j is defined over the [0,1] interval in \xi"?
+   > How can a multi-dimensional element be defined over a one-dimensional
+   > interval? 
    
-   
+The figures have been regenerated to better show the curvilinearity. A better explanation
+w.r.t. the dimensionality was added.
+ 
    > Section 4.1 middle: the sentence "... to the uniformity of P are
    > coherence rather loose due to the intra-element." does not make much
    > sense to me.
    
 We have fixed this sentence.
+
+   > The curved rays in Fig 3 are hard to decipher. 
+
+The figure has been regenerated.
