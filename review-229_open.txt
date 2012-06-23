@@ -1,39 +1,18 @@
 Summary Rating
 ==============
 
-     1.		The authors compare their method to a
-     "straight-forward" implementation rather than to previous
-     state-of-the-art.  This should be corrected.
-
      2.		Better figures showing how the proxy rays should
      be generated were requested.
-
-     5.		Results were only shown for tri-cubic FEM, rather
-     than the range of degrees used in simulation.
 
      7.		Concern was also expressed about the level of
      accuracy of the images, and about the evaluation of their
      quality.
-
-     9.		A major problem with this approach is the
-     computational cost, in particular the pre-processing time
-     reported of up to 84 hours, and the scalability beyond
-     relatively small meshes.
-
-     10.	Since the proxy rays involve parameters defining
-     density etc., at least some discussion of parameter
-     sensitivity would be desirable.
 
 
 
 
 Primary Reviewer
 ================
-
-   However, the significance is badly weakened by the extremely expensive
-   preprocessing - up to 84 hours for the test sets in question. Even if the
-   results of the pre-processing are stored for future use, this is
-   excessive.
 
    I also note that the memory footprint seems to be
    much larger than that of the primary data - and this is likely to be a
@@ -44,13 +23,8 @@ Primary Reviewer
 
 
 
-
 Secondary Reviewer
 ==================
-
-   Results are only shown for tri-cubic FEM.  A more thorough study w.r.t.
-   polynomial order would be nice, as most "high-order" methods fall between
-   degree 2 and degree 7.  
 
    The authors do not provide sufficient details to help make the work
    reproducible.  Timing results are given, but full articulation of the
@@ -94,13 +68,6 @@ Secondary Reviewer
 Reviewer 1
 ==========
 
-   I was not satisfied with the comparison of the authors' results compared
-   to previous methods.  In Table 1, the authors compare their method with a
-   "straight-forward" implementation.  However, they should compare their
-   results to the previous state-of-the-art, which could give comparable if
-   not better performance.  These other methods may also be easier to
-   implement and require less memory.
-
    I had a difficult time understanding how proxy rays are generated and
    used.  Better figures could help alleviate this.  I also have little clue
    in how all of these proxy rays are stored (Figure 8 did not help me).
@@ -108,49 +75,9 @@ Reviewer 1
    I was unable to watch half of the video.  There were extreme encoding
    issues that made the video render as a garbled mess.
 
-   The authors could make use of the mostly blank 10th page to add more
-   figures that better help explain their method and to do comparisons with
-   the previous state-of-the-art.
-
-   The authors hit on all the key evaluation criteria of their method:
-   speed, size, and accuracy.  But again, they need to compare these aspects
-   with the previous state-of-the-art.
-
-
-
-
 
 Reviewer 3
 ==========
-
-   Avoiding the computational cost associated with the mapping of
-   world-space points to material space is not a new idea for high-order
-   visualization (see Meyer et al. and Wiley et al. in the missing previous
-   work below).  In particular, the work by Wiley et al. specifically
-   addresses curved rays in material space, albeit only for specific cases. 
-   This work does extend this idea sufficiently to be a novel contribution.
-
-   This paper is based on the assumption that the transformation between
-   world and reference space is the computational bottleneck that hinders
-   interactive rendering.  This, however, it not necessarily the case, as
-   illustrated by Brasher et al. and Nelson et al. in the missing previous
-   work (see below), where interactive images are generated with the
-   transformation performed during the rendering phase.  In this reviewer's
-   experience, the cost of the transformation is dependent on the order and
-   shape of the element, as well as the quality of the initial guess (for
-   example, in the case of volume rendering initial guesses can be generated
-   based on the previous sample to improve convergence).  For this argument
-   to be compelling, proof of the impact the mapping has on the overall
-   rendering should be provided.
-
-   While the focus of this paper is on performance, each step of the
-   algorithm introduces error into the final image.  Section 6.2 addresses
-   some accuracy issues, but fails to address several sources of error
-   beyond the number of proxy rays (i.e., representing the proxy ray by a
-   spline, using limited precision depth buffers for ray-element
-   intersections, tesselating curved surfaces for depth peeling,
-   interpolation of proxy rays, and the spacing of the entry and exit
-   points).  
 
    For Figures 11, 14, and 15 to be meaningful, a description of the
    baseline image used must be provided.  From Figures 11 and 14, it appears
@@ -165,54 +92,11 @@ Reviewer 3
    indicates days of processing for very small models, which will severely
    limit the general applicability of the algorithm.  
 
-   It would be difficult for a graduate student to implement this method
-   based on the description provided.  In section 4.2, it is unclear how the
-   transformation of proxy rays to a common coordinate system leads to a
-   reduction in the number of proxy rays.  The transformation, in and of
-   itself, won't do that, so it seems there must be a missing step where
-   transformed proxy rays are compared with each other and filtered if they
-   are sufficiently similar.
-
-   Also missing is details on the spline approximation.  The curve in
-   material space is unlikely to be exactly representable by a spline. 
-   Details on how this approximation is performed is necessary.
-
-   Section 3, Second paragraph:  What is an associated material property,
-   and how does that relate to the mapping between material and world space?
-
-   Section 3, Third Paragraph:  The first two sentences are confusing.  Any
-   visualization of the high-order field, not just volume visualization,
-   requires the transformation to material space (otherwise the
-   visualization will not have access to the field data).  These first two
-   sentences seem to say that other types of visualization don't require
-   material space.
-
-   Section 4.1, first paragraph:  This paragraph indicates that both world
-   and material space must be densely populated with rays, yet the technique
-   presented later, with evenly spaced samples in material space, can result
-   in uneven distribution in world space (Meyer et al. below has a nice
-   illustration of this).  The ideal case seems to be even spacing in world
-   space; otherwise, adjacent pixels could encounter sparse areas on the
-   element and end up evaluating the same proxy ray.
-
    Figure 4:  This figure makes the proxy ray look a 2D curve (because of
    the dotted plane), yet it is clear from the text in section 4.2 that it
    is a 3D curve.  This caused significant confusion during the first
    read-through, as the figure appears before the associated text, which
    generated an expectation of a 2D curve.
-
-   Section 4.1, first paragraph:  Two methods of creating the proxy-ray
-   distribution are mentioned.  The first method, using the actual ray
-   distribution, does not appear to be a valid pre-processing step, as it
-   would only apply to specific viewing directions.  It is also not clear
-   how the choice of uniform distribution follows from inter and intra
-   element coherence.
-
-   Section 4.1, second paragraph:  The sentence starting "While these points
-   should ..." is confusing.
-
-   Section 4.1, ".. based on the extend of a face..." -> "... based on the
-   extents of a face..."
 
    Section 4.1, 4th paragraph.  The description of this paragraph is at odds
    with the volume rendering equation being used on page 4.  In this form,
@@ -223,37 +107,8 @@ Reviewer 3
    Section 4.1, 5th paragraph:  What is meant by "fairly continuous" proxy
    rays?  
 
-   Section 4.2, Second paragraph:  In this paragraph, three observations are
-   made on how the number of proxy rays can be reduced.  It would be nice to
-   see how often the orientation and scaling actually reduces the number of
-   proxy rays.  It seems that this would rarely occur in practice.
-
-   Section 4.2, Third paragraph: How is the case where the first control
-   point is collinear handled?  This can happen in, for example, an
-   axis-aligned hexahedron.
-
-   Section 4.2, Fourth Paragraph:  What is the naive clustering approach? 
-   It isn't clear how to judge the statement that this approach is better.
-
-   Section 4.2, Fifth Paragraph:  Why is the area approximated?  If the
-   proxy rays are represented by splines, couldn't this area be computed
-   analytically?
-
    Section 5.1, end of first paragraph:  The case of rays entering and
    exiting an element through the same face is not handled here.
-
-   Section 5.2, First paragraph:  Why is equal spacing necessary for optimal
-   convergence?  Assuming that Riemann integration is being used,
-   first-order convergence will be achieved either way.
-
-   Figure 9:  This diagram doesn't match the text.  This shows unequally
-   spaced samples along the arc, with equally space samples in world space.
-
-   Table 1:  Not enough detail is provided about the SF implementation for
-   this comparison to be meaningful.  It is assumed that the SF
-   implementation is one generated by sampling onto a regular grid.  The
-   performance numbers of SF are lower than expected.  How finely was the
-   volume sampled?  What software was used and on what kind of machine?
 
    Better accuracy results.  There are many areas where approximations are
    introduced, and it isn't clear how these tradeoffs affect the final
@@ -285,11 +140,6 @@ Reviewer 5
    In this spirit I would appreciate to have a clear definition and notation
    for the geometric elements being worked with, the transformation between
    world and material space, the curves and their parameterizations, etc.
-   
-   Section 4 speaks about regularities, which can help in the curve
-   compression. As such the inter-element coherence of FE meshes is named.
-   Is this used here and is it a necessary requirement for the algorithm to
-   work?
    
    Also in Section 4.1 the authors claim that they can use two different
    point distributions for entry and exit points of the proxy rays, because

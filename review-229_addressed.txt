@@ -16,6 +16,13 @@ We hope that all comments have been addressed as expected,
 Summary Rating
 ==============
 
+     > 1.		The authors compare their method to a
+     > "straight-forward" implementation rather than to previous
+     > state-of-the-art.  This should be corrected.
+    
+The straight-forward approach is better explained and referenced in the necessary sections.  
+     
+
      > 3.		Several reviewers requested improved structure,
      > with a better high-level overview at the beginning of the
 > paper.  More implementation details are also needed in order
@@ -27,6 +34,13 @@ Summary Rating
      > other cell types such as prisms, pyramids and tetrahedra,
      > and whether it also applies to elements with curved faces.
 
+     > 5.		Results were only shown for tri-cubic FEM, rather
+     > than the range of degrees used in simulation.
+     
+Explained in the text that we are not limited to any order.
+
+
+
      > 6.		References to work on high-order FEM methods, to
      > ray-tracing methods, &c. need to be added.
 
@@ -36,6 +50,20 @@ Summary Rating
      > method does not respect this as it stands.
 
 Samples are taken equidistantly in world space. (NOTE: redo figures)
+
+     > 9.		A major problem with this approach is the
+     > computational cost, in particular the pre-processing time
+     > reported of up to 84 hours, and the scalability beyond
+     > relatively small meshes.
+     
+OpenCL implementation was created and the results stated.
+
+     > 10.	Since the proxy rays involve parameters defining
+     > density etc., at least some discussion of parameter
+     > sensitivity would be desirable.
+
+Spline->Ray approximation error figure was included and described.
+
 
 
 
@@ -61,6 +89,13 @@ As stated above, we have changed the structure of the paper accordingly and move
    > nearly certain that there are other instances not spotted.
    
 We asked an English native speaker to proof read the paper and have addressed all spotted issues.
+
+   > However, the significance is badly weakened by the extremely expensive
+   > preprocessing - up to 84 hours for the test sets in question. Even if the
+   > results of the pre-processing are stored for future use, this is
+   > excessive.
+   
+OpenCL implementation was created and the results discussed.
 
 
 
@@ -190,6 +225,14 @@ Samples are taken equidistantly in world space instead of material space.
 Secondary Reviewer
 ==================
 
+   > Results are only shown for tri-cubic FEM.  A more thorough study w.r.t.
+   > polynomial order would be nice, as most "high-order" methods fall between
+   > degree 2 and degree 7.  
+
+Explained in the text that we are not limited to any order.
+
+
+
    > The work does not make it abundantly clear that they are dealing with
    > hexahedral high-order FEM.  The reviewer agrees that this is certainly an
    > important area and commonly used in solid mechanics, but it is a
@@ -209,7 +252,9 @@ Secondary Reviewer
    > feasible in an interactive context".  References (below) seem to
    > contradict this statement (unless clarification is given).
    
-We have clarified our understanding of interactivity in the introduction, and further ellaborate on it in the performance analysis section. Furthermore, we have added the suggested references and relate to them.
+We have clarified our understanding of interactivity in the introduction, and further 
+elaborate on it in the performance analysis section. Furthermore, we have added the
+suggested references and relate to them.
 
    > The argument concerning interactivity (or lack thereof) in previous
    > work is not convincing as there are several papers not mentioned that
@@ -240,6 +285,16 @@ We have included and addressed the suggested papers in the related works section
 Reviewer 1
 ==========
 
+   > I was not satisfied with the comparison of the authors' results compared
+   > to previous methods.  In Table 1, the authors compare their method with a
+   > "straight-forward" implementation.  However, they should compare their
+   > results to the previous state-of-the-art, which could give comparable if
+   > not better performance.  These other methods may also be easier to
+   > implement and require less memory.
+
+The straight-forward approach is better explained and referenced in the necessary sections.  
+
+
    > A high level overview of the algorithm could also help in guiding the
    > reader.  The authors describe these "proxy rays" near the start of the
    > paper, but it is somewhat unclear how these rays will actually be used
@@ -264,11 +319,39 @@ description of our workflow.
 
 Thanks for pointing out these details, we have fixed all these errors.
 
+   > The authors could make use of the mostly blank 10th page to add more
+   > figures that better help explain their method and to do comparisons with
+   > the previous state-of-the-art.
+
+Did that. Replace "state-of-the-art" by "straight-forward" though.
+
+   > The authors hit on all the key evaluation criteria of their method:
+   > speed, size, and accuracy.  But again, they need to compare these aspects
+   > with the previous state-of-the-art.
+   
+Better explained why the straight-forward method is the better comparison partner. 
 
 
 
 Reviewer 3
 ==========
+
+   > This paper is based on the assumption that the transformation between
+   > world and reference space is the computational bottleneck that hinders
+   > interactive rendering.  This, however, it not necessarily the case, as
+   > illustrated by Brasher et al. and Nelson et al. in the missing previous
+   > work (see below), where interactive images are generated with the
+   > transformation performed during the rendering phase.  In this reviewer's
+   > experience, the cost of the transformation is dependent on the order and
+   > shape of the element, as well as the quality of the initial guess (for
+   > example, in the case of volume rendering initial guesses can be generated
+   > based on the previous sample to improve convergence).  For this argument
+   > to be compelling, proof of the impact the mapping has on the overall
+   > rendering should be provided.
+
+~~Nothing changed~~
+The impact was already given in Table 1, where the only difference is the performed mapping
+(SF) and the spline approximations.
 
    > The paper focuses on interactivity, but doesn't provide a definition of
    > what interactive means.
@@ -302,6 +385,45 @@ Fixed.
    > extents of a face..."
 
 Fixed.
+
+   > Section 4.1, first paragraph:  This paragraph indicates that both world
+   > and material space must be densely populated with rays, yet the technique
+   > presented later, with evenly spaced samples in material space, can result
+   > in uneven distribution in world space (Meyer et al. below has a nice
+   > illustration of this).  The ideal case seems to be even spacing in world
+   > space; otherwise, adjacent pixels could encounter sparse areas on the
+   > element and end up evaluating the same proxy ray.
+
+A clarifying part was included to make the dense population in world space clear.
+The even spacing in world space is already included
+
+   > Section 4.1, first paragraph:  Two methods of creating the proxy-ray
+   > distribution are mentioned.  The first method, using the actual ray
+   > distribution, does not appear to be a valid pre-processing step, as it
+   > would only apply to specific viewing directions.  It is also not clear
+   > how the choice of uniform distribution follows from inter and intra
+   > element coherence.
+
+This part was extended and the viewing direction idea was clarified.
+Further, we assume no high-frequency changes
+
+   > Section 4.2, Fourth Paragraph:  What is the naive clustering approach? 
+   > It isn't clear how to judge the statement that this approach is better.
+
+The reference to a naive clustering was removed.
+
+   > Section 4.2, Fifth Paragraph:  Why is the area approximated?  If the
+   > proxy rays are represented by splines, couldn't this area be computed
+   > analytically?
+
+Reference to the error analysis was included as a reasoning.
+
+   > Section 5.2, First paragraph:  Why is equal spacing necessary for optimal
+   > convergence?  Assuming that Riemann integration is being used,
+   > first-order convergence will be achieved either way.
+
+The section about equidistant spacing in material space was removed.
+
 
    > In both Figures 2 and 3, the color coding is difficult to see, especially
    > when the document is printed.  Consider using thicker lines and fewer
@@ -354,6 +476,60 @@ The references mentioned were included and adressed
 
 Samples are taken equidistantly in world space now instead of material space.
 
+   > While the focus of this paper is on performance, each step of the
+   > algorithm introduces error into the final image.  Section 6.2 addresses
+   > some accuracy issues, but fails to address several sources of error
+   > beyond the number of proxy rays (i.e., representing the proxy ray by a
+   > spline, using limited precision depth buffers for ray-element
+   > intersections, tesselating curved surfaces for depth peeling,
+   > interpolation of proxy rays, and the spacing of the entry and exit
+   > points).
+   
+These points are now discussed in Section 6.2.
+
+   > It would be difficult for a graduate student to implement this method
+   > based on the description provided.  In section 4.2, it is unclear how the
+   > transformation of proxy rays to a common coordinate system leads to a
+   > reduction in the number of proxy rays.  The transformation, in and of
+   > itself, won't do that, so it seems there must be a missing step where
+   > transformed proxy rays are compared with each other and filtered if they
+   > are sufficiently similar.
+
+This was elaborated on, and the editorial error of the reduction of rays was removed.
+
+   > Also missing is details on the spline approximation.  The curve in
+   > material space is unlikely to be exactly representable by a spline. 
+   > Details on how this approximation is performed is necessary.
+
+A comparison was generated and elaborated on in the Error Analysis section
+
+   > Section 4.2, Second paragraph:  In this paragraph, three observations are
+   > made on how the number of proxy rays can be reduced.  It would be nice to
+   > see how often the orientation and scaling actually reduces the number of
+   > proxy rays.  It seems that this would rarely occur in practice.
+
+The reduction appears indirectly by increasing the similarity used in the clustering.
+This is better explained now.
+
+   > Section 4.2, Third paragraph: How is the case where the first control
+   > point is collinear handled?  This can happen in, for example, an
+   > axis-aligned hexahedron.
+
+This point was elaborated on in the paper now.
+
+   > Figure 9:  This diagram doesn't match the text.  This shows unequally
+   > spaced samples along the arc, with equally space samples in world space.
+
+The figure was corrected.
+
+   > Table 1:  Not enough detail is provided about the SF implementation for
+   > this comparison to be meaningful.  It is assumed that the SF
+   > implementation is one generated by sampling onto a regular grid.  The
+   > performance numbers of SF are lower than expected.  How finely was the
+   > volume sampled?  What software was used and on what kind of machine?
+
+The SF implementation is described in more detail and the details of the machine are
+provided.
 
 Reviewer 5
 ==========
@@ -378,6 +554,14 @@ w.r.t. the dimensionality was added.
    > sense to me.
    
 We have fixed this sentence.
+
+   > Section 4 speaks about regularities, which can help in the curve
+   > compression. As such the inter-element coherence of FE meshes is named.
+   > Is this used here and is it a necessary requirement for the algorithm to
+   > work?
+   
+The impact of the regularities is stated more clearly.
+   
 
    > The curved rays in Fig 3 are hard to decipher. 
 
