@@ -548,5 +548,6 @@ cd('../plot2svg');
 title('Clustering error')
 xlabel('Iteration');
 ylabel('Normalized Error');
+legend('32', '64', '128', '256', '512', '1024', '2048', '4096', '8192', '16384', 'Location', [0.7 0.457 0.1669 0.455]);
 plot2svg('../clustering/clustering_error.svg');
 cd('../clustering');
