@@ -1,3 +1,9 @@
+- Revise Table 2 (use correct results instead of textfile size)
+- Add legend to 13.a
+- Zoom-in in Fig 8.b
+- Fig 3.c boxes bigger
+- Fig 5, bigger Hearts
+
 Summary Rating
 ==============
 
@@ -14,9 +20,6 @@ Primary Reviewer
    I also note that the memory footprint seems to be
    much larger than that of the primary data - and this is likely to be a
    major constraint when applying the technique to other problems.
-
- 	 Method Evaluation: No -  detailed memory footprint and speed comparisons need to be
-   performed, including all pre-processing.
 
 
 
@@ -108,14 +111,6 @@ Reviewer 3
 Reviewer 5
 ==========
 
-   I am puzzled by the restriction imposed by the authors that "the number
-   of elements should be moderate". The authors do sufficiently not explain
-   this restriction, however the examples shown in section 6.1 have only up
-   to 64 elements. In my view this is a severe restriction as nowadays FE
-   models easily can have thousands of even higher order elements. So I am
-   wondering if the performance gain advocated in the paper can only be
-   achieved if the number of elements is small as shown here.
-
    In my view the presentation is very "wordy" and shows to little math in
    order to be easily understood. In some paragraphs the text is not easily
    accessible and I would rather prefer the authors to write down
@@ -133,5 +128,3 @@ Reviewer 5
    this also depends on the distance between entry and exit point and the
    shape of the kernel K. The authors should comment on that.
    
-   As said above for the numerical experiments I am wondering about the
-   limitation in the number of elements of the grid. 

@@ -91,14 +91,14 @@
 \authorfooter{
 %% insert punctuation at end of each item
 \item
- Alexander Bock,  Erik Sund\'en and Timo Ropinski are with Scientific Visualization Group, Link\"oping University.
+ Alexander Bock,  Erik Sund\'en and Timo Ropinski are with the Scientific Visualization Group, Link\"oping University.
 \item
- Bingchen Liu and Burkhard W{\"u}nsche are with Bioengineering Institute Engineering Science University of Auckland.
+ Bingchen Liu and Burkhard W{\"u}nsche are with the Bioengineering Institute Engineering Science, University of Auckland.
 }
 
 %other entries to be set up for journal
 %\shortauthortitle{Biv \MakeLowercase{\textit{et al.}}: Global Illumination for Fun and Profit}
-%\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title
+%\shortauthortitle{Firstauthor} \MakeLowercase{\textit{et al.}}: Paper Title
 
 
 %% Abstract section.
@@ -302,7 +302,7 @@ Abraham et al. state that the comparison metric used during the clustering is th
 While Section~\ref{sec:preprocessing} gives a comprehensive overview of the preprocessing steps needed to obtain the proxy ray set $R$, the actual rendering process is discussed in greater detail within this section. We perform GPU-based ray-casting by exploiting the data generated during the preprocessing stage, i.\,e., a list storing the associated cluster ID as well as the $z$-axis rotation angle $\theta$ for each proxy ray. To be able to reconstruct the actual proxy ray geometry, we further need to have access to the cluster representatives. As the elements are treated individually, we need a way to be able to associate ray segments with the elements and connect them through compositing. Thus, the rendering stage is divided into three substages. First, element peeling which allows to obtain the entry and exit points for each element. Second, ray marching where a ray in $\xi$ space is reconstructed from the preprocessed data before it is traversed. And third, ray interpolation which is used to be able to deal also with less dense proxy ray sets $R$. These three substages are discussed in the following three subsections.
 
 
-\subsection{Element Peeling}
+\subsection{Element Peeling}\label{subsec:peeling}
 
 As the FE models visualized consist of several elements, these overlap in image space. Therefore, mechanisms are needed to determine which sequence of proxy rays best represents a specific pixel. To obtain this sequence of proxy rays, we exploit a modified depth peeling approach~\cite{mammen89DepthPeeling}. With this approach, we can peel away layer-by-layer from the rendered FE model by using an additional depth comparison. However, when using depth peeling, it is crucial to be able to distinguish between different fragments solely based on their depth values. In order to deal with problems arising from fragments coinciding at the same depth value, often a user-defined bias parameter is introduced~\cite{Everitt01interactiveorder-independent}. As this coincidence of depth values is not the regular case and can be considered as rather rare compared to those fragments not coinciding in depth, the error introduced due to this bias is often negligible, which makes it a common practice in many computer graphics applications. Unfortunately, in our case the situation is more severe. As a FE model exists of several adjacent, i.\,e., touching, elements, coinciding depth values are the norm and need to be handled robustly. As illustrated in Figure~\ref{fig:depthcoincidence}, two cases of depth coincidence occur. Point coincidences occur at the corners of adjacent elements~({\it top left}) and surface coincidences occur where two adjacent element's surfaces are touching~({\it bottom left}). Since semi-transparency is accumulated along the viewing rays, errors introduced by the bias would be prominent in the rendered image. Therefore, we have realized a multi-layer depth peeling, where we exploit information available in the form of several attributes to resolve the depth coincidences without introducing an error. Figure~\ref{fig:depthpeeling} shows the employed information next to the color coded $\xi$ and world space coordinates of the first two layers of a FE model. Besides the actual depth values, we take also into account the current element's ID, as well as the ID of the current surface in our peeling approach. Thus, we can resolve the described coincidence cases. In general we set the additional depth test to accept all fragments which have a greater or equal depth than the current fragment. To resolve the two coincidence cases, we ensure that each pair of entry- and exit-points has the same element ID. This together with ensuring that they have different face IDs, is enough to correctly resolve the point and the surface coincidence (see Figure~\ref{fig:depthcoincidence}). This additional information also leads to a more stable algorithm w.r.t. the available accuracy of the depth buffer. Using a 16 bit depth buffer compared to a 32 bit depth buffer resulted in the exact same visual result. The approach also works for the situation that the entry and exit point lie on the same surface, as these points are guaranteed to have unequal depth values, thereby making the test for face inequality unnecessary in this specific case.
 
@@ -325,10 +325,10 @@ p_y & = &(c   \cdot (n_{entry} \cdot n_{exit})) + (s_{w_0,y} \cdot n_{exit}) + s
 
 \begin{figure}[b]
 \centering
-\subfigure[equidistant sampling]{\includegraphics[width=0.45\linewidth, height=0.3\linewidth]{figures/arclength}}
-\subfigure[overshooting]{\includegraphics[width=0.45\linewidth, height=0.3\linewidth]{figures/overshoot}}
-\protect\caption{(a) To achieve equidistant sampling along a curve ray in $\xi$ space ({\it top}), an arc length parametrization is applied, resulting in a non-uniform sampling in world space ({\it bottom}).\\ (b) Rays penetrating multiple elements must be processed, such that constant sampling step sizes are obtained at the borders. The overshoot $e$ of $FE_0$ can be used to offset the first sampling point in element $FE_1$.}
-\label{fig:arclength}
+\subfigure[equidistant sampling]{\includegraphics[width=0.45\linewidth, height=0.3\linewidth]{figures/arclength} \label{fig:arclength}}
+\subfigure[overshooting]{\includegraphics[width=0.45\linewidth, height=0.3\linewidth]{figures/overshoot} \label{fig:overshoot}}
+\protect\caption{\subref{fig:arclength} To achieve equidistant sampling along a curve ray in $\xi$ space ({\it top}), an arc length parametrization is applied, resulting in a non-uniform sampling in world space ({\it bottom}). \subref{fig:overshoot} Rays penetrating multiple elements must be processed, such that constant sampling step sizes are obtained at the borders. The overshoot $e$ of $FE_0$ can be used to offset the first sampling point in element $FE_1$.}
+\label{fig:arclengthplusovershoot}
 \end{figure}
 
 %\begin{figure}[b]
@@ -468,10 +468,10 @@ Another source of error which is introduced into the pipeline is the tessellatio
       Entry & Exit &  Without & \multicolumn{3}{c|}{With Certain Number of Clusters}\\
       Points & Points & Clustering & 512 & 2048 & 4096\\
       \hline
-      3 & 3 & 12.8 MB & 1.9 MB & 2.3 MB & 2.8 MB \\
-      7 & 5 & 200.4 MB & 27.3 MB & 28.2 MB & 29.0 MB\\
-      8 & 8 & 672.8 MB & 92.2 MB & 94.1 MB & 95.2 MB \\
-      10 & 10 & 1.65 GB & 229.5 MB & 232.2 MB & 234.4 MB \\
+      3 & 3 & 12.8\,MB & 1.9\,MB & 2.3\,MB & 2.8\,MB \\
+      7 & 5 & 200.4\,MB & 27.3\,MB & 28.2\,MB & 29.0\,MB\\
+      8 & 8 & 672.8\,MB & 92.2\,MB & 94.1\,MB & 95.2\,MB \\
+      10 & 10 & 1.65\,GB & 229.5\,MB & 232.2\,MB & 234.4\,MB \\
       \hline
     \end{tabular}
   \end{center}
@@ -498,11 +498,13 @@ Another source of error which is introduced into the pipeline is the tessellatio
 %    \label{fig:clustering_epsilon_error}
 %\end{figure}
 
-We have to differentiate between the precomputation and the rendering step in the performance analysis. Although, the time used for precomputation is dependent on both the proxy ray computation and the clustering, the latter takes more time than the former. In our unoptimized CPU implementation, the clustering for a $5\times5$ proxy ray setup with $8192$ clusters takes roughly 4-6 hours, while a $15\times15$ setup with $8192$ clusters takes approximately 72-84 hours of time. We managed to reduce this time with an unoptimized OpenCL implementation by an order of magnitude, which is in line with former works~\cite{mess10gpuclustering}. The clustering and all performance tests were executed on an Intel Xeon Quad-Core 3.06GHz with 6GB of working memory, equipped with a Geforce 580 card with 1GB of memory.
+We have to differentiate between the precomputation and the rendering step in the performance analysis. Although, the time used for precomputation is dependent on both the proxy ray computation and the clustering, the latter takes more time than the former. In our unoptimized CPU implementation, the clustering for a $5\times5$ proxy ray setup with $8192$ clusters takes roughly 4-6 hours, while a $15\times15$ setup with $8192$ clusters takes approximately 72-84 hours of time. We managed to reduce this time with an unoptimized OpenCL implementation by an order of magnitude, which is in line with former works~\cite{mess10gpuclustering}. The clustering and all performance tests were executed on an Intel Xeon Quad-Core 3.06\,GHz with 6\,GB of working memory, equipped with a Geforce~580 card with 1\,GB of memory.
 
-Table~\ref{tab:performance} shows the rendering performance of the presented volumetric FE visualization technique, as compared to the straightforward volumetric GPU implementation. As can be seen, the performance of our technique is affected by image resolution and independent of the amount of clusters and proxy rays. The rendering quality is thus affected by a trade-off between the number of proxy rays used during the precomputation and the number of clusters used during the curve compression. Increasing the amount of proxy rays result in a significantly larger amount of memory needed during rendering, as shown in Table~\ref{tab:data_size}. However, increasing the amount of clusters result in a rather low increase in data size, as angles and cluster IDs are stored for all rays independent of the number of clusters. Table~\ref{tab:performance} further shows that we have a performance gain of more then five times as compared to the straightforward approach. In the worst case tested, our technique provides above $7$~fps instead of $0.4$~fps. While the $14.81$~fps achieved with our method in the best tested case enabled full interactivity, which for instance allows for changing the parameter mapping or the camera orientation, the $7$~fps also resulted in an interactive experience.
+Table~\ref{tab:performance} shows the rendering performance of the presented volumetric FE visualization technique, as compared to the straightforward volumetric GPU implementation. As can be seen, the performance of our technique is affected by image resolution and independent of the amount of clusters and proxy rays. The rendering quality is thus affected by a trade-off between the number of proxy rays used during the precomputation and the number of clusters used during the curve compression. In the worst case tested, our technique provides above $7$\,fps instead of $0.4$\,fps. While the $14.81$\,fps achieved with our method in the best tested case enabled full interactivity, which for instance allows for changing the parameter mapping or the camera orientation, the $7$\,fps also resulted in an interactive experience.
+%Increasing the amount of proxy rays result in a significantly larger amount of memory needed during rendering, as shown in Table~\ref{tab:data_size}. However, increasing the amount of clusters result in a rather low increase in data size, as angles and cluster IDs are stored for all rays independent of the number of clusters. Table~\ref{tab:performance} further shows that we have a performance gain of more then five times as compared to the straightforward approach.
 
-
+\subsection{Memory requirements}\label{subsec:memory}
+A limiting factor of the presented method is the memory that is required to store the proxy rays, angles and cluster IDs. Besides the computational time, the available graphics memory is the only limitation to the number of elements, grid resolution, and number of clusters. In this section, we will show the impact of each of these factors on the memory requirements. $e$ will denote the total number of elements, $f$ is the number of faces per element, $n$ is the grid paramenter, so that $n^2$ is the number of points per face, $s_r$ the number of control points per ray, and $c$ the number of clusters. Following Section~\ref{subsec:proxyraygeneration}, the total number of proxy rays is $r_u = (n^2f)^2$. This will result in $p = e \cdot r_u \cdot s_r$ points which have to be transformed and stored. It should be noted that this data does not need to fit on the graphics card and is only an intermediate result. The required memory after the clustering can be estimated by: $c \cdot s_r + e \cdot r_u \cdot 2$. The first part is the storage necessary for the clustered control points of the splines. The second part is the lookup table as described in Section~\ref{subsec:peeling} and needs to store both the cluster ID as well as the angle. Exemplary values for the heart are given in Table~\ref{tab:data_size}. 
 
 \section{Conclusions \& Future Work}\label{sec:conclusions}
 In this paper we have presented a ray-casting based approach which allows the interactive exploration of high-order FE models. By shifting the computationally complex world to $\xi$ space transformation from the rendering stage into a preprocessing stage, we are able to achieve interactive frame rates and thus allow for an interactive in-detail inspection of FE models on standard GPUs. Thus we are able to change transfer functions and other parameters, which is essential for interactive multi-parametric data exploration. We have demonstrated the outcome of the presented approach by applying it to several real-world data sets from different disciplines, and by analyzing the errors introduced by our approach. Furthermore, we have discussed the rendering performance gain as well as the memory requirements.

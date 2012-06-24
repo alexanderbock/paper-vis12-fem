@@ -224,7 +224,10 @@ OpenCL implementation was created and the results discussed.
 
 Samples are taken equidistantly in world space instead of material space.
 
+   > Method Evaluation: No -  detailed memory footprint and speed comparisons need to be
+   > performed, including all pre-processing.
 
+A subsection addressing the memory footprint was added.
 
 
 Secondary Reviewer
@@ -589,3 +592,17 @@ The impact of the regularities is stated more clearly.
    > The curved rays in Fig 3 are hard to decipher. 
 
 The figure has been regenerated.
+
+   > I am puzzled by the restriction imposed by the authors that "the number
+   > of elements should be moderate". The authors do sufficiently not explain
+   > this restriction, however the examples shown in section 6.1 have only up
+   > to 64 elements. In my view this is a severe restriction as nowadays FE
+   > models easily can have thousands of even higher order elements. So I am
+   > wondering if the performance gain advocated in the paper can only be
+   > achieved if the number of elements is small as shown here.
+
+   > As said above for the numerical experiments I am wondering about the
+   > limitation in the number of elements of the grid. 
+   
+The memory requirements have elaborated on in a new subsection.
+
