@@ -1,9 +1,6 @@
 Summary Rating
 ==============
 
-     2.		Better figures showing how the proxy rays should
-     be generated were requested.
-
      7.		Concern was also expressed about the level of
      accuracy of the images, and about the evaluation of their
      quality.
@@ -92,23 +89,11 @@ Reviewer 3
    indicates days of processing for very small models, which will severely
    limit the general applicability of the algorithm.  
 
-   Figure 4:  This figure makes the proxy ray look a 2D curve (because of
-   the dotted plane), yet it is clear from the text in section 4.2 that it
-   is a 3D curve.  This caused significant confusion during the first
-   read-through, as the figure appears before the associated text, which
-   generated an expectation of a 2D curve.
-
    Section 4.1, 4th paragraph.  The description of this paragraph is at odds
    with the volume rendering equation being used on page 4.  In this form,
    areas of the volume can emit without incurring any occlusion, which means
    that, depending on the transfer function, the areas near the entrance and
    exit of the element can contribute equally.
-
-   Section 4.1, 5th paragraph:  What is meant by "fairly continuous" proxy
-   rays?  
-
-   Section 5.1, end of first paragraph:  The case of rays entering and
-   exiting an element through the same face is not handled here.
 
    Better accuracy results.  There are many areas where approximations are
    introduced, and it isn't clear how these tradeoffs affect the final

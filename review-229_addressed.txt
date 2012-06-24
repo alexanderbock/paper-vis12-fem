@@ -22,6 +22,11 @@ Summary Rating
     
 The straight-forward approach is better explained and referenced in the necessary sections.  
      
+     > 2.		Better figures showing how the proxy rays should
+     > be generated were requested.
+
+A better picture was generated and referenced (and explained) in the text.
+
 
      > 3.		Several reviewers requested improved structure,
      > with a better high-level overview at the beginning of the
@@ -407,6 +412,11 @@ The even spacing in world space is already included
 This part was extended and the viewing direction idea was clarified.
 Further, we assume no high-frequency changes
 
+   > Section 4.1, 5th paragraph:  What is meant by "fairly continuous" proxy
+   >rays?  
+
+The sentence was clarified.
+
    > Section 4.2, Fourth Paragraph:  What is the naive clustering approach? 
    > It isn't clear how to judge the statement that this approach is better.
 
@@ -417,6 +427,11 @@ The reference to a naive clustering was removed.
    > analytically?
 
 Reference to the error analysis was included as a reasoning.
+
+   > Section 5.1, end of first paragraph:  The case of rays entering and
+   > exiting an element through the same face is not handled here.
+
+It is now.
 
    > Section 5.2, First paragraph:  Why is equal spacing necessary for optimal
    > convergence?  Assuming that Riemann integration is being used,
@@ -466,6 +481,14 @@ New improved images have been generated
    > that was not mentioned.
 
 The references mentioned were included and adressed
+
+   > Figure 4:  This figure makes the proxy ray look a 2D curve (because of
+   > the dotted plane), yet it is clear from the text in section 4.2 that it
+   > is a 3D curve.  This caused significant confusion during the first
+   > read-through, as the figure appears before the associated text, which
+   > generated an expectation of a 2D curve.
+
+A new figure has been generated.
 
    > The integration described in 5.2 does not appear to be correct.  The
    > density and emission functions for the volume rendering integral are
