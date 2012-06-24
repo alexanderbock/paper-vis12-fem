@@ -1,8 +1,4 @@
 - Revise Table 2 (use correct results instead of textfile size)
-- Add legend to 13.a
-- Zoom-in in Fig 8.b
-- Fig 3.c boxes bigger
-- Fig 5, bigger Hearts
 
 Summary Rating
 ==============
