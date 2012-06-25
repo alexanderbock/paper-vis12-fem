@@ -2,6 +2,9 @@ clc;
 clear all;
 close all;
 
+path(path, '../legendflex');
+path(path, '../plot2svg');
+
 abcissa = 1:50;
 
 data32 = [
@@ -529,7 +532,7 @@ markersize = 3;
 limit = 15;
     
 hold all;
-axis([1,15,0,0.8]);
+axis([1,15,0,0.82]);
 axis on;
 plot(abcissa(1:limit), data32(1:limit), '-s', 'LineWidth',2, 'MarkerEdgeColor','k', 'MarkerSize', markersize);
 plot(abcissa(1:limit), data64(1:limit), '-s', 'LineWidth',2, 'MarkerEdgeColor','k', 'MarkerSize', markersize);
@@ -544,10 +547,12 @@ plot(abcissa(1:limit), data16384(1:limit), '-s', 'LineWidth',2, 'MarkerEdgeColor
 
 set(gca, 'Box', 'on');
 
-cd('../plot2svg');
 title('Clustering error')
 xlabel('Iteration');
 ylabel('Normalized Error');
-legend('32', '64', '128', '256', '512', '1024', '2048', '4096', '8192', '16384', 'Location', [0.7 0.457 0.1669 0.455]);
+%cd('../legendflex');
+legendflex({'32', '64', '128', '256', '512', '1024', '2048', '4096', '8192', '16384'}, 'Location', [0.7 0.457 0.1669 0.455], 'ncol', 3);
+%cd('../plot2svg');
+%legend('32', '64', '128', '256', '512', '1024', '2048', '4096', '8192', '16384', 'Location', [0.7 0.457 0.1669 0.455]);
 plot2svg('../clustering/clustering_error.svg');
-cd('../clustering');
+%cd('../clustering');
