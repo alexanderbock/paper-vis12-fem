@@ -10,12 +10,12 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="693.16516"
-   height="191.43007"
+   width="713.16516"
+   height="192.33984"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="workflow-new.pdf">
+   sodipodi:docname="workflow.svg">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.6490386"
-     inkscape:cx="547.94001"
-     inkscape:cy="188.2145"
+     inkscape:zoom="2.3320928"
+     inkscape:cx="355.85334"
+     inkscape:cy="51.270537"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -626,20 +626,20 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      style="display:inline"
-     transform="translate(-38.636917,-83.885565)"
+     transform="translate(-28.636917,-82.975795)"
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Layer 1">
     <rect
        transform="matrix(0,1,-1,0,0,0)"
        ry="18.182745"
-       y="-243.17758"
+       y="-233.17758"
        x="85.475777"
        height="203.04066"
        width="143.44167"
@@ -649,12 +649,12 @@
        sodipodi:linespacing="125%"
        id="text3983"
        y="102.44956"
-       x="52.202515"
+       x="42.202515"
        style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#71893f;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        xml:space="preserve"><tspan
          style="font-size:16px;font-weight:bold;fill:#ffffff;fill-opacity:1;stroke:#71893f;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;-inkscape-font-specification:Sans Bold"
          y="102.44956"
-         x="52.202515"
+         x="42.202515"
          id="tspan3985"
          sodipodi:role="line">Proxy Ray Generation</tspan></text>
     <rect
@@ -681,7 +681,7 @@
     <rect
        transform="matrix(0,1,-1,0,0,0)"
        ry="20.434996"
-       y="-730.21191"
+       y="-740.21191"
        x="85.475754"
        height="228.19081"
        width="143.44167"
@@ -691,77 +691,65 @@
        sodipodi:linespacing="125%"
        id="text3983-4-9-0"
        y="102.44957"
-       x="514.08673"
+       x="524.08673"
        style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:#385d8a;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
        xml:space="preserve"><tspan
          style="font-size:16px;font-weight:bold;fill:#ffffff;fill-opacity:1;stroke:#385d8a;stroke-width:0.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;-inkscape-font-specification:Sans Bold"
          y="102.44957"
-         x="514.08673"
+         x="524.08673"
          id="tspan3985-3-7-0"
          sodipodi:role="line">Bent Ray-Casting</tspan></text>
     <rect
-       ry="11.554681"
-       y="243.18176"
-       x="39.645412"
-       height="23.109362"
-       width="636.61578"
+       ry="11.720914"
+       y="243.01553"
+       x="30.179039"
+       height="23.441828"
+       width="667.46277"
        id="rect3882"
-       style="fill:#666666;fill-opacity:1;stroke:#282828;stroke-width:1.02744377;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:#666666;fill-opacity:1;stroke:#282828;stroke-width:1.05958211;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <path
        inkscape:connector-curvature="0"
        id="path4094"
-       d="m 652.37865,265.8227 c 0,7.38795 0,1.21551 0,8.99294 l 71.04059,-21.24744 -71.04059,-18.84208 c 0,6.18916 0,3.17277 0,8.87567"
-       style="fill:#666666;fill-opacity:1;stroke:#282828;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 689.52681,265.8227 c 0,7.38795 0,1.21551 0,8.99294 l 51.81582,-21.24744 -51.81582,-18.84208 c 0,6.18916 0,3.17277 0,8.87567"
+       style="fill:#666666;fill-opacity:1;stroke:#282828;stroke-width:0.85403937;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        sodipodi:nodetypes="ccccc" />
     <text
        sodipodi:linespacing="125%"
        id="text4086"
        y="260.68939"
-       x="61.037663"
+       x="186.17964"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#aaaaaa;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          y="260.68939"
-         x="61.037663"
+         x="186.17964"
          id="tspan4088"
          sodipodi:role="line">Data Processing</tspan></text>
     <path
        inkscape:connector-curvature="0"
        id="path4207"
-       d="m 481.102,242.79957 0,23.65014"
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 2;stroke-dashoffset:0" />
+       d="m 492.53373,84.387789 0,182.061921"
+       style="fill:none;stroke:#000000;stroke-width:2.82398891;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:11.29595585, 5.64797792;stroke-dashoffset:0" />
     <text
        sodipodi:linespacing="125%"
        id="text4086-8"
        y="260.68939"
-       x="488.93103"
+       x="585.90369"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#aaaaaa;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          y="260.68939"
-         x="488.93103"
+         x="585.90369"
          id="tspan4088-5"
          sodipodi:role="line">Rendering</tspan></text>
     <text
        sodipodi:linespacing="125%"
-       id="text4086-3"
-       y="260.80658"
-       x="259.44269"
-       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#969696;fill-opacity:1;stroke:none;font-family:Sans"
-       xml:space="preserve"><tspan
-         style="fill:#969696;fill-opacity:1;stroke:none"
-         y="260.80658"
-         x="259.44269"
-         id="tspan4088-57"
-         sodipodi:role="line">Visualization Pipeline</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
        id="text4266"
        y="215.23622"
-       x="31.300289"
+       x="21.300289"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#8aa945;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          style="font-size:144px;fill:#8aa945;fill-opacity:1"
          y="215.23622"
-         x="31.300289"
+         x="21.300289"
          id="tspan4268"
          sodipodi:role="line">1</tspan></text>
     <text
@@ -780,25 +768,25 @@
        sodipodi:linespacing="125%"
        id="text4266-9-0"
        y="214.32216"
-       x="506.4375"
+       x="516.4375"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#3f6ea7;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          style="font-size:144px;fill:#3f6ea7;fill-opacity:1"
          y="214.32216"
-         x="506.4375"
+         x="516.4375"
          id="tspan4268-5-7"
          sodipodi:role="line">3</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3795-9"
        y="187.75056"
-       x="96.048737"
+       x="86.048737"
        style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          id="tspan3449"
          style="font-size:10px"
          y="187.75056"
-         x="96.048737"
+         x="86.048737"
          sodipodi:role="line">c) Spline Representation</tspan></text>
     <text
        sodipodi:linespacing="125%"
@@ -816,41 +804,41 @@
        sodipodi:linespacing="125%"
        id="text3795-9-1-9-0"
        y="174.27495"
-       x="585.33813"
+       x="595.33813"
        style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          style="font-size:10px"
          y="174.27495"
-         x="585.33813"
+         x="595.33813"
          sodipodi:role="line"
          id="tspan8225">b) Ray Marching</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3795-9-3"
        y="119.91837"
-       x="95.999908"
+       x="85.999908"
        style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          id="tspan3449-98"
          style="font-size:10px"
          y="119.91837"
-         x="95.999908"
+         x="85.999908"
          sodipodi:role="line">a) Point Distribution</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3795-9-3-5"
        y="147.207"
-       x="95.999908"
+       x="85.999908"
        style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          style="font-size:10px"
          y="147.207"
-         x="95.999908"
+         x="85.999908"
          sodipodi:role="line"
          id="tspan3396">b) Material Ray</tspan><tspan
          style="font-size:10px"
          y="159.707"
-         x="95.999908"
+         x="85.999908"
          sodipodi:role="line"
          id="tspan3334">    Computation</tspan></text>
     <text
@@ -1170,7 +1158,7 @@
     <g
        id="g6198"
        inkscape:label="raysimilarity"
-       transform="matrix(0.40685157,0,0,-0.31178788,60.666244,117.45384)">
+       transform="matrix(0.40685157,0,0,-0.31178788,50.666244,117.45384)">
       <g
          transform="translate(114.49095,-344.44312)"
          id="g6200">
@@ -1562,13 +1550,13 @@
        id="path3266-7-7"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:#71893f;fill-opacity:1;stroke:#000000;stroke-width:0.54184574px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
-       d="m 414.00174,201.60538 0,8.35549 11.62196,0 0,3.71355 10.19886,-7.89129 -10.19886,-7.8913 0,3.71355 z"
+       style="fill:#71893f;fill-opacity:1;stroke:#000000;stroke-width:0.45894593px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+       d="m 414.00174,203.19664 0,5.99438 11.62196,0 0,2.66416 10.19886,-5.66135 -10.19886,-5.66135 0,2.66416 z"
        id="path4091-6"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccccc" />
     <g
-       transform="matrix(0.0811094,0,0,0.07640959,600.30055,174.55691)"
+       transform="matrix(0.0811094,0,0,0.07640959,610.30055,174.55691)"
        style="display:inline"
        id="layer1-1"
        inkscape:label="Layer 1">
@@ -1782,7 +1770,7 @@
     </g>
     <g
        id="g3793"
-       transform="matrix(0.62452097,0,0,0.62452097,-866.71736,-179.07027)">
+       transform="matrix(0.62452097,0,0,0.62452097,-876.71736,-179.07027)">
       <path
          inkscape:connector-curvature="0"
          id="path10860"
