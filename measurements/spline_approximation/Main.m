@@ -4,7 +4,7 @@ close all;
 
 abcissa = 2:20;
 
-heartData = [
+heartDataMean = [
     0.02875026731662125600,
     0.00274825956844097640,
     0.00021757953774322861,
@@ -24,13 +24,59 @@ heartData = [
     0.00000060636101559777,
     0.00000059528732590031,
     0.00000058816021081711];
+    
+heartDataMax = [
+    7.27561254864655900000,
+    3.42226778627140420000,
+    0.01124380754183075900,
+    0.00344813333957972580,
+    0.00118464844692176970,
+    0.00044780491759636450,
+    0.00019105495572505345,
+    0.00009830213611191798,
+    0.00009480076883897392,
+    0.00008863539514425093,
+    0.00008697781790377309,
+    0.00008506997466846772,
+    0.00008365100984325797,
+    0.00008402649947487872,
+    0.00008270075346197123,
+    0.00008233040174104978,
+    0.00008195214667645686,
+    0.00008245627404064375,
+    0.00008197391810690566];
+    
+tongueDataMean = [
+    0.00092220484048968581,
+    0.00007922389530301231,
+    0.00003061470812694536,
+    0.00001678253610380214,
+    0.00000709251906845081,
+    0.00000597784641859018,
+    0.00000560620065422586,
+    0.00000530685346713641,
+    0.00000512214335014304,
+    0.00000510324159155037,
+    0.00000506503361068551,
+    0.00000491765346713275,
+    0.00000494503886965513,
+    0.00000482270193162149,
+    0.00000484265036976593,
+    0.00000488155455375184,
+    0.00000478172530583692,
+    0.00000481200229554399,
+    0.00000479765346418503];
 
-heartDataNormalized = heartData / heartData(1);
+heartDataMeanNormalized = heartDataMean / heartDataMean(1);
+tongueDataMeanNormalized = tongueDataMean / tongueDataMean(1);
 
-semilogy(abcissa, heartDataNormalized, '-rs','LineWidth',2, 'MarkerEdgeColor','k', 'MarkerFaceColor','r','MarkerSize',4);
+semilogy(abcissa, heartDataMeanNormalized, '-rs','LineWidth',2, 'MarkerEdgeColor','k', 'MarkerFaceColor','r','MarkerSize',4);
+hold all;
+semilogy(abcissa, tongueDataMeanNormalized, '-gs','LineWidth',2, 'MarkerEdgeColor','k', 'MarkerFaceColor','g','MarkerSize',4);
 cd('../plot2svg');
 title('Error introduced by approximating bent ray by a spline');
 xlabel('Number of control points');
 ylabel('Normalized error');
+legend('heart', 'tongue');
 plot2svg('../spline_approximation/spline_approximation.svg');
 cd('../spline_approximation');

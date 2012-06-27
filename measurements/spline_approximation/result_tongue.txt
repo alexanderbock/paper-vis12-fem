@@ -1,0 +1,171 @@
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 2
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00092220484048968581
+Max Ray Area Difference: 2.08247611690138830000
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00736579271591323010
+Max Point Distance Difference: 2.09846925735473630000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 3
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00007922389530301231
+Max Ray Area Difference: 0.09989375387050568300
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00278515516444767610
+Max Point Distance Difference: 1.05588674545288090000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 4
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00003061470812694536
+Max Ray Area Difference: 0.20588056717255937000
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00215047157986989790
+Max Point Distance Difference: 1.05588674545288090000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 5
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00001678253610380214
+Max Ray Area Difference: 0.16637216919250006000
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00199775389688785580
+Max Point Distance Difference: 1.38341319561004640000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 6
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000709251906845081
+Max Ray Area Difference: 0.09439896626120808400
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00193731341321155670
+Max Point Distance Difference: 1.05588579177856450000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 7
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000597784641859018
+Max Ray Area Difference: 0.09039273696960360700
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00192940866986247130
+Max Point Distance Difference: 1.05588662624359130000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 8
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000560620065422586
+Max Ray Area Difference: 0.09164044194340799400
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00193269690676826490
+Max Point Distance Difference: 1.05588686466217040000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 9
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000530685346713641
+Max Ray Area Difference: 0.00192305328456099770
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00191778820156734970
+Max Point Distance Difference: 0.34429785609245300000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 10
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000512214335014304
+Max Ray Area Difference: 0.09103550238457931700
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00193395423351116170
+Max Point Distance Difference: 1.05587995052337650000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 11
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000510324159155037
+Max Ray Area Difference: 0.09214996537390061900
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00193931881000035870
+Max Point Distance Difference: 1.05588209629058840000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 12
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000506503361068551
+Max Ray Area Difference: 0.00121350818603445960
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00192390470086645860
+Max Point Distance Difference: 0.32318836450576782000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 13
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000491765346713275
+Max Ray Area Difference: 0.09133832649866990800
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00194025915637763520
+Max Point Distance Difference: 1.05588436126708980000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 14
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000494503886965513
+Max Ray Area Difference: 0.09250928680728585900
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00194315006093466770
+Max Point Distance Difference: 1.05588495731353760000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 15
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000482270193162149
+Max Ray Area Difference: 0.09057335003975271200
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00194365008079517530
+Max Point Distance Difference: 1.05588543415069580000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 16
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000484265036976593
+Max Ray Area Difference: 0.09160914764634571500
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00194394879778793800
+Max Point Distance Difference: 1.05588579177856450000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 17
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000488155455375184
+Max Ray Area Difference: 0.09276756431558431900
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00194444735379904730
+Max Point Distance Difference: 1.05588603019714360000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 18
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000478172530583692
+Max Ray Area Difference: 0.09092510276351117900
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00194475769805532170
+Max Point Distance Difference: 1.05588614940643310000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 19
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000481200229554399
+Max Ray Area Difference: 0.09186906437877068200
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00194514527936603540
+Max Point Distance Difference: 1.05588638782501220000
+----------------------------- Spline error Measure -----------------------------
+Number of points on spline: 20
+Number of points on reference: 1024
+Min Ray Area Difference: 0.00000000000000000000
+Mean Ray Area Difference: 0.00000479765346418503
+Max Ray Area Difference: 0.00065065175615960902
+Min Point Distance Difference: 0.00000000000000000000
+Mean Point Distance Difference: 0.00192922469879734360
+Max Point Distance Difference: 0.28830850124359131000
