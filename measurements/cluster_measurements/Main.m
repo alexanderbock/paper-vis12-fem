@@ -122,10 +122,10 @@ end % End For Loop
 
 % Next we plot to SVG add a title, ylabel, grid, box on
 cd('../plot2svg');
-title('Image Error Measurement for Varying Cluster Sizes');
-ylabel('Normalized Absolute Error (NAE)');
+title('Error introduced by Cluster Sizes', 'FontSize', 20);
+ylabel('Normalized Absolute Error', 'FontSize', 20);
 legend('Image of Radial Strain','Image of Circumferential Strain', 'Image of Longitudinal Strain', 'Image of Combined Strains');
-xlabel('Number of clusters in relation to the number of curves');
+xlabel('Number of clusters  / number of curves', 'FontSize', 20);
 plot2svg('../cluster_measurements/clusterErrorPlot.svg');
 
 cd('../cluster_measurements');

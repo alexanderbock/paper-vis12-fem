@@ -7,8 +7,6 @@ path(path, '../plot2svg');
 
 abcissa = 1:50;
 
-set(gca,'FontSize',13)
-
 data32 = [
     1,
     0.65598737,
@@ -547,14 +545,10 @@ plot(abcissa(1:limit), data4096(1:limit), '-s', 'LineWidth',2, 'MarkerEdgeColor'
 plot(abcissa(1:limit), data8192(1:limit), '-s', 'LineWidth',2, 'MarkerEdgeColor','k', 'MarkerSize', markersize);
 %plot(abcissa(1:limit), data16384(1:limit), '-s', 'LineWidth',2, 'MarkerEdgeColor','k', 'MarkerSize', markersize);
 
+set(gca,'FontSize',13);
 set(gca, 'Box', 'on');
-
-title('Error introduced by clustering')
-xlabel('Iteration');
-ylabel('Normalized Error');
-%cd('../legendflex');
+title('Error introduced by clustering', 'FontSize', 20);
+xlabel('Iteration', 'FontSize', 20);
+ylabel('Normalized Error', 'FontSize', 20);
 legendflex({'32', '64', '128', '256', '512', '1024', '2048', '4096', '8192', '16384'}, 'Location', [0.7 0.457 0.1669 0.455], 'ncol', 4);
-%cd('../plot2svg');
-%legend('32', '64', '128', '256', '512', '1024', '2048', '4096', '8192', '16384', 'Location', [0.7 0.457 0.1669 0.455]);
 plot2svg('../clustering/clustering_error.svg');
-%cd('../clustering');
