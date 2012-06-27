@@ -7,6 +7,8 @@ path(path, '../plot2svg');
 
 abcissa = 1:50;
 
+set(gca,'FontSize',12)
+
 data32 = [
     1,
     0.65598737,

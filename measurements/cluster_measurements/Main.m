@@ -34,6 +34,9 @@ end
 
 blankSize = size(blankImg);
 
+set(gca,'FontSize',12)
+
+
 %Start New Cluster Image Measurment Here
 for j=1:4
 

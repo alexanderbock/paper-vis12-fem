@@ -4,6 +4,8 @@ close all;
 
 abcissa = 2:20;
 
+set(gca,'FontSize',12)
+
 heartDataMean = [
     0.02875026731662125600,
     0.00274825956844097640,
