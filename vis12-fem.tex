@@ -307,8 +307,7 @@ Once we know which proxy ray information needs to be accessed, we can reconstruc
 %
 \begin{figure}[b]
     \centering
-    \subfigure[Equidistant sampling]{\includegraphics[width=0.32\linewidth, height=0.32\linewidth]{figures/arclength.pdf}\label{fig:arclength}}
-    \hspace*{1cm}
+    \subfigure[Equidistant sampling]{\includegraphics[width=0.5\linewidth, height=0.32\linewidth]{figures/arclength.pdf}\label{fig:arclength}}
     \subfigure[Boundary handling]{\includegraphics[width=0.32\linewidth, height=0.32\linewidth]{figures/overshoot.pdf} \label{fig:overshoot}}
     \caption{\subref{fig:arclength} To achieve equidistant sampling along a ray in $\xi$ space ({\it top}), an arc length parametrization is applied resulting in a non-uniform sampling in world space ({\it bottom}). \subref{fig:overshoot} Rays penetrating multiple elements must be processed such that constant sampling step sizes are obtained at the borders. The overshoot, $e$, of the first element can be used to offset the first sampling point in the next element.}
     \label{fig:arclengthandovershoot}
