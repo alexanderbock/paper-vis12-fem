@@ -41,6 +41,7 @@
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 \setlength\fboxsep{0pt}
+\setlength\abovecaptionskip{0.25cm}
 
 \usepackage{color}
 \newcommand{\warn}[1]{{\color{red} [#1]}}
@@ -197,7 +198,9 @@ FE models are defined through two coordinate systems. The \emph{material} or \em
 \end{figure}
 
 When visualizing such models, world coordinates are usually more convenient to use, as they define the position and orientation of the elements. However, as soon as the dependent variables have to be accessed, the $\xi$ coordinates need also be taken into account, as the dependent variables can only be accessed through transformation into $\xi$ space. Thus, the world coordinate system can be used for finding ray intersection points with the elements, while the actual ray traversal is performed in $\xi$ space. As can be seen in Figure~\ref{fig:raycoords}, this transformation affects the geometry of the viewing rays, which can end up as curves in $\xi$ space. While the transformation from $\xi$ space to world space can be computed fairly easy as $x(\xi)=\sum_{i=1}^n x_i \phi_i(\xi)$, for $n$ nodal coordinates $x_i$, and basis functions $\phi_i$, the inverse transformation required during ray-casting is computationally much more demanding. Numerical methods, e.\,g., the multi-dimensional Newton method~\cite{Press92}, which are often applied to perform this transformation, involve high computational complexity and thus are not feasible in an interactive context. Therefore, alternative approaches are necessary to avoid the computational complexity of the world to $\xi$ space transformation in the rendering stage of the visualization pipeline.
-
+%
+%
+%
 \section{Coherency-based Curve Compression}\label{sec:preprocessing}
 In this section, we present the basis for a novel ray-casting based algorithm for the interactive exploration of curvilinear FE models.
 
@@ -257,16 +260,16 @@ Abraham et al. state that the comparison metric used during the clustering is th
 It is clear that this function fulfills the metric traits of non-negativity, the identity of indiscernibles and symmetry, since all these properties hold for the area computation as well. Although we could have used the analytical solution between two curves, we wanted to use the same metric for non-parametric curves as well. The same metric presented here will be used in the error analysis as well, where no closed solution for the bent ray is available.
 
 For the actual clustering, we exploit the k-means clustering algorithm, which has been originally presented by Hartigan~\cite{hartigan75kmeans}. It has the benefit that it is robust even with large high-dimensional data and only needs the number of final clusters and a metric as parameters. Unfortunately, the number of clusters is not known a priori and, in fact, there might be no definite answer as to which is the best number in general. To deal with this problem, we have evaluated the impact of different numbers of clusters in Section~\ref{sec:results}. Alternatively, one could apply algorithms for finding an optimal number of clusters, such as for instance k-fold cross-validation, which is often used together with k-means. As output, k-means provides the desired number of representative proxy rays, one for each of the clusters. Besides the obtained cluster representatives, we need to store for each proxy ray, specified by its entry and exit point, its cluster ID to associate it with the cluster it belongs to, as well as the angle $\theta$.
-
+%
 \begin{figure}[b]
   \centering
     \begin{minipage}{1.5cm} 
       \centering 
-      \subfigure{\resizebox{1.25cm}{2cm}{\includegraphics{figures/coincidence/HeartLowPrecisionPoints_new.jpg}} }\\
-      \subfigure{\resizebox{1.25cm}{2cm}{\includegraphics{figures/coincidence/HeartLowPrecisionSurface_new.jpg}} }  
+      \subfigure{\resizebox{1.25cm}{1.8cm}{\includegraphics{figures/coincidence/HeartLowPrecisionPoints_new.jpg}} }\\
+      \subfigure{\resizebox{1.25cm}{1.8cm}{\includegraphics{figures/coincidence/HeartLowPrecisionSurface_new.jpg}} }  
      \end{minipage}
-     \begin{minipage}{4.25cm} 
-      \subfigure{\resizebox{4.25cm}{!}{\includegraphics{figures/coincidence/Coincidence.pdf}} } 
+     \begin{minipage}{4cm} 
+      \subfigure{\resizebox{4cm}{!}{\includegraphics{figures/coincidence/Coincidence.pdf}} } 
      \end{minipage}
      \begin{minipage}{2.75cm} 
       \subfigure{{\resizebox{2.75cm}{!}{\includegraphics{figures/coincidence/HeartFine.jpg}} } } 
@@ -274,23 +277,23 @@ For the actual clustering, we exploit the k-means clustering algorithm, which ha
   \caption{Two cases of depth coincidence can occur, as illustrated ({\it middle}), when rendering adjacent polygons. Point coincidence occurs at the corners of adjacent elements ({\it top left}), while surface coincidence occurs at the touching elements' surfaces ({\it bottom left}). All coincidences can be avoided ({\it right}).}  
   \label{fig:depthcoincidence}
 \end{figure}
-
+%
 \begin{figure*}[t]
     \centering
-    \subfigure{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/entry_point.pdf}}
+    \subfigure{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/entry_point.pdf}}
     \setcounter{subfigure}{0}
-    \subfigure[entry world]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastEntryWorld1}}
-    \subfigure[entry $\xi$]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastEntryXi1} \label{fig:depthpeeling:entryxi}}
-    \subfigure[entry depth]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastEntryDepth1}}
-    \subfigure[entry element IDs]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastElementID1} \label{fig:depthpeeling:entryid}}
-    \subfigure[entry face IDs]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastEntryFace1}}\\
-    \subfigure{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/exit_point.pdf}}
+    \subfigure[entry world]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastEntryWorld1}}
+    \subfigure[entry $\xi$]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastEntryXi1} \label{fig:depthpeeling:entryxi}}
+    \subfigure[entry depth]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastEntryDepth1}}
+    \subfigure[entry element IDs]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastElementID1} \label{fig:depthpeeling:entryid}}
+    \subfigure[entry face IDs]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastEntryFace1}}\\
+    \subfigure{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/exit_point.pdf}}
     \setcounter{subfigure}{5}
-    \subfigure[exit world]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastExitWorld1}}
-    \subfigure[exit $\xi$]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastExitXi1}}
-    \subfigure[exit depth]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastExitDepth1}}
-    \subfigure[exit element IDs]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastElementID2}}
-    \subfigure[exit face IDs]{\includegraphics[width=0.15\linewidth]{figures/breast_mesh/BreastExitFace1}}
+    \subfigure[exit world]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastExitWorld1}}
+    \subfigure[exit $\xi$]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastExitXi1}}
+    \subfigure[exit depth]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastExitDepth1}}
+    \subfigure[exit element IDs]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastElementID2}}
+    \subfigure[exit face IDs]{\includegraphics[width=0.13\linewidth]{figures/breast_mesh/BreastExitFace1}}
     \caption{Depth peeling is used to extract the layers of the FE model during rendering. The images show the world coordinates, the $\xi$ coordinate, its depth, the element ID, and the face ID ({\it from left to right}). The first row shows the first depth layer and the second row shows the second depth layer.}
     \label{fig:depthpeeling}
 \end{figure*}
@@ -304,25 +307,6 @@ While Section~\ref{sec:preprocessing} gives a comprehensive overview of the prep
 %
 \subsection{Element Peeling}\label{subsec:peeling}
 As the FE models consist of several elements, they will in general overlap in image space. Therefore, mechanisms are needed to determine which sequence of proxy rays best represents a specific pixel. To obtain this sequence of proxy rays, we employ a modified depth peeling approach~\cite{mammen89DepthPeeling}. With this approach, we can peel away layer-by-layer from the rendered FE model by using an additional depth comparison. However, when using depth peeling, it is crucial to be able to distinguish between different fragments solely based on their depth values. In order to deal with problems arising from fragments coinciding at the same depth value, often a user-defined bias parameter is introduced~\cite{Everitt01interactiveorder-independent}. As this coincidence of depth values is not the regular case and can be considered as rather rare compared to those fragments not coinciding in depth, the error introduced due to this bias is often negligible, which makes it a common practice in many computer graphics applications. Unfortunately, in our case the situation is more severe. As a FE model consists of several adjacent and touching elements, coinciding depth values are common and need to be handled robustly. As illustrated in Figure~\ref{fig:depthcoincidence}, two cases of depth coincidence occur. Point coincidences occur at the corners of adjacent elements~({\it top left}) and surface coincidences occur where two adjacent elements' surfaces are touching~({\it bottom left}). Since semi-transparency is accumulated along the viewing rays, errors introduced by the bias would be prominent in the rendered image. Therefore, we have realized a multi-layer depth peeling, where we take advantage of several attributes to resolve the depth coincidences without introducing an error. Figure~\ref{fig:depthpeeling} shows the employed information next to the color coded $\xi$ and world space coordinates of the first two layers of a FE model. Besides the actual depth values, we take also into account the current element's ID, as well as the ID of the current surface in our peeling approach. Thus, we can resolve the described coincidence cases and retrieve the entry and exit points for the current view ray segment. This allows us to fetch the cluster representative for this pair (see Section~\ref{sec:implementation}) and perform the ray marching (see next section).
-
-%In general we set the additional depth test to accept all fragments which have a greater or equal depth than the current fragment. To resolve the two coincidence cases, we ensure that each pair of entry- and exit-points has the same element ID. This together with ensuring that they have different face IDs, is enough to correctly resolve the point and the surface coincidence (see Figure~\ref{fig:depthcoincidence}). This additional information also leads to a more stable algorithm w.r.t. the available accuracy of the depth buffer. The approach also works for the situation that the entry and exit point lie on the same surface, as these points are guaranteed to have unequal depth values, thereby making the test for face inequality unnecessary in this specific case. In the case of a silhouette edge where two fragments coincide in the same depth value and originate from the same element, we do not perform a depth peeling, but transform only the entry point and obtain a single sample.
-%
-%Using a 16 bit depth buffer compared to a 32 bit depth buffer resulted in the exact same visual result. 
-
-%\begin{figure}[t]
-%    \centering
-%    \includegraphics[width=\linewidth]{figures/curvetexmap-memorylayout}
-%    \caption{Memory layout used to gain access to the precomputed proxy ray information. To retrieve the information required during rendering in constant time, a hierarchical subdivision is used. For each proxy ray, we store the cluster ID as well as the rotation angle $\theta$.}
-%    \label{fig:memorylayout}
-%\end{figure}
-
-%As we also take into account the current face and element ID during depth peeling, we can use this information to obtain the precomputed values for each proxy ray. We know the FE $c$ each proxy ray segment is traveling through, the face $f_s$ through which it enters $c$ and the face $f_e$ through which it exits $c$. Having this information, we need to identify the precomputed values for the rays closest to the actual ray start point $s_{w_0}$ and its end point $s_{w_n}$. To achieve this in constant time, we exploit the memory layout illustrated in Figure~\ref{fig:memorylayout}. On the highest level of the hierarchy, we arrange the data based on $f_s$ along the $x$-axis and $c$ along the $y$-axis. Thus, we obtain $n_{cells} \cdot n_{faces}$ cells which contain the precomputed information for rays entering a FE $c$ through a specific face $f_s$. Each of these cells is partitioned based on the $f_e$ along the $x$-axis, such that the resulting cells contain only the information for those rays exiting through a specific face $f_e$. Now, we can identify such a cell based on $c$, $f_s$ and $f_e$. To be able to access the precomputed ray data for a ray entering $c$ through $f_s$ at $s_{w_0}$ and leaving through $f_e$ at $s_{w_n}$, we again partition the cells based on the number $n_{entry}$ of precomputed entry points per face. Finally the obtained cells are partitioned based on the number $n_{exit}$ of precomputed exit points per face. To access the data for a ray within this hierarchical memory layout, we require the patch coordinates of $s_{w_0}$ and $s_{w_n}$ in addition to $c$, $f_s$ and $f_e$. Thus, we can obtain the preprocessed proxy ray information, which is stored in texture memory on the GPU, by accessing the hierarchical data structure at position $p$:
-%
-%\begin{eqnarray*}
-%p_x & = &(f_s \cdot (n_{entry} \cdot n_{exit} \cdot n_{cells})) + \\
-%	&  &(f_e \cdot (n_{entry} \cdot n_{exit})) + (s_{w_0,x} \cdot n_{exit}) + s_{w_n,x}\\
-%p_y & = &(c   \cdot (n_{entry} \cdot n_{exit})) + (s_{w_0,y} \cdot n_{exit}) + s_{w_n,y}
-%\end{eqnarray*}
 %
 %
 %
@@ -345,65 +329,77 @@ The subdivision of a curve ray penetrating the whole FE model into segments base
 %
 \subsection{Ray Interpolation}
 In order to improve the image quality of our ray-casting approach, we introduce two specialized interpolation schemes: \emph{inter-ray interpolation} and \emph{intra-ray interpolation}. With the inter-ray interpolation, we use the four nearest proxy rays  instead of the "nearest-neighbor" proxy ray for a given pixel position, and interpolate between them. This interpolation is carried out by using bilinear interpolation at every sample position along the viewing ray. The interpolation factors for these bilinear interpolations are based on the factors derived for the entry and the exit face. The intra-ray interpolation instead, employs swapping of entry and exit points in order to obtain a mirrored copy of the current ray. Thus, we can interpolate between the original ray at position $t$ and the mirrored ray at position $t'=1-t$ while traversing the initially obtained ray. Both of these interpolation schemes improve the image quality in situations where only a low resolution is available, as we show in Figure~\ref{fig:rayinterpolation}.
-
+%
+%
+%
 \section{Implementation}\label{sec:implementation}
-In this section, we are going to elaborate some of the implementational details regarding the previously mentioned concepts.
-
+In this section, we are going to explain some of the implementational details regarding concepts  mentioned previously.
+%
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=\linewidth]{figures/memory_layout.pdf}
+    \includegraphics[width=0.8\linewidth]{figures/memory_layout.pdf}
     \caption{Memory layout used to gain access to the precomputed proxy ray information. To retrieve the information required during rendering in constant time, a hierarchical subdivision is used. For each proxy ray, we store the cluster ID as well as the rotation angle $\theta$.}
     \label{fig:memory_layout}
 \end{figure*}
+%
+\noindent \textbf{Proxy Ray Generation.} In order to get a suitable point distribution on the faces of the elements, we subdivide each element's face in the $\xi$ coordinate system. The points in $\xi$ space are transformed into world space by the formula presented in Section~\ref{sec:theory}. For each pair $(p_0, p_1)$ of entry- and exit-points, we compute the (in world space) straight ray between $p_0$ and $p_1$ and sample it in $s_r$ equidistant positions. Each sample point is transformed from world to $\xi$ space using an iterative Newton method and stored for use as one control point for the Catmull-Rom spline approximating the original ray. 
 
+In order to have a consistent memory layout, we will use the same data structure to store the computed control points here as we will use  later in the rendering stage. There are two demands to the data structure: Given the parameters for the stored value, access should be in $O(1)$ and it should have a rectangular structure to be efficiently usable at GPU level. The parameters necessary for describing each proxy ray uniquely are $(e, f_s, f_e, p_s, p_e)$ with $e $ being the element number, $p_s$ the position on the entry face $f_s$ and $p_e$ the position on the exit face $p_e$. Let $\left|E\right|$ denote the total number of elements and $\left|F\right|$ be the number of faces per element. Furthermore, recall that $s_f$, as defined in Section~\ref{subsec:proxyraygeneration}, is the subdivision parameter which controls the number of points on each face. It then holds true that $p_s,p_e \in [0,s_f - 1]$. Figure~\ref{fig:memory_layout} shows the memory layout that we have chosen for this setting. On the highest level of the hierarchy, we arrange the data based on $f_s$ along the $x$-axis and $e$ along the $y$-axis. Thus, we obtain $\left|F\right| \cdot \left|E\right|$ cells which contain the precomputed information for rays entering $e$ through $f_s$. Each of these cells is partitioned based on the $f_e$ along the $x$-axis, such that the resulting cells contain only the information for those rays exiting through $f_e$. We again partition the cells based on the number $s_f$ of precomputed points on the entry face. Finally the obtained cells are partitioned based on the number $s_f$ of precomputed points on the exit face. The memory layout depicted here is represented by the two following equations, which allows us to store all data in a rectangular manner:
+\begin{eqnarray*}
+p_x & = &(f_s \cdot (s_f \cdot s_f \cdot \left|E\right|)) + \\
+	&  &(f_e \cdot (s_f \cdot s_f)) + (p_{s,x} \cdot s_f) + p_{e,x}\\
+p_y & = &(e   \cdot (s_f \cdot s_f)) + (p_{s,y} \cdot s_f) + p_{e,y}
+\end{eqnarray*}
 
-\noindent \textbf{Proxy Ray Generation.} In order to get an equidistant point distribution on the faces of the elements, we subdivide each element's face in the $\xi$ coordinate system, where it is of a simpler geometric shape and therefore trivial to do. The points in $\xi$ space can be transformed into world space by the formula presented in Section~\ref{sec:theory}. For each pair $p = (p_0, p_1)$ of entry- and exit-points, we can compute the (in world space) straight ray between $p_0$ and $p_1$ and sample it in $s_r$ equidistant positions. Each sample point is transformed from world to $\xi$ space using an iterative Newton method and stored for use as one control point for the Catmull-Rom spline approximating the original ray. Each spline's control points are world space independent and are stored in a structure accessible via the equation provided in Section~\ref{subsec:peeling}.
+\noindent \textbf{Curve Similarity.} The first step here is to increase the similarity of the stored proxy rays in such a way, that the subset $R'$ is as small as possible. Three transformations are performed after which each proxy ray fulfills three traits: 1. The starting point  $x_0$ is at $(0,0,0)$; 2. The first non-collinear point $x_i$ lies in the $yz$-plane; 3. The end point $x_n$ is at $(0,0,1)$. We apply three matrices $M_t$, $M_{rot}$, and $M_s$ to all control points, where $M_t$ is a translation by $-x_0$, $M_s$ is a scaling by $1 / (x_n.z)$, and $M_{rot}$ is a rigid-body transformation that will rotate the points such that $x_n$ is on the $z$ axis and the non-collinearity is fulfilled. Thus, we get new control points $x' = M_s \cdot M_{rot} \cdot M_t \cdot x$ with a higher degree of similarity between proxy rays. By enforcing that $x_i$ lies in the $yz$-plane, we lose the rotational angle w.r.t. the z-axis. We will store this angle $\theta$ for each proxy ray separately so that we can access it together with the cluster id.
 
-\noindent \textbf{Curve Similarity.} The first step here is to increase the similarity of the stored splines in such a way, that the set of splines can be represented by a smaller number of clusters. Three transformations are performed after which each spline fulfills three traits: 1. The starting point  $x_0$ is at $(0,0,0)$; 2. The first non-collinear point $x_i$ lies in the $yz$-plane; 3. The end point $x_n$ is at $(0,0,1)$. We apply three matrices $M_t$, $M_{rot}$, and $M_s$ to all control points, where $M_t$ is a translation by $-x_0$, $M_s$ is a scaling by $1 / x_n.z$, and $M_rot$ is a rigid-body transformation that will rotate the points such that $x_n$ is on the $z$ axis andh the non-collinearity is fulfilled. Thus, we get new control points $x' = M_s \cdot M_{rot} \cdot M_t \cdot x$ with a higher degree of similarity. By enforcing that $x_i$ lies in the $yz$-plane, we lose one degree of freedom which is the rotational angle w.r.t. the z-axis. We will store this angle $\theta$ for each spline (compared to for each cluster), thereby making a trade-off between spline similarity and accuracy.
+\noindent \textbf{Curve clustering.} In order to reduce the number of proxy rays which need to be stored on the graphics card, we apply a clustering algorithm such that multiple rays are substituted by a single representative. The clustering algorithm we have chosen is k-means, which is an iterative algorithm. Finding a good number of iterations a priori is a hard problem, so we investigated multiple tests to check if the sufficient quality has been reached. The simplest, and already feasible, test is a fixed number of iterations (see Figure~\ref{fig:clustering_epsilon_error}). Another possible test is the percentage of splines that change clusters in a single iteration; this is based on the assumption that this number decreases asymptotically to 0. A CPU implementation using C++ and OpenMP was used to generate the measurements presented in Section~\ref{sec:results}. The clustering was performed on 8 threads and it was found that the hard disk access as well as the computing power are bottle necks for faster execution times. An OpenCL-based implementation was tested, that keeps the cluster representatives for the current iteration in local memory and fetches the splines from global memory. Depending on various parameters, e.g.\,work sizes, number of parallel cluster calculations, we achieved a speedup in the area of one order of magnitude or better compared to the CPU implementation.
 
-\noindent \textbf{Curve clustering.} In order to reduce the number of splines which need to be stored on the graphics card, we apply a clustering algorithm such that multiple splines are substituted by a single representative. The clustering algorithm we have chosen is k-means, which increases the quality of the representatives with each iteration. Finding a necessary number of iterations a priori is a hard problem, so we investigated multiple tests to check if the sufficient quality has been reached. The simplest test is a fixed number of iterations, which is already a feasible test (see Figure~\ref{fig:clustering_epsilon_error}). Another possible test is the percentage of splines which change clusters in a single iteration; this is based on the assumption that this number decreases asymptotically to 0. A CPU implementation using C++ and OpenMP was used to generate the measurements presented in Section~\ref{sec:results}. The clustering was performed on 8 threads and it was found that the hard disk access as well as the computing power is a bottle neck for faster execution times. An OpenCL-based implementation was tested, that keeps the cluster representatives for the current iteration in local memory and fetches the splines from global memory. Depending on various parameters, e.g.\,work sizes, number of parallel cluster calculations, we achieved a speedup in the area of one order of magnitude compared to the CPU implementation.
+\noindent \textbf{Ray Marching.} The rendering step consists of a depth peeling step to get the entry- and exit points for each view ray. In general, we set the additional depth test to accept all fragments which have a greater or equal depth than the current fragment. To resolve the two coincidence cases as presented in Section~\ref{subsec:peeling}, we ensure that each pair of entry- and exit-points has the same element ID. This, together with ensuring different face IDs, is enough to correctly resolve the point and the surface coincidence (see Figure~\ref{fig:depthcoincidence}). This additional information also leads to a more stable algorithm w.r.t. the available accuracy of the depth buffer. We tested depth buffer accuracies of 16 and 24 bit but found no noticeable visual errors. The approach also works for the situation that the entry and exit point lie on the same surface, as these points are guaranteed to have unequal depth values, thereby making the test for face inequality unnecessary in this specific case. In the case of a silhouette edge where two fragments coincide in the same depth value and originate from the same element, we do not perform a depth peeling, but transform only the entry point and obtain a single sample.
 
-\noindent \textbf{Ray Marching.} The rendering step consists of a depth peeling step to get the entry- and exit points for each ray which is cast. The geometry representation of the FE models contains 4 values for each node; the three color channels provide the $\xi$ value (see Figures~\ref{fig:depthpeeling:entryxi}) and the alpha channel stores the element for which the nodal value is defined (see Figure~\ref{fig:depthpeeling:entryid}). Based on these information, all free parameters for the equation provided in Section~\ref{subsec:peeling} can be derived: In $\xi$ space, the reference object is a cube, and both entry- and exit points reside on a side of the cube. Thus, one of the $\xi$ components will be 0 or 1, and we can derive the face id from the combination of the two variables. With all information present, the cluster is fetched for this entry-exit point pair and the ray marching is performed on the spline.
-
+The geometry representation of the FE models contains 4 values for each node; the three color channels provide the $\xi$ value (see Figures~\ref{fig:depthpeeling:entryxi}) and the alpha channel stores the element for which the nodal value is defined (see Figure~\ref{fig:depthpeeling:entryid}). Based on these information, all free parameters for the equation provided above can be derived: In $\xi$ space, the reference object is a cube, and both entry- and exit points reside on a side of the cube. Thus, one of the $\xi$ components will be 0 or 1, and we can derive the face id from the combination of the two variables. With all information present, the cluster is fetched for this entry-exit point pair and the ray marching is performed on the spline.
+%
 \begin{figure}
     \centering 
-    \subfigure[surface rendering]{\includegraphics[width=0.45\linewidth]{figures/fem-breast}}
-    \subfigure[volumetric rendering]{\includegraphics[width=0.45\linewidth]{figures/Breast}}
+    \subfigure[surface rendering]{\includegraphics[width=0.4\linewidth]{figures/fem-breast}}
+    \subfigure[volumetric rendering]{\includegraphics[width=0.4\linewidth]{figures/Breast}}
     \caption{FE breast model with MRI material space rendered as surface representation showing the deformed and the undeformed surface (a), and showing the deformed volume with our interactive volumetric approach (b).}
     \label{fig:breast}
 \end{figure}
-
+%
 \begin{figure}
     \centering 
-    \subfigure[polygonal rendering]{\includegraphics[width=0.45\linewidth]{figures/fem-tongue}}
-    \subfigure[opaque volumetric rendering]{\includegraphics[width=0.45\linewidth]{figures/tongue3}}\\
-    \subfigure[translucent volumetric rendering]{\includegraphics[width=0.90\linewidth]{figures/fem-tongue-new-sidebyside}}
-    \caption{FE tongue model rendered as a polygonal representation (a), with our interactive volumetric approach~(b,c).}
+    \subfigure[polygonal rendering]{\includegraphics[width=0.4\linewidth]{figures/fem-tongue}}
+    \subfigure[opaque volumetric rendering]{\includegraphics[width=0.4\linewidth]{figures/tongue3}}\\
+    \subfigure[translucent volumetric rendering]{\includegraphics[width=0.8\linewidth]{figures/fem-tongue-new-sidebyside}}
+    \caption{FE tongue model rendered as a polygonal representation (a), and with our interactive volumetric approach~(b,c).}
     \label{fig:tongue}
 \end{figure}
-
+%
+%
+%
 \section{Results}\label{sec:results}
-
-To assess the quality and the performance of the proposed visualization technique, we have applied it to different data sets. Below, we will discuss the visual results, the introduced errors as well as the performance of our approach.
-
+To assess the quality and the performance of the proposed visualization technique, we have applied it to different data sets. Below, we discuss the visual results, the introduced errors, the performance of our approach as well as the memory requirements.
+%
+%
+%
 \subsection{Visual Results}
+To demonstrate the visual outcome of the proposed concepts, we have applied them to different FE models. These vary with respect to the number of cells and the order of the used interpolation functions. Although we include only interpolation functions of a degree-7 or 9 polynomial, our method is not limited to any specific order for as long as the coherencies are fulfilled. In the following paragraphs we describe these models and the visual results achieved.
 
-To demonstrate the visual outcome of the proposed concepts, we have applied them to different FE models. These vary with respect to the number of cells and the order of the used interpolation functions. Although we include only functions of order 2 or 3, our method is not limited to any specific order for as long as the coherencies are fulfilled. In the following paragraphs we describe these models and the visual results achieved.
-
-\noindent \textbf{Breast model.} As the most simple tested model with respect to number of elements and material parameters, we have applied our approach to a deformation model of a breast data set, consisting of 60 tricubic elements, acquired from an MRI scan. The dependent variables in this case are the actual intensities of the MRI field, and the FE modeling has been applied to predict the supine shape of the data set originally acquired in the prone position. Figure~\ref{fig:breast} shows a comparison of the supine position rendered with our interactive volumetric approach (b) as compared to a standard surface based representation (a).
+\noindent \textbf{Breast model.} We have applied our approach to a deformation model of a breast data set, consisting of 60 tricubic elements, acquired from an MRI scan. The dependent variables in this case are the actual intensities of the MRI field, and the FE modeling has been applied to predict the supine shape of the data set originally acquired in the prone position. Figure~\ref{fig:breast} shows a comparison of the supine position rendered with our interactive volumetric approach (b) as compared to a standard surface based representation (a).
 
 \noindent \textbf{Tongue model.} Furthermore, we have applied our approach to a model of a human tongue, consisting of 64 tricubic elements, with simulated tissue densities and muscle fiber directions. In this case, each node stores one coordinate vector and seven derivatives and mixed derivatives for the tensor product of the cubic Hermite interpolation functions in all three coordinate directions. The results as compared to a polygonal representation are shown in Figure~\ref{fig:tongue}. Especially in this case, the multi-parametric capabilities of our algorithm are beneficial, as the tongue model contains a relatively high number of parameters. When one would apply resampling to all of these parameter volumes instead, this would result in an unmanageable amount of data for a reasonable resolution.
 
-\noindent \textbf{Heart model.} A heart data set, which consists of 16 bicubic-linear elements (i.e.~two interpolation functions are of cubic order, the other one is linear),  where the strain values for each point have been computed from displacements  obtained from tagged MRI data, serves as the third example (see Figure~\ref{fig:teaser}). Since the computation of the strain values was performed over the FE geometry, but using a numerical optimization technique, the strain values are represented as $11 \times 11 \times 6$ regular grids in material space, which are trilinearly interpolated. For our visualization, we have taken into account the three principal strain directions, which are the eigenvalues of the tensor. The principle strains include the maximum and minimum deformation and the corresponding eigenvectors give the direction of these deformations. These directions are circumferential, longitudinal and radial.
-
+\noindent \textbf{Heart model.} A heart data set, which consists of 16 bicubic-linear elements (i.e.~two interpolation functions are of cubic order, the other one is linear),  where the strain values for each point have been computed from displacements  obtained from tagged MRI data, serves as the third example (see Figure~\ref{fig:teaser}). For our visualization, we have taken into account the three principal strain directions, which are the eigenvalues of the tensor. The principle strains include the maximum and minimum deformation and the corresponding eigenvectors give the direction of these deformations. These directions are circumferential, longitudinal and radial.
+%
 \begin{table}[b]
   \caption{Performance analysis (in fps) of our technique for different grid sizes compared to a straightforward (SF) implementation. The setups match the first three subfigures in Figure \ref{fig:teaser}, which are images showing radial strain, circumferential strain, and longitudinal strain.}
   \label{tab:performance}
   \begin{center}
     \begin{tabular}{|l|c|c|c|c|c|}
       \hline
-      Figure \ref{fig:teaser} & Pixel & GPU & \multicolumn{3}{c|}{Our Technique [Grid, Clusters]}\\
-      TF Setups & Res & (SF) & $3^2,1024$ & $5^2,2048$ & $10^2,4096$ \\
+      Figure \ref{fig:teaser} & Pixel & GPU & \multicolumn{3}{c|}{Our Technique [$s_f$, Clusters]}\\
+      TF Setups & Res & (SF) & $3,1024$ & $5,2048$ & $10,4096$ \\
       \hline
       Radial & $256^2$ & 2.58 & 14.52 & 14.25 & 14.05\\
       Strain & $512^2$ & 1.33 & 11.40 & 11.71 & 11.02\\
@@ -420,104 +416,80 @@ To demonstrate the visual outcome of the proposed concepts, we have applied them
     \end{tabular}
   \end{center}
 \end{table}
-
+%
 \begin{figure}
     \centering
-    \subfigure[Straightforward approach]{\includegraphics[width=0.32\linewidth]{figures/heart-comparison-straight-forward.png}}
-    \subfigure[Our approach]{\includegraphics[width=0.32\linewidth]{figures/heart-comparison-clustering.png}}
-    \subfigure[Visual difference (emphasized 10 times)]{\includegraphics[width=0.32\linewidth]{figures/heart-comparison-diff-times-ten.png}}
-    \caption{Visual error as obtained when applying our technique. A straightforward volumetric approach (a) and our interactive volumetric approach (b) have been compared, which results in the shown 10 times exaggerated error image (c). Without this exaggeration, the error would be hardly noticeable.}
+    \subfigure[Straightforward approach]{\includegraphics[width=0.3\linewidth]{figures/heart-comparison-straight-forward.png}}
+    \subfigure[Our approach]{\includegraphics[width=0.3\linewidth]{figures/heart-comparison-clustering.png}}
+    \subfigure[Visual difference (emphasized 10 times)]{\includegraphics[width=0.3\linewidth]{figures/heart-comparison-diff-times-ten.png}}
+    \caption{Visual error as obtained when applying our technique. A straightforward volumetric approach (a) and our interactive volumetric approach (b) have been compared, which results in the error image exaggerated tenfold (c).}
     \label{fig:heart-analysis}
 \end{figure}
-
+%
+%
+%
 \subsection{Error Analysis}\label{subsec:error}
 \begin{figure*}[t]
     \centering
-    \subfigure[~]{\includegraphics[width=0.32\linewidth]{measurements/spline_approximation/spline_approximation.pdf} \label{fig:spline_control_points_error}}
-    \subfigure[~]{\includegraphics[width=0.32\linewidth]{measurements/clustering/clustering_error.pdf} \label{fig:clustering_epsilon_error}}
-    \subfigure[~]{\includegraphics[width=0.32\linewidth]{measurements/cluster_measurements/clusterErrorPlot.pdf} \label{fig:clustering_visual_error}}
+    \subfigure[~]{\includegraphics[width=0.3\linewidth]{measurements/spline_approximation/spline_approximation.pdf} \label{fig:spline_control_points_error}}
+    \subfigure[~]{\includegraphics[width=0.3\linewidth]{measurements/clustering/clustering_error.pdf} \label{fig:clustering_epsilon_error}}
+    \subfigure[~]{\includegraphics[width=0.3\linewidth]{measurements/cluster_measurements/clusterErrorPlot.pdf} \label{fig:clustering_visual_error}}
 
     \caption{\textbf{Error measurements.} \subref{fig:spline_control_points_error} shows the error introduced by the approximation of the correct bent ray by sampling a spline. The abscissa shows the number of control points used to construct the spline, where 2 points represent a straight line. \subref{fig:clustering_epsilon_error} shows the error for varying numbers of clusters depending on the number of iterations after which the k-means algorithm has stopped. Based on the heart data set with a grid resolution of $5\times5$, which resulted in 360.000 rays. \subref{fig:clustering_visual_error} shows the normalized absolute pixel error (background pixels are neglected) plotted against the percentage of clusters relative to the total amount of curves. The calculations have been performed on the subfigures of Figure~\ref{fig:teaser}, thus varying the transfer function and strain direction. All error values were normalized w.r.t the respective highest error.}
     \label{fig:error}
 \end{figure*}
 
-The presented rendering approach contains several steps which potentially introduce visual errors. First, the proxy ray generation explained in Subsection~\ref{subsec:proxyraygeneration} introduces an error based on the number of actual proxy rays. The visual impact of this error is analyzed together with the potential clustering error in Figure~\ref{fig:rayinterpolation}. In the two rows, different numbers of proxy rays have been computed. In the top row, a very low number with $2 \times 2$ proxy rays per element face has been chosen. The bottom row uses $10 \times 10$ proxy rays instead. As it can be seen, the error introduced by a low number of proxy rays is clearly visible. However, when using $10 \times 10$ proxy rays, no artifacts are visible when using the proposed ray interpolation mechanism. As the clustering itself also introduces an error, we have analyzed the impact in Figure~\ref{fig:clustering_epsilon_error}, which shows the error for a varying number of clusters. It is obvious that the error becomes smaller if we use more clusters. The number of clusters can, depending on data set, be quite low in relation to the number of splines, as seen in Figure~\ref{fig:clustering_visual_error}. This is due to the fact that clustering of the curves is performed without consideration for the angle, as this stored in separately, which increase the correlation between the curves. While these two analyses show the error for the proxy ray computation and the clustering separately, we have also compared the results achieved by our algorithm to the ground truth, a straightforward raycaster as described in Section~\ref{sec:preprocessing}, which evaluates the world-to-material space transformation during each sample step. We chose this method as a comparison, because it produces the smallest error by itself and is thereby suited to demonstrate the error introduced by our method. As it can be seen in Figure~\ref{fig:heart-analysis}, the visual error is rather low, as only a ten times exaggeration of the generated error image makes it noticeable.
+Our rendering approach contains several steps which potentially introduce visual errors. First, the proxy ray generation explained in Subsection~\ref{subsec:proxyraygeneration} introduces an error based on the number of actual proxy rays. The visual impact of this error is analyzed in Figure~\ref{fig:rayinterpolation}. In the two rows, different numbers of proxy rays have been computed. In the top row, a very low number with $2 \times 2$ proxy rays per element face has been chosen, whereas the bottom row uses $10 \times 10$ proxy rays. As it can be seen, the error introduced by a low number of proxy rays is clearly visible. However, when using $10 \times 10$ proxy rays, no artifacts are visible when using the proposed ray interpolation mechanism. As the clustering itself also introduces an error, we have analyzed the impact in Figure~\ref{fig:clustering_epsilon_error}, which shows the error for a varying number of clusters. It is obvious that the error becomes smaller if we use more clusters. The number of clusters can, depending on data set, be quite low in relation to the number of proxy rays, as seen in Figure~\ref{fig:clustering_visual_error}. While these two analyses show the error for the proxy ray computation and the clustering separately, we have also compared the results achieved by our algorithm to the ground truth, a straightforward raycaster as described in Section~\ref{sec:preprocessing}, which evaluates the world-to-$\xi$ transformation during each sample step. We chose this method as a comparison, because it produces the smallest error by itself and is thereby suited to demonstrate the error introduced by our method. As it can be seen in Figure~\ref{fig:heart-analysis}, the visual error is rather low, as only a tenfold exaggeration of the generated error image makes it noticeable.
 
-We described in Section~\ref{subsec:proxyraygeneration} that we can use a varying number of control points to represent the proxy ray by a spline. This, of course, is an approximation of the original bent ray we get by using the straightforward implementation. We want to analyze the effect that this parameter has on the error introduced by the representation. Figure~\ref{fig:spline_control_points_error} shows this error which was computed by comparing the spline representation to the ray where each sample point is transformed. We sampled both rays at a sufficiently high rate of 1024 points and computed the area metric as described in Section~\ref{subsec:curvecompression}. The abscissa shows the number of control points which comprised the spline, where 2 points let to a straight line. For easier comparison, all error values were normalized with regard this value. The error is of course highly dependent on the shape of the FE in the model and we computed the error for all proxy rays in the \emph{Heart} model described above.
+We described in Section~\ref{subsec:proxyraygeneration} that we can use a varying number of control points to represent the proxy ray. This, of course, is an approximation of the original bent ray we get by using the straightforward implementation. We want to analyze the effect that this parameter has on the error introduced by the representation. Figure~\ref{fig:spline_control_points_error} shows this error, that was computed by comparing the spline representation to the ray where each sample point is transformed. We sampled every ray at a sufficiently high rate of 1024 points and computed the area metric as described in Section~\ref{subsec:curvecompression}. The abscissa shows the number of control points which comprised the proxy ray, where 2 points denote a straight line. For easier comparison, all error values were normalized with regard this value. The error is of course highly dependent on the shape of the FE in the model and we computed the error for all proxy rays in the \emph{Heart} and \emph{Tongue} models described above.
 
-\todo{Rewrite}
-Another source of error which is introduced into the pipeline is the tessellation of the curved elements. In order to perform the depth peeling, we need to represent the curved surfaces by piecewise-linear approximations. Although this results in an error on the final image, neither the speed nor the memory footprint of our method is affected by the tessellation of the curved elements.
-
+%\todo{Rewrite}
+%Another source of error which is introduced into the pipeline is the tessellation of the curved elements. In order to perform the depth peeling, we need to represent the curved surfaces by piecewise-linear approximations. Although this results in an error on the final image, neither the speed nor the memory footprint of our method is affected by the tessellation of the curved elements.
+%
+%
+%
 \subsection{Performance Analysis}\label{subsec:performance}
-
 \begin{table}[b]
-  \caption{Memory consumption of data structures used during rendering for different grid resolutions and with a variation of number of clusters in the case of the heart dataset.}
+  \caption{Memory consumption of data structures during rendering for varying grid resolutions and number of clusters on the heart dataset.}
   \label{tab:data_size}
   \begin{center}
     \begin{tabular}{|l|c|c|c|c|c|c|}
       \hline
-      Entry & Exit &  Without & \multicolumn{3}{c|}{With Certain Number of Clusters}\\
-      Points & Points & Clustering & 512 & 2048 & 4096\\
+      $s_f$ &  Without & \multicolumn{3}{c|}{With Certain Number of Clusters}\\
+      	       & Clustering & 512 & 2048 & 4096\\
       \hline
-      3 	&	3	&	 2.7\,MB	&	0.39\,MB		&	0.47\,MB	&	0.82\,MB  \\
-      7 	&	5 	&	40.7\,MB	&	5.4\,MB		&	5.5\,MB	&	5.85\,MB  \\
-      8 	&	8 	&	135\,MB	&	18\,MB		&	18.1\,MB	&	18.5\,MB	\\
-      10 	&	10 	&	329\,MB	&	43.9\,MB		&	44.0\,MB	&	44.1\,MB	\\
-      15	&	15	&	1.62\,GB	&	222.5\,MB		&	222.6\,MB	&	222.9\,MB \\
-%      3 & 3 & 12.8\,MB & 1.9\,MB & 2.3\,MB & 2.8\,MB \\
-%      7 & 5 & 200.4\,MB & 27.3\,MB & 28.2\,MB & 29.0\,MB\\
-%      8 & 8 & 672.8\,MB & 92.2\,MB & 94.1\,MB & 95.2\,MB \\
-%      10 & 10 & 1.65\,GB & 229.5\,MB & 232.2\,MB & 234.4\,MB \\
+      3	&	 2.7\,MB	&	0.39\,MB		&	0.47\,MB	&	0.82\,MB  \\
+%      8 	&	135\,MB	&	18\,MB		&	18.1\,MB	&	18.5\,MB	\\
+      10 	&	329\,MB	&	43.9\,MB		&	44.0\,MB	&	44.1\,MB	\\
+      15	&	1.62\,GB	&	222.5\,MB		&	222.6\,MB	&	222.9\,MB \\
       \hline
     \end{tabular}
   \end{center}
 \end{table}
 
-%\begin{figure}[t]
-%    \centering 
-%		\includegraphics[width=1.0\linewidth]{measurements/spline_approximation/spline_approximation.pdf}
-%    \caption{The error introduced by the approximation of the correct bent ray by sampling a spline. The abscissa shows the number of control points used to construct the spline, where 2 points represent a straight line. The error values were normalized w.r.t. this value.}
-%    \label{fig:spline_control_points_error}
-%\end{figure}
+We have to differentiate between the precomputation and the rendering step in the performance analysis. Although, the time used for precomputation is dependent on both the proxy ray computation and the clustering, the latter takes more time than the former. In our unoptimized CPU implementation, the clustering for a $5\times5$ proxy ray setup with $8192$ clusters takes roughly 4-6 hours, while a $15\times15$ setup with $8192$ clusters takes approximately 72-84 hours of time. We managed to reduce this time with an unoptimized OpenCL implementation by an order of magnitude to about 20-25 minutes for the $5\times5$ proxy ray setup with $8192$ clusters, which is in line with former works~\cite{mess10gpuclustering}. The clustering and all performance tests were executed on an Intel Xeon Quad-Core 3.06\,GHz with 6\,GB of working memory, equipped with a Geforce~580 card with 1\,GB of memory.
+
+Table~\ref{tab:performance} shows the rendering performance of the presented volumetric FE visualization technique, as compared to the straightforward volumetric GPU implementation. As can be seen, the performance of our technique is affected by image resolution and independent of the amount of clusters and proxy rays. The rendering quality is thus affected by a trade-off between the number of proxy rays used during the precomputation and the number of clusters used during the curve compression. In the worst case tested, our technique provides above $7$\,fps instead of $0.4$\,fps. While the $14.81$\,fps achieved with our method in the best tested case enabled full interactivity, the $7$\,fps also resulted in an interactive experience.
 %
-%\begin{figure}[t]
-%    \centering 
-%		\includegraphics[width=1.0\linewidth]{measurements/cluster_measurements/clusterErrorPlot.pdf}
-%    \caption{The normalized absolute pixel error (background pixels are neglected) plotted against the percentage of clusters relative to the total amount of curves. The calculations have been performed on the subfigures of Figure~\ref{fig:teaser}, thus varying the transfer function and strain direction.}
-%    \label{fig:clustering_visual_error}
-%\end{figure}
 %
-%\begin{figure}[t]
-%    \centering 
-%    \includegraphics[width=0.85\linewidth]{measurements/clustering/clustering_error.pdf}
-%    \caption{The error for varying numbers of clusters depending on the number of iterations after which the k-means algorithm has stopped. Based on the heart data set with a grid resolution of $5\times5$, which resulted in 360.000 rays. Initial error for 32 clusters has the value 1.}
-%    \label{fig:clustering_epsilon_error}
-%\end{figure}
-
-We have to differentiate between the precomputation and the rendering step in the performance analysis. Although, the time used for precomputation is dependent on both the proxy ray computation and the clustering, the latter takes more time than the former. In our unoptimized CPU implementation, the clustering for a $5\times5$ proxy ray setup with $8192$ clusters takes roughly 4-6 hours, while a $15\times15$ setup with $8192$ clusters takes approximately 72-84 hours of time. We managed to reduce this time with an unoptimized OpenCL implementation by an order of magnitude to about 25-30 minutes for the $5\times5$ proxy ray setup with $8192$ clusters, which is in line with former works~\cite{mess10gpuclustering}. The clustering and all performance tests were executed on an Intel Xeon Quad-Core 3.06\,GHz with 6\,GB of working memory, equipped with a Geforce~580 card with 1\,GB of memory.
-
-Table~\ref{tab:performance} shows the rendering performance of the presented volumetric FE visualization technique, as compared to the straightforward volumetric GPU implementation. As can be seen, the performance of our technique is affected by image resolution and independent of the amount of clusters and proxy rays. The rendering quality is thus affected by a trade-off between the number of proxy rays used during the precomputation and the number of clusters used during the curve compression. In the worst case tested, our technique provides above $7$\,fps instead of $0.4$\,fps. While the $14.81$\,fps achieved with our method in the best tested case enabled full interactivity, which for instance allows for changing the parameter mapping or the camera orientation, the $7$\,fps also resulted in an interactive experience.
-%Increasing the amount of proxy rays result in a significantly larger amount of memory needed during rendering, as shown in Table~\ref{tab:data_size}. However, increasing the amount of clusters result in a rather low increase in data size, as angles and cluster IDs are stored for all rays independent of the number of clusters. Table~\ref{tab:performance} further shows that we have a performance gain of more then five times as compared to the straightforward approach.
-
+%
 \subsection{Memory requirements}\label{subsec:memory}
-A limiting factor of the presented method is the memory that is required to store the proxy rays, angles and cluster IDs. Besides the computational time, the available graphics memory is the only limitation to the number of elements, grid resolution, and number of clusters. In this section, we will show the impact of each of these factors on the memory requirements. $e$ will denote the total number of elements, $f$ is the number of faces per element, $n$ is the grid paramenter, so that $n^2$ is the number of points per face, $s_r$ the number of control points per ray, and $c$ the number of clusters. Following Section~\ref{subsec:proxyraygeneration}, the total number of proxy rays is $r_u = (n^2f)^2$. This will result in $p = e \cdot r_u \cdot s_r$ points which have to be transformed and stored. It should be noted that this data does not need to fit on the graphics card and is only an intermediate result. The required memory after the clustering has been performed can be estimated by: $c \cdot s_r + e \cdot r_u \cdot 2$. The first part of the equation is the storage necessary for the clustered control points of the splines. The second part is the lookup table as described in Section~\ref{subsec:peeling} and needs to store both the cluster ID as well as the angle. A significant restriction to our method is obvious in the latter formula. The second term grows linearly in the number of elements and poses therefore a limitation on the mesh sizes we are able to render. Exemplary values for the heart are given in Table~\ref{tab:data_size} when we assume float precision, i.e.\, every point will occupy 12\,byte of memory, and 5 stored points per cluster.
-
+A limiting factor of the presented method is the memory that is required to store the proxy rays, angles and cluster IDs. Besides the computational time, the available graphics memory is the only limitation to the number of elements, grid resolution, and number of clusters. In this section, we will show the impact of each of these factors on the memory requirements using the same definitions as in Section~\ref{sec:implementation} with the addition of $c$ as the number of clusters. The total number of rays per element is given by $r_t = (s_f^2\left|F\right|)^2$ which leads to $e \cdot r_t \cdot s_r$ points that have to be transformed and stored. It should be noted that this data does not need to fit on the graphics card and is only an intermediate result. The required memory after the clustering has been performed can be estimated by: $c \cdot s_r + e \cdot r_t\cdot 2$. The first part of the equation is the storage necessary for the clustered control points of the representatives. The second part is the lookup table as described in Section~\ref{subsec:peeling} and needs to store both the cluster ID as well as the angle. A significant restriction to our method is obvious in the latter formula. The second term grows linearly in the number of elements and poses therefore a limitation on the mesh sizes we are able to render. Exemplary values for the heart are given in Table~\ref{tab:data_size} when we assume float precision, i.e., every point will occupy 12\,byte of memory, and 5 stored points per cluster.
+%
+%
+%
 \subsection{Limitations}\label{subsec:limitations}
-The examples in this paper all use elements with cuboidal parent elements. In order to apply the technique to differently shaped elements, e.g. tetrahedral elements, methods must be implemented for depth peeling and sampling the element faces. This is straight forward. In fact, the current implementation works already for differently shaped elements, e.g. where multiple vertices of the parent element are mapped to the same vertex in world coordinates. This is the case for the apex of the left ventricular model, where the resulting elements have a curved wedge-like shape.  
-
+The examples in this paper all use elements with cuboidal parent elements. In order to apply the technique to differently shaped elements, e.g., tetrahedral elements, methods must be implemented for depth peeling and sampling the element faces. This is straight forward. In fact, the current implementation works already for differently shaped elements, e.g. where multiple vertices of the parent element are mapped to the same vertex in world coordinates. This is the case for the apex of the left ventricular model, where the resulting elements have a curved wedge-like shape.  
+%
+%
+%
 \section{Conclusions \& Future Work}\label{sec:conclusions}
-In this paper we have presented a ray-casting based approach which allows the interactive exploration of high-order FE models. By shifting the computationally complex world to $\xi$ space transformation from the rendering stage into a preprocessing stage, we are able to achieve interactive frame rates and thus allow for an interactive in-detail inspection of FE models on standard GPUs. Thus we are able to change transfer functions and other parameters, which is essential for interactive multi-parametric data exploration. We have demonstrated the outcome of the presented approach by applying it to several real-world data sets from different disciplines, and by analyzing the errors introduced by our approach. Furthermore, we have discussed the rendering performance gain as well as the memory requirements.
-
-Even though the examples used in the results section are of cubic order, we have made no assumptions on the complexity of the basis functions. This means, that as long as the inter- and intra-element coherency is fulfilled, we do not have a limit w.r.t. the model.
+In this paper we presented a ray-casting based approach that enables the interactive exploration of high-order FE models. By shifting the computationally complex world-to-$\xi$ transformation from the rendering stage into a preprocessing stage, we are able to achieve interactive frame rates and thus allow for an interactive in-detail multi-parametric inspection of FE models using transfer functions and other parameters on standard GPUs. We have demonstrated the outcome of the presented approach by applying it to several real-world data sets and analyzing the errors introduced by our approach. Furthermore, we have discussed the rendering performance gain as well as the memory requirements.
 
 In the future, there are several opportunities to further improve the presented concepts. When precomputing the proxy rays, we currently use a equidistant layout for the generation of the set $P$ of uniformly distributed start and end points. In comparison to such a equidistant layout, more elaborate sampling schemes, as used in many areas of computer graphics, might lead to an improved quality with the same number of proxy rays. While, our approach currently supports scalar data only, in the future we plan to use the proposed method to visualize vector and tensor data defined over $\xi$ space.
-
-
-
-\todo{Discuss how to extend to other element shapes.}
-
-
-
+%
+%
+%
 \acknowledgments{We thank all reviewers for their fruitful comments which
 helped to greatly improve this paper. We would also like to thank Assoc.-Prof. Alistair Young from the Department of Anatomy and Radiology from the University of Auckland, New Zealand, who kindly provided the tagged MRI data of a healthy left ventricle. This work was partly supported by grants from the Swedish Research Council (VR, grant 2011-4113), the Excellence Center at Link\"oping and Lund in Information Technology (ELLIIT) and the Swedish e-Science Research Centre (SERC). The presented concepts have been realized using the Voreen open source visualization framework (www.voreen.org).}
 
