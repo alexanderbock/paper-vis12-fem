@@ -224,7 +224,7 @@ To obtain such a proxy ray distribution we exploit the intra-element coherency, 
 
 The actual proxy rays are then computed based on the resulting point distribution, $P$. To obtain proxy rays from $P$ we consider all pairwise combinations $(p',p'')$, with $p',p'' \in P$. During rendering a ray intersecting $p'$ and $p''$ would be a line in world space and a curve in $\xi$ space. Figure~\ref{fig:raycoords} shows an example of 9 rays going from one point of a face to all points of the opposite face. When connecting $p'$ and $p''$ with a straight line, representing a viewing ray in world space, the proxy ray in $\xi$ space can be obtained by sampling along the straight line and transforming each sample's position into $\xi$ space. While this sampling is performed with a fixed but sufficiently high sampling rate $s_r$, it should be pointed out that it does not represent or determine the sampling rate used later during rendering. $s_r$ is only used to obtain the geometry of the proxy rays, whereas the sampling rate used for the compositing during ray-traversal in the rendering step can still be chosen independently.
 
-As the set of proxy rays, $R$, has to be dense its size is obviously a limiting factor. Assuming that our subdivision parameter, $s_f$, would result in $n$ points along the $u$ and the $v$ coordinate of an element's face, we would have $n^2$ grid points on each face. Thus we would have $n^2\cdot\left|F\right|$ grid points in total, assuming that each element has $\left|F\right|$ faces. This would result in $r_t = (n^2 \left|F\right|)^2$ proxy rays to be precomputed. Though we have kept $s_f$ constant to allow a less complex implementation of the ray-casting process, we have other possibilities to reduce the size of $R$. To achieve this reduction we exploit properties of the standard volume rendering integral which is used in the rendering stage:
+As the set of proxy rays, $R$, has to be dense its size is obviously a limiting factor. Assuming that our subdivision parameter, $s_f$, would result in $n$ points along the $u$ and the $v$ coordinate of an element's face, we would have $n^2$ grid points on each face. Thus we would have \mbox{$n^2\cdot\left|F\right|$} grid points in total, assuming that each element has $\left|F\right|$ faces. This would result in $r_t = (n^2 \left|F\right|)^2$ proxy rays to be precomputed. Though we have kept $s_f$ constant to allow a less complex implementation of the ray-casting process, we have other possibilities to reduce the size of $R$. To achieve this reduction we exploit properties of the standard volume rendering integral which is used in the rendering stage:
 
 $$ L(x,\omega_o) = L_0 \cdot e^{-\int_{x_0}^{x}\kappa(x'')dx''} + \int_{x_0}^{x}  \! c(x') \cdot e^{-\int_{x'}^{x}\kappa(x'')dx''} dx'$$
 
@@ -321,7 +321,7 @@ The subdivision of a curve ray penetrating the whole FE model into segments, bas
 %
 \begin{figure*}[t]
     \centering
-    \includegraphics[width=0.75\linewidth]{figures/memory_layout.pdf}
+    \includegraphics[width=0.76\linewidth]{figures/memory_layout.pdf}
     \caption{Memory layout used to gain access to the precomputed proxy ray information. To retrieve the information required during rendering in constant time, a hierarchical subdivision is used. For each proxy ray, we store the cluster ID as well as the rotation angle $\theta$.}
     \label{fig:memory_layout}
 \end{figure*}
@@ -354,8 +354,8 @@ The geometry representation of the FE models contains 4 values for each node; th
 %
 \begin{figure}
     \centering 
-    \subfigure[surface rendering]{\includegraphics[width=0.4\linewidth]{figures/fem-breast}}
-    \subfigure[volumetric rendering]{\includegraphics[width=0.4\linewidth]{figures/Breast}}
+    \subfigure[surface rendering]{\includegraphics[width=0.42\linewidth]{figures/fem-breast}}
+    \subfigure[volumetric rendering]{\includegraphics[width=0.42\linewidth]{figures/Breast}}
     \caption{FE breast model with MRI material space rendered as surface representation showing the deformed and the undeformed surface (a), and showing the deformed volume with our interactive volumetric approach (b).}
     \label{fig:breast}
 \end{figure}
@@ -428,7 +428,7 @@ To demonstrate the visual outcome of the proposed concepts, we have applied them
     \subfigure[Error introduced by clustering]{\includegraphics[width=0.325\linewidth]{measurements/clustering/clustering_error.pdf} \label{fig:clustering_epsilon_error}}
     \subfigure[Image error measured for varying cluster sizes]{\includegraphics[width=0.325\linewidth]{measurements/cluster_measurements/clusterErrorPlot.pdf} \label{fig:clustering_visual_error}}
 
-    \caption{\textbf{Error measurements.} \subref{fig:spline_control_points_error} shows the error introduced by the approximation of the correct bent ray by sampling a spline. The abscissa shows the number of control points used to construct the spline, where 2 points represent a straight line. \subref{fig:clustering_epsilon_error} shows the error for varying numbers of clusters depending on the number of iterations after which the k-means algorithm has stopped. Based on the heart data set with a grid resolution of $5\times5$, which resulted in 360.000 rays. \subref{fig:clustering_visual_error} shows the normalized absolute pixel error (background pixels are neglected) plotted against the percentage of clusters relative to the total amount of curves. The calculations have been performed on the subfigures of Figure~\ref{fig:teaser}, thus varying the transfer function and strain direction. All error values were normalized w.r.t the respective highest error.}
+    \caption{\textbf{Error measurements.} \subref{fig:spline_control_points_error} shows the error introduced by the approximation of the correct bent ray by sampling a spline. The abscissa shows the number of control points used to construct the spline, where 2 points represent a straight line. \subref{fig:clustering_epsilon_error} shows the error for varying numbers of clusters depending on the number of iterations after which the k-means algorithm has stopped. Based on the heart data set with a grid resolution of $5\times5$, which resulted in 360.000 rays. \subref{fig:clustering_visual_error} shows the normalized absolute pixel error (background pixels are neglected) plotted against the percentage of clusters relative to the total amount of curves. The calculations have been performed on the subfigures of Figure~\ref{fig:teaser}, thus varying the transfer function and strain direction. All error values were normalized w.r.t. the respective highest error.}
     \label{fig:error}
 \end{figure*}
 
