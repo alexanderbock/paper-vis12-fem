@@ -198,7 +198,7 @@ When visualizing such models world coordinates are usually more convenient to us
 %
 %
 \section{Coherency-based Curve Compression}\label{sec:preprocessing}
-In this section, we present the basis for a novel ray-casting based algorithm for the interactive exploration of curvilinear FE models.
+In this section we present the basis for a novel ray-casting based algorithm for the interactive exploration of curvilinear FE models.
 
 The \emph{straightforward approach} for ray-casting FE models would be to march along a ray in world space and transform each world space sample coordinate, $x$, into its corresponding material coordinate, $\xi$, before accessing the dependent variables. As shown in Table~\ref{tab:performance}, this approach is computationally very demanding and therefore cannot, in general, be performed at interactive frame rates. By using our approach we are able to shift this, originally view-dependent, computation from the rendering stage into the data processing stage of the visualization pipeline. Thus, we can reduce the computational load during rendering and achieve interactive frame rates when volume rendering curvilinear FE models.
 
