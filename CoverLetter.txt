@@ -22,33 +22,33 @@ We hope that all comments have been addressed as expected.
 
 Sincerely yours,
    The authors
-   
-   
-   
-   
-   
+
+
+
+
+
 Summary Rating
 ==============
-	> 1. The authors compare their method to a
+    > 1. The authors compare their method to a
     > "straight-forward" implementation rather than to previous
     > state-of-the-art.  This should be corrected.
 
-The approach to which we refer to as "straight-forward" approach, is explained in greater
-depth in Section 4. Furthermore, the validity for using this method as a comparison to our
-approach has been motivated in Section 7.
+As discussed in the email, we explained the approach to which we refer to as "straight-
+forward" approach in greater depth in Section 4. Furthermore, the validity for using this
+method as a comparison to our approach has been motivated in Section 7.
      
 
-	> 2. Better figures showing how the proxy rays should
+    > 2. Better figures showing how the proxy rays should
     > be generated were requested.
-    
+
 A new set of figures (Figure 3(a,b) and Figure 4) has been created to clarify the proxy
 ray generation process. In addition, the descriptive text has been improved.
 
 
     > 3. Several reviewers requested improved structure,
     > with a better high-level overview at the beginning of the
-	> paper.  More implementation details are also needed in order
-	> for the work to be reproducible.
+    > paper.  More implementation details are also needed in order
+    > for the work to be reproducible.
 
 We have changed the structure of the paper accordingly and moved the
 workflow figure into the introduction section, such that we could give a high-level
@@ -63,29 +63,30 @@ added to the paper.
     > should also at least sketch out how it might be extended to
     > other cell types such as prisms, pyramids and tetrahedra,
     > and whether it also applies to elements with curved faces.
-    
-A new subsection (Section 7.5) concerning the limitations w.r.t. hexahedral elements has
-been added in which the generalization to other element faces is elaborated on.
+
+A new paragraph in Section 6 (Element Generalization) concerning the limitations w.r.t.
+hexahedral elements has been added in which the generalization to other element faces is
+ laborated on.
 
 
     > 5. Results were only shown for tri-cubic FEM, rather
     > than the range of degrees used in simulation.
-    
+
 We included a remark in Section 7, stating that our method is not limited by a specific
 degree. Furthermore, we use simulations consisting of tri-cubic as well as bicubic-linear
 FEMs.
 
 
-	> 6. References to work on high-order FEM methods, to
+    > 6. References to work on high-order FEM methods, to
     > ray-tracing methods, &c. need to be added.
-    
+
 All relevant references (papers and books) that were mentioned by all reviewers have been
 included and referenced in the paper (mainly, but not exclusively in Sections 2 and 3).
 
 
-	> 7. Concern was also expressed about the level of
-	> accuracy of the images, and about the evaluation of their
-	> quality.
+    > 7. Concern was also expressed about the level of
+    > accuracy of the images, and about the evaluation of their
+    > quality.
 
 ????????????????????
 
@@ -96,7 +97,8 @@ included and referenced in the paper (mainly, but not exclusively in Sections 2 
     
 This mistake has been corrected and in Section 5.2 we explain that the sampling points
 used for material properties are equally distant spaced in material space, we use the
-distance in world space to compute the opacity.
+distance in world space to compute the opacity. This was already done in our
+implementation, but wrongly stated in the paper.
 
 
     > 9. A major problem with this approach is the
@@ -104,30 +106,43 @@ distance in world space to compute the opacity.
     > reported of up to 84 hours, and the scalability beyond
     > relatively small meshes.
     
-A OpenCL implementation was created (Section 6) and the speedup of an order of magnitude
+A OpenCL implementation was created (Section 6) and a speedup of an order of magnitude
 has been reported in Section 7.3.
 Furthermore, we corrected an error with the calculation of the file sizes for Table 2
 concerning an ASCII-encoding overhead (before) in comparison to a binary representation
-(now). In addition, Section 7.4 was added in which the memory requirements and the
-dependent variables for this are described.
+(now). In the previous iteration of the paper we focussed more on the relationship
+between the original data and the compressed data. We were not concerned with the
+absolute sizes and therefore did not double check the correct sizes but used the text
+files as reference. In order to address the comments about the memory requirements, we
+computed the correct size and corrected the data in the table. This is explained in the
+newly added Section 7.4.
 
 
     > 10. Since the proxy rays involve parameters defining
     > density etc., at least some discussion of parameter
     > sensitivity would be desirable.
     
-Figure 13.a describes the error which is introduced into the system by approximating the
-bent ray in material space using a spline defined by varying control points.
+We have included Figure 13.(a) that describes the error which is introduced into the
+system by approximating the bent ray in material space using a spline defined by varying
+control points.
+We included other requested parameters in the paper as well. The accuracy of the depth
+buffer was tested in Section 6 (where no difference between 16 bit and 24 bit was found).
+The interpolation between different rays and different spacing between entry and exit
+points was already checked and the results are presented in Figure 7.
+We tested different tesselation parameters, but chose to omit the results from the paper,
+as they bore no difference besides the obvious effect from lower tesselation. Our
+algorithm works independent of this value. Although the result will, of course, change,
+neither the memory requirements nor the speed changes in any way.
 
 
 
 
 Primary Reviewer
 ================
-   > I also note that the memory footprint seems to be
-   > much larger than that of the primary data - and this is likely to be a
-   > major constraint when applying the technique to other problems.
-   
+    > I also note that the memory footprint seems to be
+    > much larger than that of the primary data - and this is likely to be a
+    > major constraint when applying the technique to other problems.
+
 An error in the measurement of the sizes has been corrected (see above). Although the
 resulting data sizes are larger than that of the primary data, it is not as bad as it was
 stated in the first version of the paper.
@@ -148,45 +163,50 @@ spotted issues.
 All of these helpful comments have been addressed in the paper.
    
    
-	> "They must also be close to proxy rays having different directions" - why
-	> should the directions be different? How many should there be?  At least
-	> give the reader some clue why this condition is being imposed.
-	
+    > "They must also be close to proxy rays having different directions" - why
+    > should the directions be different? How many should there be?  At least
+    > give the reader some clue why this condition is being imposed.
+
 This part of Section 4.1 has been rewritten to make the impact of the proxy ray's 
 directionality with respect to the grid points more clear.
    
 
-	> "Finding the desired dense and omni-directional proxy" - this was the
-	> first point where it became clear that your preprocessing was for *ALL*
-	> possible directions - this should be more clearly foreshadowed in the
-	> introduction and earlier material. Moreover, when one discovers this
-	> essential element of the paper by surprise when already deep into the
-	> details, it is usually an indication that the paper needs a stronger
-	> structure imposed on it.
-	
+    > "Finding the desired dense and omni-directional proxy" - this was the
+    > first point where it became clear that your preprocessing was for *ALL*
+    > possible directions - this should be more clearly foreshadowed in the
+    > introduction and earlier material. Moreover, when one discovers this
+    > essential element of the paper by surprise when already deep into the
+    > details, it is usually an indication that the paper needs a stronger
+    > structure imposed on it.
+
 The structure has been improved and a high-level overview has been included in the
 introductory section.
 
 
-	> "It is clear that this metric fulfills ... " - It is not clear, nor is it
-	> clear why these properties matter. Please explain.
-	
+    > "It is clear that this metric fulfills ... " - It is not clear, nor is it
+    > clear why these properties matter. Please explain.
+    
 The related sentences in Section 4.2 have been rewritten. We think it necessary to state
 that the distance function is, in fact, a valid metric defined by the given three
 attributes. But we see it outside the scope of the work to proof the attributes.
 
 
-	> "which is the best number in general" - is this a hidden parameter? If
-	> so, please sketch what choices were made in this paper, and if possible,
-	> give some indication of parameter sensitivity
-	> "one could apply algorithms for finding an optimal number of clusters" -
-	> if it is that important, then it would be proper to give at least
-	> empirical observations - see also previous note.
-	
+    > "which is the best number in general" - is this a hidden parameter? If
+    > so, please sketch what choices were made in this paper, and if possible,
+    > give some indication of parameter sensitivity
+    > "one could apply algorithms for finding an optimal number of clusters" -
+    > if it is that important, then it would be proper to give at least
+    > empirical observations - see also previous note.
+
 This part of Section 4.2 has been rewritten to clarify this misunderstanding. The number
 of clusters a parameter we evaluate, for example, in Figure 13.b. Furthermore, we describe
 empirical observations concerning the k-means in the implementation section in Section 6.
 
+    > I was unable to watch half of the video.  There were extreme encoding
+    > issues that made the video render as a garbled mess.
+    
+The video was encoded with a different codec (MP4) now and we tested the video on
+multiple setups.
 
 
 
@@ -197,7 +217,7 @@ Secondary Reviewer
     > important area and commonly used in solid mechanics, but it is a
     > limitation of the current system as it is not clear how well some of the
     > coherency assumptions would hold when one looked at the mappings used for
-	> prisms, pyramids and tetrahedra.
+    > prisms, pyramids and tetrahedra.
    
 The included mentioning the limitation in the introduction section. Since the underlying
 principles C^0-continuity between elements and C^p-continuity inside the elements, the 
@@ -225,20 +245,20 @@ elaborate on it in the performance analysis section. Furthermore, we have added 
 suggested references and relate to them.
 
 
-	> The authors do not provide sufficient details to help make the work
-	> reproducible.  Timing results are given, but full articulation of the
-	> hardware used, compilers, etc., are not given.  In addition, there is not
-	> enough implementation details specified that would help a reader (or
-	> graduate student) to replicate and then build on this work without
-	> significant effort.
-	
+    > The authors do not provide sufficient details to help make the work
+    > reproducible.  Timing results are given, but full articulation of the
+    > hardware used, compilers, etc., are not given.  In addition, there is not
+    > enough implementation details specified that would help a reader (or
+    > graduate student) to replicate and then build on this work without
+    > significant effort.
+
 The hardware that was used to generate the performance results and the precomputation has
 been stated in Section 7.3. Furthermore, the programming languages (C++, OpenMP and
 OpenCL) are noted in Section 6, which contains also the required implementation details.
 
 
-	> - The authors in Section 4 say that "resolution needs to be high enough
-	> that variations of the unknown variable can be adequately approximated by
+    > - The authors in Section 4 say that "resolution needs to be high enough
+    > that variations of the unknown variable can be adequately approximated by
     > the underlying FE basis functions".  This is indeed the "goal", but is
     > not always realized in a real engineering simulation.  Being moderately
     > resolved or under-resolved is more often the truth as people push the
@@ -286,7 +306,7 @@ Reviewer 3
     > example, in the case of volume rendering initial guesses can be generated
     > based on the previous sample to improve convergence).  For this argument
     > to be compelling, proof of the impact the mapping has on the overall
-	> rendering should be provided.
+    > rendering should be provided.
 
 The impact is already given in Table, where the only difference between the two compared
 methods is the mapping that is performed. The SF implementation performs the world-to-xi
@@ -295,22 +315,22 @@ rendering step.
 Nevertheless, we improved the explanation of the straight-forward approach in Section 4.
 
 
-	> Section 3, Second paragraph:  What is an associated material property,
-	> and how does that relate to the mapping between material and world space?
+    > Section 3, Second paragraph:  What is an associated material property,
+    > and how does that relate to the mapping between material and world space?
    
 The term 'associated material property' was misleading. We have rewritten the sentence
 accordingly.
 
 
     > For Figures 11, 14, and 15 to be meaningful, a description of the
-	> baseline image used must be provided.  From Figures 11 and 14, it appears
+    > baseline image used must be provided.  From Figures 11 and 14, it appears
     > accuracy was assumed once no obvious visual artifacts were seen, which is
     > not a compelling argument for accuracy.
     
 ???????????????
 
 
-	> Section 3, Third Paragraph:  The first two sentences are confusing.  Any
+    > Section 3, Third Paragraph:  The first two sentences are confusing.  Any
     > visualization of the high-order field, not just volume visualization,
     > requires the transformation to material space (otherwise the
     > visualization will not have access to the field data).  These first two
@@ -324,7 +344,7 @@ Yes, these sentences were indeed misleading. We have now clarified, that any acc
 the field data requires the transformation into material space.   
 
 
-	> Section 4.1, first paragraph:  This paragraph indicates that both world
+    > Section 4.1, first paragraph:  This paragraph indicates that both world
     > and material space must be densely populated with rays, yet the technique
     > presented later, with evenly spaced samples in material space, can result
     > in uneven distribution in world space (Meyer et al. below has a nice
@@ -337,25 +357,25 @@ spacing in world space was already included, but the explanation in Section 4.1 
 improved.
 
 
-   > Section 4.1, first paragraph:  Two methods of creating the proxy-ray
-   > distribution are mentioned.  The first method, using the actual ray
-   > distribution, does not appear to be a valid pre-processing step, as it
-   > would only apply to specific viewing directions.  It is also not clear
-   > how the choice of uniform distribution follows from inter and intra
-   > element coherence.
+    > Section 4.1, first paragraph:  Two methods of creating the proxy-ray
+    > distribution are mentioned.  The first method, using the actual ray
+    > distribution, does not appear to be a valid pre-processing step, as it
+    > would only apply to specific viewing directions.  It is also not clear
+    > how the choice of uniform distribution follows from inter and intra
+    > element coherence.
 
 This part was extended and the viewing direction idea was clarified. In addition, the
 inter and intra coherency is explained in more detail.
 
 
-	> Section 4.2, Fourth Paragraph:  What is the naive clustering approach? 
+    > Section 4.2, Fourth Paragraph:  What is the naive clustering approach? 
     > It isn't clear how to judge the statement that this approach is better.
 
 The reference to a naive clustering was misleading and the sentence was restructured.
 
 
     > Section 4.2, Fifth Paragraph:  Why is the area approximated?  If the
-	> proxy rays are represented by splines, couldn't this area be computed
+    > proxy rays are represented by splines, couldn't this area be computed
     > analytically?
 
 This valid point was included in the discussion of the metric in Section 4.2. Although it
@@ -365,45 +385,45 @@ section to analyse the quality of our results. In this part, no closed solution 
 was included in the description.
 
 
-   > Section 5.1, end of first paragraph:  The case of rays entering and
-   > exiting an element through the same face is not handled here.
-   
+    > Section 5.1, end of first paragraph:  The case of rays entering and
+    > exiting an element through the same face is not handled here.
+
 This part is now included in Section 6.
 
 
-   > In both Figures 2 and 3, the color coding is difficult to see, especially
-   > when the document is printed.  Consider using thicker lines and fewer
-   > lines with greater contrast.
+    > In both Figures 2 and 3, the color coding is difficult to see, especially
+    > when the document is printed.  Consider using thicker lines and fewer
+    > lines with greater contrast.
 
-   > Figure 2:  The world space shows several elements, yet the reference
-   > space diagram shows only one.  It isn't clear what the relationship
-   > between these two diagrams is.  The colors used to represent element
-   > edges are difficult to see, especially when printed.
+    > Figure 2:  The world space shows several elements, yet the reference
+    > space diagram shows only one.  It isn't clear what the relationship
+    > between these two diagrams is.  The colors used to represent element
+    > edges are difficult to see, especially when printed.
 
-   > Figure 3: the color coding is used to indicate which rays in world space
-   > correspond to the curved rays in reference space, but it is very
-   > difficult to perform the matching.  Since the elements in material space
-   > are not adjacent to each other (as shown in this figure), it isn't clear
-   > what relationship is being shown by the grid.
+    > Figure 3: the color coding is used to indicate which rays in world space
+    > correspond to the curved rays in reference space, but it is very
+    > difficult to perform the matching.  Since the elements in material space
+    > are not adjacent to each other (as shown in this figure), it isn't clear
+    > what relationship is being shown by the grid.
 
 (Old) Figures 2 and 3 have been replaced by a single, newly generated figure which does
 not have the stated problems anymore.
 
 
-	> The scalability of this algorithm is concerning.In Section 3, it is
-	> claimed that optimal results require a moderate number of elements,
-	> yet in many areas (computational fluid dynamics, for example),
-	> high-order fields can require tens and hundreds of thousands of
-	> elements to achieve the required level of accuracy.The performance
-	> numbers provided indicates days of processing for very small models,
-	> which will severely limit the general applicability of the algorithm.
+    > The scalability of this algorithm is concerning.In Section 3, it is
+    > claimed that optimal results require a moderate number of elements,
+    > yet in many areas (computational fluid dynamics, for example),
+    > high-order fields can require tens and hundreds of thousands of
+    > elements to achieve the required level of accuracy.The performance
+    > numbers provided indicates days of processing for very small models,
+    > which will severely limit the general applicability of the algorithm.
 
 Many applications, especially in bioengineering, use few, but very complex elements. Using
 thousands of elements in such applications would result in an infeasible computation.
 
 
-	> Figure 4:  This figure makes the proxy ray look a 2D curve (because of
-	> the dotted plane), yet it is clear from the text in section 4.2 that it
+    > Figure 4:  This figure makes the proxy ray look a 2D curve (because of
+    > the dotted plane), yet it is clear from the text in section 4.2 that it
     > is a 3D curve.  This caused significant confusion during the first
     > read-through, as the figure appears before the associated text, which
     > generated an expectation of a 2D curve.
@@ -412,7 +432,7 @@ The figure has been recreated to deliver a better 3D orientation when comparing 
 yz-plane with the proxy ray.
 
 
-	> Section 4.1, 4th paragraph.  The description of this paragraph is at odds
+    > Section 4.1, 4th paragraph.  The description of this paragraph is at odds
     > with the volume rendering equation being used on page 4.  In this form,
     > areas of the volume can emit without incurring any occlusion, which means
     > that, depending on the transfer function, the areas near the entrance and
@@ -421,7 +441,7 @@ yz-plane with the proxy ray.
 ??????????????????????????????????
 
 
-	> Better accuracy results.  There are many areas where approximations are
+    > Better accuracy results.  There are many areas where approximations are
     > introduced, and it isn't clear how these tradeoffs affect the final
     > image.  It would be nice to see the impact on execution time and final
     > image of all of the free parameters, not just the number of poxy rays.
@@ -458,7 +478,7 @@ The sentences concerning the (indirect) reduction of the number of proxy rays we
 to the clustering and better explained since they where confusing.
 
 
-	> Figure 9:  This diagram doesn't match the text.  This shows unequally
+    > Figure 9:  This diagram doesn't match the text.  This shows unequally
     > spaced samples along the arc, with equally space samples in world space.
 
 The figure was redone and shows equidistant spacing in material space now, with a different
@@ -469,7 +489,7 @@ spacing in world space.
 
 Reviewer 5
 ==========
-	> In my view the presentation is very "wordy" and shows to little math in
+    > In my view the presentation is very "wordy" and shows to little math in
     > order to be easily understood. In some paragraphs the text is not easily
     > accessible and I would rather prefer the authors to write down
     > explanations in mathematical language (formulas, equations) using
@@ -479,7 +499,7 @@ A more formal explanation of concepts has been introduced in appropriate cases, 
 reducing the amount of explanatory text.
 
 
-	> Also in Section 4.1 the authors claim that they can use two different
+    > Also in Section 4.1 the authors claim that they can use two different
     > point distributions for entry and exit points of the proxy rays, because
     > the sample points close to the exit point will have only a small
     > contribution due to the exponential falloff. However, I would think that
@@ -489,7 +509,7 @@ reducing the amount of explanatory text.
 ????????????????
 
 
-	> In the introduction it is not made clear why curved viewing rays are
+    > In the introduction it is not made clear why curved viewing rays are
     > needed. This explanation is postponed until Section 3.
    
 We have addressed this issue in the high-level explanation, where we relate the straight
@@ -508,25 +528,25 @@ been added.
 The section surrounding the dimensionality was rewritten to clarify the FE better.
  
 
-	> Section 4 speaks about regularities, which can help in the curve
-	> compression. As such the inter-element coherence of FE meshes is named.
-	> Is this used here and is it a necessary requirement for the algorithm to
-   	> work?
+    > Section 4 speaks about regularities, which can help in the curve
+    > compression. As such the inter-element coherence of FE meshes is named.
+    > Is this used here and is it a necessary requirement for the algorithm to
+    > work?
    
 The impact of the regularities together with the limitation arising from them is stated
 more clearly throughout the paper.
    
 
-   > I am puzzled by the restriction imposed by the authors that "the number
-   > of elements should be moderate". The authors do sufficiently not explain
-   > this restriction, however the examples shown in section 6.1 have only up
-   > to 64 elements. In my view this is a severe restriction as nowadays FE
-   > models easily can have thousands of even higher order elements. So I am
-   > wondering if the performance gain advocated in the paper can only be
-   > achieved if the number of elements is small as shown here.
+    > I am puzzled by the restriction imposed by the authors that "the number
+    > of elements should be moderate". The authors do sufficiently not explain
+    > this restriction, however the examples shown in section 6.1 have only up
+    > to 64 elements. In my view this is a severe restriction as nowadays FE
+    > models easily can have thousands of even higher order elements. So I am
+    > wondering if the performance gain advocated in the paper can only be
+    > achieved if the number of elements is small as shown here.
 
-   > As said above for the numerical experiments I am wondering about the
-   > limitation in the number of elements of the grid. 
+    > As said above for the numerical experiments I am wondering about the
+    > limitation in the number of elements of the grid. 
    
 The memory requirements for our methods have been elaborated on in Section 7.4 and Table 2
 showing the dependency on the number of faces, elements, and the grid resolution used for

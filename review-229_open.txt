@@ -68,8 +68,6 @@ Reviewer 1
    used.  Better figures could help alleviate this.  I also have little clue
    in how all of these proxy rays are stored (Figure 8 did not help me).
 
-   I was unable to watch half of the video.  There were extreme encoding
-   issues that made the video render as a garbled mess.
 
 
 Reviewer 3
