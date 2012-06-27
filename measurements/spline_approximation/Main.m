@@ -4,7 +4,7 @@ close all;
 
 abcissa = 2:20;
 
-set(gca,'FontSize',12)
+set(gca,'FontSize',13)
 
 heartDataMean = [
     0.02875026731662125600,
@@ -78,7 +78,7 @@ semilogy(abcissa, tongueDataMeanNormalized, '-gs','LineWidth',2, 'MarkerEdgeColo
 cd('../plot2svg');
 title('Error introduced by approximating bent ray by a spline');
 xlabel('Number of control points');
-ylabel('Normalized error');
-legend('heart', 'tongue');
+ylabel('Normalized Error');
+legend('Heart', 'Tongue');
 plot2svg('../spline_approximation/spline_approximation.svg');
 cd('../spline_approximation');
