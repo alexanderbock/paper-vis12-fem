@@ -237,6 +237,40 @@ been stated in Section 7.3. Furthermore, the programming languages (C++, OpenMP 
 OpenCL) are noted in Section 6, which contains also the required implementation details.
 
 
+	> - The authors in Section 4 say that "resolution needs to be high enough
+	> that variations of the unknown variable can be adequately approximated by
+    > the underlying FE basis functions".  This is indeed the "goal", but is
+    > not always realized in a real engineering simulation.  Being moderately
+    > resolved or under-resolved is more often the truth as people push the
+    > boundaries in terms of what is computable.  When things are only
+    > marginally resolved, how does the system/method you propose handle such
+    > things?  In theory, one could increase the number of proxy rays that one
+    > generates to help guarantee that the error is sufficiently low.  However,
+    > in doing so one would "sacrifice" interactivity.
+    > 
+    > - There is a statement that most elements are "well-behaved".  This is
+    > again the goal, but one thing that practitioners of high-order FEM often
+    > quote (from proofs by Babuska) is that high-order methods are LESS
+    > sensitive (in terms of convergence) to ill-formed elements than
+    > traditional low-order elements.  Hence, the likelihood that you will have
+    > a poor-quality element in a realistic high-order FEM mesh is greater as
+    > many practitioners take advantage of this (trying to get the largest
+    > elements possible so that they can increase the polynomial order for
+    > efficiency).  How would the proposed system/methodology handle such
+    > elements?  All the examples presented are for the "very" nice case -- not
+    > the realistic engineering cases.
+   
+If data fields exhibit a high variation over an element then resolution would have to be
+increased in order to reduce any visualization error. The same problem occurs for all
+alternative techniques, e.g. resampling in world coordinates. In practice the biggest
+difficulty would be to compute the inverse FE mapping, since, if the mapping is not
+well-behaved, the multi-dimensional Newton method might not terminate. More advanced
+numerical techniques could be employed, but so far have not been necessary in our case.
+The elements around the apex of the left ventricular model are a good example of finite
+elements which are not well behaved. In fact, since different material coordinate vertices
+map to the same world coordinates the FE mapping contains a singularity. Our paper shows
+that our method handles this case well.
+
 
 
 Reviewer 3
@@ -354,6 +388,18 @@ This part is now included in Section 6.
 
 (Old) Figures 2 and 3 have been replaced by a single, newly generated figure which does
 not have the stated problems anymore.
+
+
+	> The scalability of this algorithm is concerning.In Section 3, it is
+	> claimed that optimal results require a moderate number of elements,
+	> yet in many areas (computational fluid dynamics, for example),
+	> high-order fields can require tens and hundreds of thousands of
+	> elements to achieve the required level of accuracy.The performance
+	> numbers provided indicates days of processing for very small models,
+	> which will severely limit the general applicability of the algorithm.
+
+Many applications, especially in bioengineering, use few, but very complex elements. Using
+thousands of elements in such applications would result in an infeasible computation.
 
 
 	> Figure 4:  This figure makes the proxy ray look a 2D curve (because of
