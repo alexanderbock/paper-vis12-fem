@@ -547,7 +547,6 @@ plot(abcissa(1:limit), data8192(1:limit), '-s', 'LineWidth',2, 'MarkerEdgeColor'
 
 set(gca,'FontSize',13);
 set(gca, 'Box', 'on');
-title('Error introduced by clustering', 'FontSize', 20);
 xlabel('Iteration', 'FontSize', 20);
 ylabel('Normalized Error', 'FontSize', 20);
 legendflex({'32', '64', '128', '256', '512', '1024', '2048', '4096', '8192', '16384'}, 'Location', [0.7 0.457 0.1669 0.455], 'ncol', 4);

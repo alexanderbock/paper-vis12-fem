@@ -76,7 +76,6 @@ semilogy(abcissa, heartDataMeanNormalized, '-rs','LineWidth',2, 'MarkerEdgeColor
 hold all;
 semilogy(abcissa, tongueDataMeanNormalized, '-gs','LineWidth',2, 'MarkerEdgeColor','k', 'MarkerFaceColor','g','MarkerSize',4);
 cd('../plot2svg');
-title('Error introduced by spline approximation', 'FontSize', 20);
 xlabel('Number of control points', 'FontSize', 20);
 ylabel('Normalized Error', 'FontSize', 20);
 legend('Heart', 'Tongue');
