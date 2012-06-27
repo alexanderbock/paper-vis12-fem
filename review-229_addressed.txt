@@ -2,7 +2,7 @@ To Whom It May Concern,
 
 we would like to thank you and your co-reviewers for the work you have done and the many valuable comments we have received regarding our submission. In our revision, we did our best in order to address all of the issues you have brought up. Below, you will find our detailed replies to the points of criticism brought up by the reviewers. 
 
-The remainder of this cover letter is structured as follows. First, we cite the comments of the reviewers, and then we explain, what changes we have undertaken in order to address these comments. All replies are structured based on the specific reviewers, whereby we start with the summary rating.
+The remainder of this cover letter is structured as follows. First, we cite the comments of the reviewers, and then we explain the changes we have undertaken in order to address these comments. All replies are structured based on the specific reviewers, whereby we start with the summary rating.
 
 We would also like to point out that we have slightly changed the title of the paper, which seems to be more appropriate based on the references suggested by the reviewers. We have changed 'higher-order' to 'high-order' and replaced 'exploration' with 'visualization'. Hopefully this is acceptable with you, otherwise we will of course take back these modifications.
 
@@ -13,61 +13,6 @@ We hope that all comments have been addressed as expected,
 
 
 
-Summary Rating
-==============
-
-     > 1.		The authors compare their method to a
-     > "straight-forward" implementation rather than to previous
-     > state-of-the-art.  This should be corrected.
-    
-The straight-forward approach is better explained and referenced in the necessary sections.  
-     
-     > 2.		Better figures showing how the proxy rays should
-     > be generated were requested.
-
-A better picture was generated and referenced (and explained) in the text.
-
-
-     > 3.		Several reviewers requested improved structure,
-     > with a better high-level overview at the beginning of the
-> paper.  More implementation details are also needed in order
-> for the work to be reproducible.
-
-     > 4.		The work as it stands is limited to hexahedral
-     > FEM. This should be made more explicit, and the authors
-     > should also at least sketch out how it might be extended to
-     > other cell types such as prisms, pyramids and tetrahedra,
-     > and whether it also applies to elements with curved faces.
-
-     > 5.		Results were only shown for tri-cubic FEM, rather
-     > than the range of degrees used in simulation.
-     
-Explained in the text that we are not limited to any order.
-
-
-
-     > 6.		References to work on high-order FEM methods, to
-     > ray-tracing methods, &c. need to be added.
-
-     > 8.		One reviewer noted that opacity is correctly
-     > computed in the world space, not in the computational space,
-     > unlike most computational properties, and the proposed
-     > method does not respect this as it stands.
-
-Samples are taken equidistantly in world space. (NOTE: redo figures)
-
-     > 9.		A major problem with this approach is the
-     > computational cost, in particular the pre-processing time
-     > reported of up to 84 hours, and the scalability beyond
-     > relatively small meshes.
-     
-OpenCL implementation was created and the results stated.
-
-     > 10.	Since the proxy rays involve parameters defining
-     > density etc., at least some discussion of parameter
-     > sensitivity would be desirable.
-
-Spline->Ray approximation error figure was included and described.
 
 
 
