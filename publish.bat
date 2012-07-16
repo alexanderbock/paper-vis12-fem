@@ -6,7 +6,7 @@ REM http://foolabs.com/xpdf/download.html
 
 :spec_file
 echo Finalize publication PDF (flattening, embed fonts, cmyk)
-set file=photonmapping
+set file=vis12-fem
 
 :start
 echo.
